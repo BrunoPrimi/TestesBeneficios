@@ -27,7 +27,7 @@ namespace TestesBeneficios.Infra.Data.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer("Server=(LocalDB)\\Local;Database=TesteDB;Integrated Security=true;");
+                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=TesteDB;Integrated Security=true;Encrypt=False;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

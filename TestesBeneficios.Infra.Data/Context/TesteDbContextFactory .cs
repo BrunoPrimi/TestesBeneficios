@@ -16,7 +16,7 @@ namespace TestesBeneficios.Infra.Data.Context
         public TesteContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<TesteContext>();
-            optionsBuilder.UseSqlServer("Server=(LocalDB)\\Local;Database=TesteDB;Integrated Security=true;");
+            optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=TesteDB;Integrated Security=true;Encrypt=False;");
 
             return new TesteContext(optionsBuilder.Options);
         }
