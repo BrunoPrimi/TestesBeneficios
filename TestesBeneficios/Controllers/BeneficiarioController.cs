@@ -56,7 +56,7 @@ namespace TestesBeneficios
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Cpf,NomeMae,Rg,DataNascimento,Status")] Beneficiario beneficiario)
+        public async Task<IActionResult> Create(Beneficiario beneficiario)
         {
             if (ModelState.IsValid)
             {
