@@ -13,7 +13,10 @@ namespace TestesBeneficios.Infra.Data.Context
     public class TesteContext : DbContext
     {
         public DbSet<Beneficiario> Beneficiarios { get; set; }
-
+        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Empresa> Empresas { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
+     
         public TesteContext()
         {
 
@@ -35,7 +38,13 @@ namespace TestesBeneficios.Infra.Data.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Beneficiario>(new ConfiguracoesBeneficiario().Configure);
-        
+           
+            modelBuilder.Entity<Usuario>(new ConfiguracoesUsuario().Configure);
+            
+            modelBuilder.Entity<Empresa>(new ConfiguracoesEmpresa().Configure);
+
+            modelBuilder.Entity<Produto>(new ConfiguracoesProduto().Configure);
+
         }
     }
 }

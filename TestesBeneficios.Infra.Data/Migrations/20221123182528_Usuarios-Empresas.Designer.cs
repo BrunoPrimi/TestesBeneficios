@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestesBeneficios.Infra.Data.Context;
 
@@ -11,9 +12,11 @@ using TestesBeneficios.Infra.Data.Context;
 namespace TestesBeneficios.Infra.Data.Migrations
 {
     [DbContext(typeof(TesteContext))]
-    partial class TesteContextModelSnapshot : ModelSnapshot
+    [Migration("20221123182528_Usuarios-Empresas")]
+    partial class UsuariosEmpresas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,35 +91,6 @@ namespace TestesBeneficios.Infra.Data.Migrations
                     b.ToTable("Empresas", (string)null);
                 });
 
-            modelBuilder.Entity("TestesBeneficios.Domain.Entidades.Produto", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Codigo")
-                        .IsRequired()
-                        .HasColumnType("Varchar(100)")
-                        .HasColumnName("Codigo");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("IdEmpresa")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("Varchar(100)")
-                        .HasColumnName("Nome");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdEmpresa");
-
-                    b.ToTable("Produtos", (string)null);
-                });
-
             modelBuilder.Entity("TestesBeneficios.Domain.Entidades.Usuario", b =>
                 {
                     b.Property<Guid>("Id")
@@ -144,22 +118,6 @@ namespace TestesBeneficios.Infra.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios", (string)null);
-                });
-
-            modelBuilder.Entity("TestesBeneficios.Domain.Entidades.Produto", b =>
-                {
-                    b.HasOne("TestesBeneficios.Domain.Entidades.Empresa", "Empresa")
-                        .WithMany("Produtos")
-                        .HasForeignKey("IdEmpresa")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Empresa");
-                });
-
-            modelBuilder.Entity("TestesBeneficios.Domain.Entidades.Empresa", b =>
-                {
-                    b.Navigation("Produtos");
                 });
 #pragma warning restore 612, 618
         }
