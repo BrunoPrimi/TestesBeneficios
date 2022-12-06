@@ -13,8 +13,11 @@ namespace TestesBeneficios.Domain.Entidades
         public string Nome { get; set; }
         public string Codigo { get; set; }
         public DateTime DataCriacao { get; set; }
-
         public Guid IdEmpresa { get; set; }
         public Empresa Empresa { get; set; }
+        public virtual List<ProdutoFaixaEtaria> FaixaEtaria { get; set; }
+        public virtual List<ProdutoAbrangencia> Abrangencia { get; set; }
+
+       
     }
 }

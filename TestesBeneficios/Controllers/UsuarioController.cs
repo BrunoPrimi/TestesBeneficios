@@ -10,7 +10,7 @@ using TestesBeneficios.Infra.Data.Context;
 
 namespace TestesBeneficios.Controllers
 {
-    public class UsuarioController : Controller
+    public class UsuarioController : BaseController
     {
         private readonly TesteContext _context;
 

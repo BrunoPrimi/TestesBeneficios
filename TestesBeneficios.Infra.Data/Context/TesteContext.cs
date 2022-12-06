@@ -16,7 +16,9 @@ namespace TestesBeneficios.Infra.Data.Context
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<Produto> Produtos { get; set; }
-     
+        public DbSet<ProdutoFaixaEtaria> FaixaEtaria { get; set; }
+        public DbSet<ProdutoAbrangencia> Abrangencia { get; set; }
+
         public TesteContext()
         {
 
@@ -44,6 +46,10 @@ namespace TestesBeneficios.Infra.Data.Context
             modelBuilder.Entity<Empresa>(new ConfiguracoesEmpresa().Configure);
 
             modelBuilder.Entity<Produto>(new ConfiguracoesProduto().Configure);
+
+            modelBuilder.Entity<ProdutoFaixaEtaria>(new ConfiguracoesProdutoFaixaEtaria().Configure);
+
+            modelBuilder.Entity<ProdutoAbrangencia>(new ConfiguracoesProdutoAbrangencia().Configure);
 
         }
     }

@@ -10,11 +10,11 @@ using TestesBeneficios.Infra.Data.Context;
 
 namespace TestesBeneficios.Controllers
 {
-    public class ProdutoController : BaseController
+    public class ProdutoAbrangenciaController : BaseController
     {
         private readonly TesteContext _context;
 
-        public ProdutoController(TesteContext context)
+        public ProdutoAbrangenciaController(TesteContext context)
         {
             _context = context;
         }
@@ -22,33 +22,33 @@ namespace TestesBeneficios.Controllers
         // GET: Usuario
         public async Task<IActionResult> Index()
         {
-              return _context.Produtos != null ? 
-                          View(await _context.Produtos.ToListAsync()) :
-                          Problem("Entity set 'TesteContext.Produtos'  is null.");
+              return _context.Abrangencia != null ? 
+                          View(await _context.Abrangencia.ToListAsync()) :
+                          Problem("Entity set 'TesteContext.Abrangencia'  is null.");
         }
 
         // GET: Usuario/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null || _context.Produtos == null)
+            if (id == null || _context.Abrangencia == null)
             {
                 return NotFound();
             }
 
-            var produto = await _context.Produtos
+            var produtoabrangencia = await _context.Abrangencia
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (produto == null)
+            if (produtoabrangencia == null)
             {
                 return NotFound();
             }
 
-            return View(produto);
+            return View(produtoabrangencia);
         }
 
         // GET: Usuario/Create
         public IActionResult Create()
         {
-            ViewBag.EmpresaId = new SelectList(_context.Empresas.ToList(), "Id", "RazaoSocial");
+            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "Nome");
 
             return View();
         }
@@ -58,35 +58,34 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nome,Codigo,IdEmpresa")] Produto produto)
+        public async Task<IActionResult> Create([Bind("Cidade,UF,IdProduto")] ProdutoAbrangencia produtoabrangencia)
         {
-            ModelState.Remove("Empresa");
-            ModelState.Remove("FaixaEtaria");
+            ModelState.Remove("Produto");
             if (ModelState.IsValid)
             {
-                produto.Id = Guid.NewGuid();
-                produto.DataCriacao = DateTime.Now;
-                _context.Add(produto);
+                produtoabrangencia.Id = Guid.NewGuid();
+                _context.Add(produtoabrangencia);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(produto);
+            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "Nome");
+            return View(produtoabrangencia);
         }
 
         // GET: Usuario/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null || _context.Produtos == null)
+            if (id == null || _context.Abrangencia == null)
             {
                 return NotFound();
             }
 
-            var produto = await _context.Produtos.FindAsync(id);
-            if (produto == null)
+            var produtoabrangencia = await _context.Abrangencia.FindAsync(id);
+            if (produtoabrangencia == null)
             {
                 return NotFound();
             }
-            return View(produto);
+            return View(produtoabrangencia);
         }
 
         // POST: Usuario/Edit/5
@@ -94,9 +93,9 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Nome,Codigo,IdEmpresa")] Produto produto)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Cidade,UF")] ProdutoAbrangencia produtoabrangencia)
         {
-            if (id != produto.Id)
+            if (id != produtoabrangencia.Id)
             {
                 return NotFound();
             }
@@ -105,12 +104,12 @@ namespace TestesBeneficios.Controllers
             {
                 try
                 {
-                    _context.Update(produto);
+                    _context.Update(produtoabrangencia);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProdutoExists(produto.Id))
+                    if (!ProdutoExists(produtoabrangencia.Id))
                     {
                         return NotFound();
                     }
@@ -121,25 +120,26 @@ namespace TestesBeneficios.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(produto);
+            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "Nome");
+            return View(produtoabrangencia);
         }
 
         // GET: Usuario/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null || _context.Produtos == null)
+            if (id == null || _context.Abrangencia == null)
             {
                 return NotFound();
             }
 
-            var produto = await _context.Produtos
+            var produtoabrangencia = await _context.Abrangencia
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (produto == null)
+            if (produtoabrangencia == null)
             {
                 return NotFound();
             }
 
-            return View(produto);
+            return View(produtoabrangencia);
         }
 
         // POST: Usuario/Delete/5
@@ -147,14 +147,14 @@ namespace TestesBeneficios.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            if (_context.Produtos == null)
+            if (_context.Abrangencia == null)
             {
-                return Problem("Entity set 'TesteContext.Produtos'  is null.");
+                return Problem("Entity set 'TesteContext.Abragencia'  is null.");
             }
-            var produto = await _context.Produtos.FindAsync(id);
-            if (produto != null)
+            var produtoabrangencia = await _context.Abrangencia.FindAsync(id);
+            if (produtoabrangencia != null)
             {
-                _context.Produtos.Remove(produto);
+                _context.Abrangencia.Remove(produtoabrangencia);
             }
             
             await _context.SaveChangesAsync();
@@ -163,7 +163,7 @@ namespace TestesBeneficios.Controllers
 
         private bool ProdutoExists(Guid id)
         {
-          return (_context.Produtos?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Abrangencia?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

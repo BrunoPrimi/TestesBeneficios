@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestesBeneficios.Infra.Data.Context;
 
@@ -11,9 +12,11 @@ using TestesBeneficios.Infra.Data.Context;
 namespace TestesBeneficios.Infra.Data.Migrations
 {
     [DbContext(typeof(TesteContext))]
-    partial class TesteContextModelSnapshot : ModelSnapshot
+    [Migration("20221206190333_FaixaEtarias")]
+    partial class FaixaEtarias
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,32 +120,6 @@ namespace TestesBeneficios.Infra.Data.Migrations
                     b.ToTable("Produtos", (string)null);
                 });
 
-            modelBuilder.Entity("TestesBeneficios.Domain.Entidades.ProdutoAbrangencia", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Cidade")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Cidade");
-
-                    b.Property<Guid>("IdProduto")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("UF")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("UF");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdProduto");
-
-                    b.ToTable("Abrangencia", (string)null);
-                });
-
             modelBuilder.Entity("TestesBeneficios.Domain.Entidades.ProdutoFaixaEtaria", b =>
                 {
                     b.Property<Guid>("Id")
@@ -211,17 +188,6 @@ namespace TestesBeneficios.Infra.Data.Migrations
                     b.Navigation("Empresa");
                 });
 
-            modelBuilder.Entity("TestesBeneficios.Domain.Entidades.ProdutoAbrangencia", b =>
-                {
-                    b.HasOne("TestesBeneficios.Domain.Entidades.Produto", "Produto")
-                        .WithMany("Abrangencia")
-                        .HasForeignKey("IdProduto")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Produto");
-                });
-
             modelBuilder.Entity("TestesBeneficios.Domain.Entidades.ProdutoFaixaEtaria", b =>
                 {
                     b.HasOne("TestesBeneficios.Domain.Entidades.Produto", "Produto")
@@ -240,8 +206,6 @@ namespace TestesBeneficios.Infra.Data.Migrations
 
             modelBuilder.Entity("TestesBeneficios.Domain.Entidades.Produto", b =>
                 {
-                    b.Navigation("Abrangencia");
-
                     b.Navigation("FaixaEtaria");
                 });
 #pragma warning restore 612, 618

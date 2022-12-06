@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TestesBeneficios.Controllers;
 using TestesBeneficios.Domain.Entidades;
 using TestesBeneficios.Infra.Data.Context;
 
 namespace TestesBeneficios
 {
-    public class BeneficiarioController : Controller
+    public class BeneficiarioController : BaseController
     {
         private readonly TesteContext _context;
 

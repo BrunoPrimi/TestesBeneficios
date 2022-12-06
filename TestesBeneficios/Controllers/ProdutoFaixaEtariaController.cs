@@ -10,11 +10,11 @@ using TestesBeneficios.Infra.Data.Context;
 
 namespace TestesBeneficios.Controllers
 {
-    public class ProdutoController : BaseController
+    public class ProdutoFaixaEtariaController : BaseController
     {
         private readonly TesteContext _context;
 
-        public ProdutoController(TesteContext context)
+        public ProdutoFaixaEtariaController(TesteContext context)
         {
             _context = context;
         }
@@ -22,33 +22,33 @@ namespace TestesBeneficios.Controllers
         // GET: Usuario
         public async Task<IActionResult> Index()
         {
-              return _context.Produtos != null ? 
-                          View(await _context.Produtos.ToListAsync()) :
-                          Problem("Entity set 'TesteContext.Produtos'  is null.");
+              return _context.FaixaEtaria != null ? 
+                          View(await _context.FaixaEtaria.ToListAsync()) :
+                          Problem("Entity set 'TesteContext.FaixaEtaria'  is null.");
         }
 
         // GET: Usuario/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null || _context.Produtos == null)
+            if (id == null || _context.FaixaEtaria == null)
             {
                 return NotFound();
             }
 
-            var produto = await _context.Produtos
+            var produtofaixaetaria = await _context.FaixaEtaria
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (produto == null)
+            if (produtofaixaetaria == null)
             {
                 return NotFound();
             }
 
-            return View(produto);
+            return View(produtofaixaetaria);
         }
 
         // GET: Usuario/Create
         public IActionResult Create()
         {
-            ViewBag.EmpresaId = new SelectList(_context.Empresas.ToList(), "Id", "RazaoSocial");
+            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "Nome");
 
             return View();
         }
@@ -58,35 +58,33 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nome,Codigo,IdEmpresa")] Produto produto)
+        public async Task<IActionResult> Create([Bind("FaixaDe,FaixaAte,Preco,IdProduto")] ProdutoFaixaEtaria produtofaixaetaria)
         {
-            ModelState.Remove("Empresa");
-            ModelState.Remove("FaixaEtaria");
+            ModelState.Remove("Produto");
             if (ModelState.IsValid)
             {
-                produto.Id = Guid.NewGuid();
-                produto.DataCriacao = DateTime.Now;
-                _context.Add(produto);
+                produtofaixaetaria.Id = Guid.NewGuid();
+                _context.Add(produtofaixaetaria);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(produto);
+            return View(produtofaixaetaria);
         }
 
         // GET: Usuario/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null || _context.Produtos == null)
+            if (id == null || _context.FaixaEtaria == null)
             {
                 return NotFound();
             }
 
-            var produto = await _context.Produtos.FindAsync(id);
-            if (produto == null)
+            var produtofaixaetaria = await _context.FaixaEtaria.FindAsync(id);
+            if (produtofaixaetaria == null)
             {
                 return NotFound();
             }
-            return View(produto);
+            return View(produtofaixaetaria);
         }
 
         // POST: Usuario/Edit/5
@@ -94,9 +92,9 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Nome,Codigo,IdEmpresa")] Produto produto)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,FaixaDe,FaixaAte,Preco")] ProdutoFaixaEtaria produtofaixaetaria)
         {
-            if (id != produto.Id)
+            if (id != produtofaixaetaria.Id)
             {
                 return NotFound();
             }
@@ -105,12 +103,12 @@ namespace TestesBeneficios.Controllers
             {
                 try
                 {
-                    _context.Update(produto);
+                    _context.Update(produtofaixaetaria);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProdutoExists(produto.Id))
+                    if (!ProdutoExists(produtofaixaetaria.Id))
                     {
                         return NotFound();
                     }
@@ -121,25 +119,25 @@ namespace TestesBeneficios.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(produto);
+            return View(produtofaixaetaria);
         }
 
         // GET: Usuario/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null || _context.Produtos == null)
+            if (id == null || _context.FaixaEtaria == null)
             {
                 return NotFound();
             }
 
-            var produto = await _context.Produtos
+            var produtofaixaetaria = await _context.FaixaEtaria
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (produto == null)
+            if (produtofaixaetaria == null)
             {
                 return NotFound();
             }
 
-            return View(produto);
+            return View(produtofaixaetaria);
         }
 
         // POST: Usuario/Delete/5
@@ -147,14 +145,14 @@ namespace TestesBeneficios.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            if (_context.Produtos == null)
+            if (_context.FaixaEtaria == null)
             {
                 return Problem("Entity set 'TesteContext.Produtos'  is null.");
             }
-            var produto = await _context.Produtos.FindAsync(id);
-            if (produto != null)
+            var produtofaixaetaria = await _context.FaixaEtaria.FindAsync(id);
+            if (produtofaixaetaria != null)
             {
-                _context.Produtos.Remove(produto);
+                _context.FaixaEtaria.Remove(produtofaixaetaria);
             }
             
             await _context.SaveChangesAsync();
@@ -163,7 +161,7 @@ namespace TestesBeneficios.Controllers
 
         private bool ProdutoExists(Guid id)
         {
-          return (_context.Produtos?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.FaixaEtaria?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
