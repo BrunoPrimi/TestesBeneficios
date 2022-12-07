@@ -4,48 +4,47 @@
 
 
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Cidade)
-            </th>
-            <th>
-                    @Html.DisplayNameFor(model => model.UF)
-            </th>
 
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                        @Html.DisplayFor(modelItem => item.Cidade)
-            </td>
-            <td>
-                        @Html.DisplayFor(modelItem => item.UF)
-            </td>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Produto Abrangencia</h4>
+            <p class="card-description">
+            <a asp-action="Create" type="button" class="btn btn-inverse-secondary btn-fw">Criar</a>
+            </p>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cidade)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UF)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cidade)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UF)
+                                </td>
 
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-</body>
-</html>
+                                <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-inverse-dark btn-fw">Editar</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id" type="button" class="btn btn-inverse-dark btn-fw">Detalis</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-inverse-dark btn-fw">Deletar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>
