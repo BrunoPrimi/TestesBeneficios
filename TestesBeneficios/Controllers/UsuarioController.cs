@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,31 +13,31 @@ namespace TestesBeneficios.Controllers
 {
     public class UsuarioController : BaseController
     {
-        private readonly TesteContext _context;
+        private readonly UserManager<Usuario> _userManager;
 
-        public UsuarioController(TesteContext context)
+        public UsuarioController(UserManager<Usuario> userManager)
         {
-            _context = context;
+            _userManager = userManager;
         }
 
         // GET: Usuario
         public async Task<IActionResult> Index()
         {
-              return _context.Usuarios != null ? 
-                          View(await _context.Usuarios.ToListAsync()) :
-                          Problem("Entity set 'TesteContext.Usuarios'  is null.");
+            return _userManager.Users != null ?
+                        View(await _userManager.Users.ToListAsync()) :
+                        Problem("Entity set 'TesteContext.Users'  is null.");
         }
 
         // GET: Usuario/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(string? id)
         {
-            if (id == null || _context.Usuarios == null)
+            if (id == null || _userManager.Users == null)
             {
                 return NotFound();
             }
 
-            var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var usuario = await _userManager.Users.FirstOrDefaultAsync(m => m.Id == id);
+
             if (usuario == null)
             {
                 return NotFound();
@@ -56,27 +57,31 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Email,Senha,DataCriacao")] Usuario usuario)
+        public async Task<IActionResult> Create([Bind("Nome,Email")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                usuario.Id = Guid.NewGuid();
-                _context.Add(usuario);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                usuario.Id = Guid.NewGuid().ToString();
+                usuario.UserName = usuario.Email;
+                var result = await _userManager.CreateAsync(usuario);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+
             }
             return View(usuario);
         }
 
         // GET: Usuario/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(string? id)
         {
-            if (id == null || _context.Usuarios == null)
+            if (id == null || _userManager.Users == null)
             {
                 return NotFound();
             }
 
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var usuario = await _userManager.Users.FirstOrDefaultAsync(m => m.Id == id);
             if (usuario == null)
             {
                 return NotFound();
@@ -89,7 +94,7 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Nome,Email,Senha,DataCriacao")] Usuario usuario)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Nome,Email,Senha,DataCriacao")] Usuario usuario)
         {
             if (id != usuario.Id)
             {
@@ -98,36 +103,27 @@ namespace TestesBeneficios.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+                var _usuario = await _userManager.Users.FirstOrDefaultAsync(m => m.Id == id);
+                usuario.ConcurrencyStamp = _usuario.ConcurrencyStamp;
+                usuario.UserName = usuario.Email;
+                var result = await _userManager.UpdateAsync(usuario);
+
+                if (result.Succeeded)
                 {
-                    _context.Update(usuario);
-                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UsuarioExists(usuario.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
             }
             return View(usuario);
         }
-
         // GET: Usuario/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(string? id)
         {
-            if (id == null || _context.Usuarios == null)
+            if (id == null || _userManager.Users == null)
             {
                 return NotFound();
             }
 
-            var usuario = await _context.Usuarios
+            var usuario = await _userManager.Users
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (usuario == null)
             {
@@ -140,25 +136,23 @@ namespace TestesBeneficios.Controllers
         // POST: Usuario/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            if (_context.Usuarios == null)
+            if (_userManager.Users == null)
             {
                 return Problem("Entity set 'TesteContext.Usuarios'  is null.");
             }
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var usuario = await _userManager.Users.FirstOrDefaultAsync(m => m.Id == id);
             if (usuario != null)
             {
-                _context.Usuarios.Remove(usuario);
+                await _userManager.DeleteAsync(usuario);
             }
-            
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UsuarioExists(Guid id)
+        private bool UsuarioExists(string id)
         {
-          return (_context.Usuarios?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_userManager.Users?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

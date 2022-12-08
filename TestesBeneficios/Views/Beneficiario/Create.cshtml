@@ -1,97 +1,42 @@
 @model TestesBeneficios.Domain.Entidades.Beneficiario
 
-<!DOCTYPE html>
 
-<html>
-<head>
 
-    <title>Corona Admin</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="~/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="~/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="~/vendors/select2/select2.min.css">
-    <link rel="stylesheet" href="~/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="~/css/style.css">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="~/images/favicon.png" />
-</head>
-<body>
-    <div class="container-scroller">
 
-        <!-- partial -->
-        <div class="container-fluid page-body-wrapper">
-
-            <!-- partial -->
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="card">
-                        <div class="card-body">
-                                    <h4 class="card-title">Beneficiaros</h4>
-                                    <p class="card-description">Beneficiaros </p>
-                                    <form class="forms-sample">
-                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                         <div class="form-sample">
-                                                    <label asp-for="Nome" class="control-label"></label>
-                                                    <input asp-for="Nome" class="form-control" />
-                                                    <span asp-validation-for="Nome" class="text-danger"></span>
-                                         </div>
-                                         <div class="form-sample">
-                                                    <label asp-for="Cpf" class="control-label"></label>
-                                                <input asp-for="Cpf" class="form-control" />
-                                                    <span asp-validation-for="Cpf" class="text-danger"></span>
-                                         </div>
-                                         <div class="form-sample">
-                                                 <label asp-for="NomeMae" class="control-label"></label>
-                                                    <input asp-for="NomeMae" class="form-control" />
-                                                    <span asp-validation-for="NomeMae" class="text-danger"></span>
-                                         </div>
-                                               <div class="form-sample">
-                                                    <label asp-for="Rg" class="control-label"></label>
-                                                    <input asp-for="Rg" class="form-control" />
-                                                    <span asp-validation-for="Rg" class="text-danger"></span>
-                                         </div>
-                                               <div class="form-sample">
-                                                    <label asp-for="DataNascimento" class="control-label"></label>
-                                                    <input asp-for="NomeMae" class="form-control" />
-                                                    <span asp-validation-for="NomeMae" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-sample">
-                                                <input type="submit" value="Create" class="btn btn-primary" />
-                                            </div>
-                                    </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>       
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Beneficiarios</h4>
+        <p class="card-description">Beneficiarios </p>
+        <form class="forms-sample" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-sample">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
-        </div>
-
-
-    <script src="~/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="~/vendors/select2/select2.min.js"></script>
-    <script src="~/vendors/typeahead.js/typeahead.bundle.min.js"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="~/js/off-canvas.js"></script>
-    <script src="~/js/hoverable-collapse.js"></script>
-    <script src="~/js/misc.js"></script>
-    <script src="~/js/settings.js"></script>
-    <script src="~/js/todolist.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="~/js/file-upload.js"></script>
-    <script src="~/js/typeahead.js"></script>
-    <script src="~/js/select2.js"></script>
-    <!-- End custom js for this page -->
-</body>
-</html>
+            <div class="form-sample">
+                <label asp-for="Cpf" class="control-label"></label>
+                <input asp-for="Cpf" class="form-control" />
+                <span asp-validation-for="Cpf" class="text-danger"></span>
+            </div>
+            <div class="form-sample">
+                <label asp-for="NomeMae" class="control-label"></label>
+                <input asp-for="NomeMae" class="form-control" />
+                <span asp-validation-for="NomeMae" class="text-danger"></span>
+            </div>
+            <div class="form-sample">
+                <label asp-for="Rg" class="control-label"></label>
+                <input asp-for="Rg" class="form-control" />
+                <span asp-validation-for="Rg" class="text-danger"></span>
+            </div>
+            <div class="form-sample">
+                <label asp-for="DataNascimento" class="control-label"></label>
+                <input asp-for="DataNascimento" class="form-control" />
+                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+            </div>
+            <div class="form-sample">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

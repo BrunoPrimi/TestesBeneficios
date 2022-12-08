@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,9 @@ using TestesBeneficios.Infra.Data.Configuracoes;
 
 namespace TestesBeneficios.Infra.Data.Context
 {
-    public class TesteContext : DbContext
+    public class TesteContext :IdentityDbContext<Usuario>
     {
         public DbSet<Beneficiario> Beneficiarios { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<ProdutoFaixaEtaria> FaixaEtaria { get; set; }
@@ -32,7 +32,7 @@ namespace TestesBeneficios.Infra.Data.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=TesteDB;Integrated Security=true;Encrypt=False;");
+                optionsBuilder.UseSqlServer("Server=TesteDB.mssql.somee.com;database=TesteDB;user id=Primi_SQLLogin_1;password=6ul8yeadfr;trust server certificate=true;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,9 +40,7 @@ namespace TestesBeneficios.Infra.Data.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Beneficiario>(new ConfiguracoesBeneficiario().Configure);
-           
-            modelBuilder.Entity<Usuario>(new ConfiguracoesUsuario().Configure);
-            
+                       
             modelBuilder.Entity<Empresa>(new ConfiguracoesEmpresa().Configure);
 
             modelBuilder.Entity<Produto>(new ConfiguracoesProduto().Configure);
