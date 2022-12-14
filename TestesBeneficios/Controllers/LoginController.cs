@@ -40,7 +40,7 @@ namespace TestesBeneficios.Controllers
                 var resutado = await _signManager.PasswordSignInAsync(logindto.Email, logindto.Senha, false, false);
                 if (resutado.Succeeded)
                 {
-                    return RedirectToAction(nameof(Index),nameof(HomeController));
+                    return RedirectToAction(nameof(HomeController.Index),"Home");
                 }
                 
             }
@@ -61,15 +61,23 @@ namespace TestesBeneficios.Controllers
             {
                 var usuario = new Usuario();
                 usuario.Id = Guid.NewGuid().ToString();
+                usuario.Nome = cadastrodto.Nome;
+                usuario.Email= cadastrodto.Email;
                 usuario.UserName = usuario.Email;
+                usuario.EmailConfirmed = true;
                 var result = await _userManager.CreateAsync(usuario,cadastrodto.Senha);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction(nameof(Index), nameof(HomeController));
+                    return RedirectToAction(nameof(HomeController.Index), "Home");
                 }
 
             }
             return View(cadastrodto);
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await _signManager.SignOutAsync();
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }

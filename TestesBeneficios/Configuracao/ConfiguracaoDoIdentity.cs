@@ -20,6 +20,7 @@ namespace TestesBeneficios.Configuracao
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
             });
 
             return services;

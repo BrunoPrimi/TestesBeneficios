@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 namespace TestesBeneficios.Domain.DTO
 {
     public class CadastroDTO
+
     {
+        [Required(ErrorMessage = "Campo Obrigatorio")]
+        public string Nome { get; set; }
+
         [Required(ErrorMessage ="Campo Obrigatorio")]
         public string Email { get; set; }
 

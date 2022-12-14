@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,6 +12,7 @@ using TestesBeneficios.Infra.Data.Context;
 
 namespace TestesBeneficios.Controllers
 {
+    [Authorize]
     public class UsuarioController : BaseController
     {
         private readonly UserManager<Usuario> _userManager;
