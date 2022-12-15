@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TestesBeneficios.Domain.DTO;
 using TestesBeneficios.Domain.Entidades;
 using TestesBeneficios.Infra.Data.Context;
 
@@ -59,13 +60,16 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nome,Email")] Usuario usuario)
+        public async Task<IActionResult> Create(Usuario usuario) 
         {
             if (ModelState.IsValid)
             {
+               
                 usuario.Id = Guid.NewGuid().ToString();
+               
                 usuario.UserName = usuario.Email;
-                var result = await _userManager.CreateAsync(usuario);
+                usuario.EmailConfirmed = true;
+                var result = await _userManager.CreateAsync(usuario, usuario.SenhaUsuario);
                 if (result.Succeeded)
                 {
                     return RedirectToAction(nameof(Index));
@@ -96,7 +100,7 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Nome,Email,Senha,DataCriacao")] Usuario usuario)
+        public async Task<IActionResult> Edit(string id,  Usuario usuario)
         {
             if (id != usuario.Id)
             {
@@ -108,6 +112,8 @@ namespace TestesBeneficios.Controllers
                 var _usuario = await _userManager.Users.FirstOrDefaultAsync(m => m.Id == id);
                 usuario.ConcurrencyStamp = _usuario.ConcurrencyStamp;
                 usuario.UserName = usuario.Email;
+                usuario.EmailConfirmed = true;
+                usuario.PasswordHash = _userManager.PasswordHasher.HashPassword(usuario, usuario.SenhaUsuario);
                 var result = await _userManager.UpdateAsync(usuario);
 
                 if (result.Succeeded)

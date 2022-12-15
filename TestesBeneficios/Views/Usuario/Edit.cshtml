@@ -29,16 +29,16 @@
                     <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
-           @*     <div class="form-group">
-                    <label asp-for="Senha" class="control-label"></label>
-                    <input asp-for="Senha" class="form-control" />
-                    <span asp-validation-for="Senha" class="text-danger"></span>
+               <div class="form-group">
+                    <label asp-for="SenhaUsuario" class="control-label"></label>
+                    <input asp-for="SenhaUsuario" type="password" class="form-control p_input">
+                    <span asp-validation-for="SenhaUsuario" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="DataCriacao" class="control-label"></label>
-                    <input asp-for="DataCriacao" class="form-control" />
-                    <span asp-validation-for="DataCriacao" class="text-danger"></span>
-                </div>*@
+                    <label asp-for="ConfirmacaoSenhaUsuario" class="control-label"></label>
+                    <input asp-for="ConfirmacaoSenhaUsuario" type="password" class="form-control p_input">
+                    <span asp-validation-for="ConfirmacaoSenhaUsuario" class="text-danger"></span>
+                </div>
                 <div class="form-group">
                     <input type="submit" value="Save" class="btn btn-primary" />
                 </div>
