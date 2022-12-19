@@ -5,7 +5,7 @@
 
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Produto Abrangencia</h4>
+        <h4 class="card-title">Produtos</h4>
         <p class="card-description">
 
         <p>
@@ -21,9 +21,8 @@
                         <th>
                                 @Html.DisplayNameFor(model => model.Codigo)
                         </th>
-                        <th>
-                                @Html.DisplayNameFor(model => model.DataCriacao)
-                        </th>
+
+                      
                         <th></th>
                     </tr>
                 </thead>
@@ -38,13 +37,11 @@
                                     @Html.DisplayFor(modelItem => item.Codigo)
                             </td>
 
+                           
                             <td>
-                                    @Html.DisplayFor(modelItem => item.DataCriacao)
-                            </td>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-inverse-dark btn-fw">Editar</a> |
-                                <a asp-action="Details" asp-route-id="@item.Id" type="button" class="btn btn-inverse-dark btn-fw">Detalis</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-inverse-dark btn-fw">Deletar</a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-primary">Editar</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id" type="button" class="btn btn-primary">Detalis</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-primary">Deletar</a>
                             </td>
                         </tr>
                         }

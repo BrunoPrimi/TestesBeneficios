@@ -25,7 +25,7 @@ namespace TestesBeneficios.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Abrangencia != null ? 
-                          View(await _context.Abrangencia.ToListAsync()) :
+                          View(await _context.Abrangencia.Include(x => x.Produto).ToListAsync()) :
                           Problem("Entity set 'TesteContext.Abrangencia'  is null.");
         }
 
@@ -60,7 +60,7 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Cidade,UF,IdProduto")] ProdutoAbrangencia produtoabrangencia)
+        public async Task<IActionResult> Create( ProdutoAbrangencia produtoabrangencia)
         {
             ModelState.Remove("Produto");
             if (ModelState.IsValid)
@@ -87,6 +87,7 @@ namespace TestesBeneficios.Controllers
             {
                 return NotFound();
             }
+            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "Nome");
             return View(produtoabrangencia);
         }
 
@@ -95,13 +96,13 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Cidade,UF")] ProdutoAbrangencia produtoabrangencia)
+        public async Task<IActionResult> Edit(Guid id,  ProdutoAbrangencia produtoabrangencia)
         {
             if (id != produtoabrangencia.Id)
             {
                 return NotFound();
             }
-
+            ModelState.Remove("Produto");
             if (ModelState.IsValid)
             {
                 try

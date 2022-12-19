@@ -5,9 +5,9 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Empresa</h4>
-        <form class="forms-sample" asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger">
-
+        <form asp-action ="Create" class="forms-sample">
+            <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+            <div class ="form-sample">
                 <label asp-for="Cnpj" class="control-label"></label>
                 <input asp-for="Cnpj" class="form-control" />
                 <span asp-validation-for="Cnpj" class="text-danger"></span>

@@ -1,3 +1,4 @@
+@using TestesBeneficios.Domain.Enumeradores;
 @model TestesBeneficios.Domain.Entidades.Produto
 
 
@@ -28,11 +29,16 @@
                     <input asp-for="Codigo" class="form-control" />
                     <span asp-validation-for="Codigo" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="DataCriacao" class="control-label"></label>
-                    <input asp-for="DataCriacao" class="form-control" />
-                    <span asp-validation-for="DataCriacao" class="text-danger"></span>
+                <div class="form-sample">
+                    <label asp-for="Abrangencia" class="control-label"></label>
+                    <select asp-for="Abrangencia" class="form-control " asp-items="Html.GetEnumSelectList<AbrangenciaProduto>()"></select>
+                    <span asp-validation-for="Abrangencia" class="text-danger"></span>
                 </div>
+                  <div class="form-group">
+                <label asp-for="IdEmpresa" class="control-label"></label>
+                <select asp-for="IdEmpresa" class="form-control" asp-items="@ViewBag.EmpresaId"></select>
+                <span asp-validation-for="IdEmpresa" class="text-danger"></span>
+            </div>
                 <div class="form-group">
                     <input type="submit" value="Salvar" class="btn btn-dark btn-rounded btn-fw" />
                 </div>

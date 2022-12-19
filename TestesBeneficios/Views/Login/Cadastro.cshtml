@@ -50,17 +50,17 @@
                                     <span asp-validation-for="Senha" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label>Confirmaçao Senha</label>
+                                    <label>Confirmar Senha</label>
                                     <input asp-for="ConfirmacaoSenha" type="password" class="form-control p_input">
                                     <span asp-validation-for="ConfirmacaoSenha" class="text-danger"></span>
                                 </div>
                                 <div class="form-group d-flex align-items-center justify-content-between">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input"> Remember me
+                                            <input type="checkbox" class="form-check-input"> Lembrar senha
                                         </label>
                                     </div>
-                                    <a href="#" class="forgot-pass">Forgot password</a>
+                                    <a href="#" class="forgot-pass">Recuperar senha</a>
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
@@ -73,8 +73,7 @@
                                         <i class="mdi mdi-google-plus"></i> Google plus
                                     </button>
                                 </div>
-                                <p class="sign-up text-center">Already have an Account?<a href="#"> Sign Up</a></p>
-                                <p class="terms">By creating an account you are accepting our<a href="#"> Terms & Conditions</a></p>
+                                <p class="sign-up text-center">Já tem uma conta?<a asp-action="Index" asp-controller="Login" class="nav-link"> Entre</a></p>
                             </form>
                         </div>
                     </div>

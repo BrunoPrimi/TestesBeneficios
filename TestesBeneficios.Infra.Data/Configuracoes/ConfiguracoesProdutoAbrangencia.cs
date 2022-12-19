@@ -24,7 +24,7 @@ namespace TestesBeneficios.Infra.Data.Configuracoes
           
 
             entityTypeBuilder.HasOne(x => x.Produto)
-                .WithMany(x => x.Abrangencia)
+                .WithMany(x => x.Abrangencias)
                 .HasForeignKey(x => x.IdProduto)
                 .OnDelete(DeleteBehavior.NoAction);
             

@@ -60,10 +60,11 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nome,Codigo,IdEmpresa")] Produto produto)
+        public async Task<IActionResult> Create([Bind("Nome,Codigo,IdEmpresa,Abrangencia")] Produto produto)
         {
             ModelState.Remove("Empresa");
             ModelState.Remove("FaixaEtaria");
+            ModelState.Remove("Abrangencia");
             if (ModelState.IsValid)
             {
                 produto.Id = Guid.NewGuid();
@@ -72,7 +73,9 @@ namespace TestesBeneficios.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.EmpresaId = new SelectList(_context.Empresas.ToList(), "Id", "RazaoSocial");
             return View(produto);
+
         }
 
         // GET: Usuario/Edit/5
@@ -88,6 +91,7 @@ namespace TestesBeneficios.Controllers
             {
                 return NotFound();
             }
+            ViewBag.EmpresaId = new SelectList(_context.Empresas.ToList(), "Id", "RazaoSocial");
             return View(produto);
         }
 
@@ -96,13 +100,16 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Nome,Codigo,IdEmpresa")] Produto produto)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Nome,Codigo,IdEmpresa,Abrangencia")] Produto produto)
         {
             if (id != produto.Id)
             {
                 return NotFound();
             }
-
+            ModelState.Remove("Empresa");
+            ModelState.Remove("FaixaEtaria");
+            ModelState.Remove("Abrangencia");
+            
             if (ModelState.IsValid)
             {
                 try
@@ -123,6 +130,7 @@ namespace TestesBeneficios.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.EmpresaId = new SelectList(_context.Empresas.ToList(), "Id", "RazaoSocial");
             return View(produto);
         }
 

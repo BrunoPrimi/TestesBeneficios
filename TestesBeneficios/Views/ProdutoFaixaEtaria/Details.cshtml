@@ -11,7 +11,7 @@
 <body>
 
     <div>
-        <h4>ProdutoFaixaEtaria</h4>
+        <h4>Produto Faixa Etaria</h4>
         <hr />
         <dl class="row">
             <dt class="col-sm-2">
@@ -31,6 +31,12 @@
             </dt>
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.Preco)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Produto.Nome)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Produto.Nome)
             </dd>
         </dl>
     </div>

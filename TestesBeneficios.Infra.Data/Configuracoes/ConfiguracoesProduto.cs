@@ -26,7 +26,12 @@ namespace TestesBeneficios.Infra.Data.Configuracoes
                 .WithMany(x => x.Produtos)
                 .HasForeignKey(x => x.IdEmpresa)
                 .OnDelete(DeleteBehavior.NoAction);
-            
+
+
+            entityTypeBuilder.Property(x => x.Abrangencia)
+                .IsRequired()
+                .HasColumnName("Abrangencia")
+                .HasColumnType("int");
 
         }
     }

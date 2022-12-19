@@ -58,7 +58,7 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Cnpj,RazaoSocial,NomeFantasia")] Empresa empresa)
+        public async Task<IActionResult> Create( Empresa empresa)
         {
             ModelState.Remove("Produtos");
             if (ModelState.IsValid)
@@ -94,7 +94,7 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Nome,Email,Senha,DataCriacao")] Empresa empresa)
+        public async Task<IActionResult> Edit(Guid id, Empresa empresa)
         {
             if (id != empresa.Id)
             {

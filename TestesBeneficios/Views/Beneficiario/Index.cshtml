@@ -4,7 +4,7 @@
 
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Produto Abrangencia</h4>
+        <h4 class="card-title">Beneficiários</h4>
         <p class="card-description">
 
             <a asp-action="Create" type="button" class="btn btn-inverse-secondary btn-fw">Criar</a>
@@ -51,15 +51,15 @@
                                 @Html.DisplayFor(modelItem => item.Rg)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.DataNascimento)
+                                @Html.DisplayFor(modelItem => item.DataNascimento.ToShortDateString())
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Status)
                             </td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-inverse-dark btn-fw">Editar</a>
-                                <a asp-action="Details" asp-route-id="@item.Id" type="button" class="btn btn-inverse-dark btn-fw">Detalis</a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-inverse-dark btn-fw">Deletar</a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-primary">Editar</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" type="button" class="btn btn-primary">Detalis</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-primary">Deletar</a>
                             </td>
                         </tr>
                     }

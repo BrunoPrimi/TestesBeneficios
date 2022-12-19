@@ -25,7 +25,7 @@ namespace TestesBeneficios.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.FaixaEtaria != null ? 
-                          View(await _context.FaixaEtaria.ToListAsync()) :
+                          View(await _context.FaixaEtaria.Include(x=>x.Produto).OrderBy(x =>x.IdProduto).ThenBy(x=>x.FaixaDe).ToListAsync()) :
                           Problem("Entity set 'TesteContext.FaixaEtaria'  is null.");
         }
 
@@ -70,6 +70,7 @@ namespace TestesBeneficios.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "Nome");
             return View(produtofaixaetaria);
         }
 
@@ -86,6 +87,7 @@ namespace TestesBeneficios.Controllers
             {
                 return NotFound();
             }
+            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "Nome");
             return View(produtofaixaetaria);
         }
 
@@ -94,13 +96,13 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,FaixaDe,FaixaAte,Preco")] ProdutoFaixaEtaria produtofaixaetaria)
+        public async Task<IActionResult> Edit(Guid id,  ProdutoFaixaEtaria produtofaixaetaria)
         {
             if (id != produtofaixaetaria.Id)
             {
                 return NotFound();
             }
-
+            ModelState.Remove("Produto");
             if (ModelState.IsValid)
             {
                 try
@@ -121,6 +123,7 @@ namespace TestesBeneficios.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "Nome");
             return View(produtofaixaetaria);
         }
 

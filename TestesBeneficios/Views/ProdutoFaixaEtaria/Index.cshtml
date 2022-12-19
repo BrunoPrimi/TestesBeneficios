@@ -8,44 +8,53 @@
             <a asp-action="Create" type="button" class="btn btn-inverse-secondary btn-fw">Criar</a>
         </p>
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table id="tblLista" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>
-                                @Html.DisplayNameFor(model => model.FaixaDe)
+                            @Html.DisplayNameFor(model => model.FaixaDe)
                         </th>
                         <th>
-                                @Html.DisplayNameFor(model => model.FaixaAte)
+                            @Html.DisplayNameFor(model => model.FaixaAte)
                         </th>
                         <th>
-                                @Html.DisplayNameFor(model => model.Preco)
+                            @Html.DisplayNameFor(model => model.Preco)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Produto)
                         </th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                        @foreach (var item in Model)
-                        {
+                    @foreach (var item in Model)
+                    {
                         <tr>
                             <td>
-                                    @Html.DisplayFor(modelItem => item.FaixaDe)
+                                @Html.DisplayFor(modelItem => item.FaixaDe)
                             </td>
                             <td>
-                                    @Html.DisplayFor(modelItem => item.FaixaAte)
+                                @Html.DisplayFor(modelItem => item.FaixaAte)
                             </td>
                             <td>
-                                    @Html.DisplayFor(modelItem => item.Preco)
+                                @Html.DisplayFor(modelItem => item.Preco)
                             </td>
+                            <th>
+                                @Html.DisplayFor(modelItem => item.Produto.Nome)
+                            </th>
 
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-inverse-dark btn-fw">Editar</a> |
-                                <a asp-action="Details" asp-route-id="@item.Id" type="button" class="btn btn-inverse-dark btn-fw">Detalis</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-inverse-dark btn-fw">Deletar</a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-primary">Editar</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id" type="button" class="btn btn-primary">Detalis</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-primary">Deletar</a>
                             </td>
                         </tr>
-                        }
+                    }
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+@section scripts {
+    <script>$('#tblLista').DataTable()</script>
+}

@@ -1,3 +1,4 @@
+@using TestesBeneficios.Domain.Enumeradores;
 @model TestesBeneficios.Domain.Entidades.Produto
 
 
@@ -20,6 +21,11 @@
                 <label asp-for="Codigo" class="control-label"></label>
                 <input asp-for="Codigo" class="form-control" />
                 <span asp-validation-for="Codigo" class="text-danger"></span>
+            </div>
+            <div class="form-sample">
+                <label asp-for="Abrangencia" class="control-label"></label>
+                <select asp-for="Abrangencia" class="form-control " asp-items="Html.GetEnumSelectList<AbrangenciaProduto>()"></select>
+                <span asp-validation-for="Abrangencia" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IdEmpresa" class="control-label"></label>

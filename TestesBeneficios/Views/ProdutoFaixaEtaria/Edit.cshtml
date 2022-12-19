@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <h4>ProdutoFaixaEtaria</h4>
+    <h4>Produto Faixa Etaria</h4>
     <hr />
     <div class="row">
         <div class="col-md-4">
@@ -32,6 +32,11 @@
                     <label asp-for="Preco" class="control-label"></label>
                     <input asp-for="Preco" class="form-control" />
                     <span asp-validation-for="Preco" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IdProduto" class="control-label"></label>
+                    <select asp-for="IdProduto" class="form-control" asp-items="@ViewBag.ProdutoId"></select>
+                    <span asp-validation-for="IdProduto" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Salvar" class="btn btn-dark btn-rounded btn-fw" />

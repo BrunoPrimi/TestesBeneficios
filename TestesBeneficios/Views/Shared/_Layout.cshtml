@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="~/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="~/images/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+
 </head>
 <body>
     <div class="container-scroller">
@@ -346,6 +348,7 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+   
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="~/vendors/js/vendor.bundle.base.js"></script>
@@ -358,6 +361,8 @@
     <script src="~/js/misc.js"></script>
     <script src="~/js/settings.js"></script>
     <script src="~/js/todolist.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    @RenderSection("scripts", required: false)
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->
