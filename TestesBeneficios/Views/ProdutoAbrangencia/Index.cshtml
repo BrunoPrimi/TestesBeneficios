@@ -11,7 +11,7 @@
             <a asp-action="Create" type="button" class="btn btn-inverse-secondary btn-fw">Criar</a>
         </p>
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table id="tblLista" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>
@@ -41,9 +41,9 @@
                             </td>
 
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-primary">Editar</a> |
-                                <a asp-action="Details" asp-route-id="@item.Id" type="button" class="btn btn-primary">Detalis</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-primary">Deletar</a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-inverse-secondary btn-fw">Editar</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id" type="button" class="btn btn-inverse-secondary btn-fw">Detalis</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-inverse-secondary btn-fw">Deletar</a>
                             </td>
                         </tr>
                     }
@@ -52,3 +52,6 @@
         </div>
     </div>
 </div>
+@section scripts {
+    <script>$('#tblLista').DataTable()</script>
+}
