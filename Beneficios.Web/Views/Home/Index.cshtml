@@ -1,0 +1,49 @@
+﻿@model TestesBeneficios.Domain.DTO.SimulacaoDTO
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <form asp-action="Index" class="row g-3">
+        <div class="row">
+            <div class="col-md-6">
+                <label  class="form-label">Nome</label>
+                <input asp-for="Nome" type="text" class="form-control" id="inputEmail4" placeholder="Seu nome completo">
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label  class="form-label">Email</label>
+                <input asp-for ="Email" type="text" class="form-control" id="inputAddress" placeholder="Qual seu e-mail?">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label  class="form-label">Data Nascimento</label>
+                <input asp-for="DataNascimento" type="date" class="form-control" id="inputCity" placeholder="Quando você naceu?">
+                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
+                <label  class="form-label">Celular</label>
+                <input asp-for="Celular" type="number" class="form-control" id="inputCity" placeholder="Seu Celular">
+                <span asp-validation-for="Celular" class="text-danger"></span>
+            </div>
+            <div class="col-md-2">
+                <label  class="form-label">UF</label>
+                <input asp-for="UF" type="text" class="form-control" id="inputCity" placeholder="Qual Estado?">
+                <span asp-validation-for="UF" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Cidade</label>
+                <input asp-for="Cidade" type="text" class="form-control" id="inputCity" placeholder="Qual cidade?">
+                <span asp-validation-for="Cidade" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>
+    </form>
+</div>

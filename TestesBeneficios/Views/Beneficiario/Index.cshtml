@@ -50,9 +50,9 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Rg)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DataNascimento.ToShortDateString())
-                            </td>
+                           <td>
+                               @item.DataNascimento.ToShortDateString()
+                           </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Status)
                             </td>

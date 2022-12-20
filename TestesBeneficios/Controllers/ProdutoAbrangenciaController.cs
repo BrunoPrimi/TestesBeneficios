@@ -50,7 +50,7 @@ namespace TestesBeneficios.Controllers
         // GET: Usuario/Create
         public IActionResult Create()
         {
-            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "Nome");
+            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id","NomeCodigo");
 
             return View();
         }
@@ -70,7 +70,7 @@ namespace TestesBeneficios.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "Nome");
+            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id",  "NomeCodigo");
             return View(produtoabrangencia);
         }
 
@@ -87,7 +87,7 @@ namespace TestesBeneficios.Controllers
             {
                 return NotFound();
             }
-            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "Nome");
+            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "NomeCodigo");
             return View(produtoabrangencia);
         }
 
@@ -123,7 +123,7 @@ namespace TestesBeneficios.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "Nome");
+            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "NomeCodigo");
             return View(produtoabrangencia);
         }
 

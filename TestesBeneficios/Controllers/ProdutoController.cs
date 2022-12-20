@@ -48,9 +48,9 @@ namespace TestesBeneficios.Controllers
         }
 
         // GET: Usuario/Create
-        public IActionResult Create()
+        public async Task<IActionResult> CreateAsync()
         {
-            ViewBag.EmpresaId = new SelectList(_context.Empresas.ToList(), "Id", "RazaoSocial");
+            ViewBag.EmpresaId = new SelectList(await _context.Empresas.ToListAsync(), "Id", "RazaoSocial");
 
             return View();
         }
@@ -64,7 +64,7 @@ namespace TestesBeneficios.Controllers
         {
             ModelState.Remove("Empresa");
             ModelState.Remove("FaixaEtaria");
-            ModelState.Remove("Abrangencia");
+       
             if (ModelState.IsValid)
             {
                 produto.Id = Guid.NewGuid();
@@ -107,8 +107,7 @@ namespace TestesBeneficios.Controllers
                 return NotFound();
             }
             ModelState.Remove("Empresa");
-            ModelState.Remove("FaixaEtaria");
-            ModelState.Remove("Abrangencia");
+            ModelState.Remove("FaixaEtaria");        
             
             if (ModelState.IsValid)
             {

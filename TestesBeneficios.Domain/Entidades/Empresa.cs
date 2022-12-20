@@ -15,9 +15,11 @@ namespace TestesBeneficios.Domain.Entidades
         public string Cnpj { get; set; }
 
         [Required(ErrorMessage = "Campo Obrigatorio")]
+        [Display(Name = "Razão Social")]
         public string RazaoSocial { get; set; }
 
         [Required(ErrorMessage = "Campo Obrigatorio")]
+        [Display(Name = "Nome Fantasia")]
         public string NomeFantasia { get; set; }
 
         public DateTime DataCriacao { get; set; }

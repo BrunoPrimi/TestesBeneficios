@@ -3,11 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestesBeneficios", "TestesBeneficios\TestesBeneficios.csproj", "{2756E5B5-4617-4DCE-BCEF-9898D09F06DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestesBeneficios", "TestesBeneficios\TestesBeneficios.csproj", "{2756E5B5-4617-4DCE-BCEF-9898D09F06DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestesBeneficios.Domain", "TestesBeneficios.Domain\TestesBeneficios.Domain.csproj", "{9D4BC83F-B2E9-46AE-A6F0-6777302C1702}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestesBeneficios.Domain", "TestesBeneficios.Domain\TestesBeneficios.Domain.csproj", "{9D4BC83F-B2E9-46AE-A6F0-6777302C1702}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestesBeneficios.Infra.Data", "TestesBeneficios.Infra.Data\TestesBeneficios.Infra.Data.csproj", "{3F564C94-AF77-4253-85F2-30641F72221D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestesBeneficios.Infra.Data", "TestesBeneficios.Infra.Data\TestesBeneficios.Infra.Data.csproj", "{3F564C94-AF77-4253-85F2-30641F72221D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beneficios.Web", "Beneficios.Web\Beneficios.Web.csproj", "{54EB1BD6-3701-49F2-AF8F-2B67FA6F3DA1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3F564C94-AF77-4253-85F2-30641F72221D} = {3F564C94-AF77-4253-85F2-30641F72221D}
+		{9D4BC83F-B2E9-46AE-A6F0-6777302C1702} = {9D4BC83F-B2E9-46AE-A6F0-6777302C1702}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +33,10 @@ Global
 		{3F564C94-AF77-4253-85F2-30641F72221D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F564C94-AF77-4253-85F2-30641F72221D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F564C94-AF77-4253-85F2-30641F72221D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54EB1BD6-3701-49F2-AF8F-2B67FA6F3DA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54EB1BD6-3701-49F2-AF8F-2B67FA6F3DA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54EB1BD6-3701-49F2-AF8F-2B67FA6F3DA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54EB1BD6-3701-49F2-AF8F-2B67FA6F3DA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

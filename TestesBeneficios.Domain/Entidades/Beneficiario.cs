@@ -18,12 +18,14 @@ namespace TestesBeneficios.Domain.Entidades
         public string Cpf { get; set; }
 
         [Required(ErrorMessage = "Campo Obrigatorio")]
+        [Display(Name = "Nome Mãe")]
         public string NomeMae { get; set; }
 
         [Required(ErrorMessage = "Campo Obrigatorio")]
         public string Rg { get; set; }
 
         [Required(ErrorMessage = "Campo Obrigatorio")]
+        [Display(Name = "Data de Nascimento")]
         public DateTime DataNascimento { get; set; }
         public bool Status { get; set; }
     }
