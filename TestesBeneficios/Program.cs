@@ -8,6 +8,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContextConfiguration(builder.Configuration);
 builder.Services.AdicionarConfiguracaoDoIdentity();
 builder.Services.AdicionarConfiguracaoDoCookie();
+builder.Services.AdicionarConfiguracaoDeInjecaoDeDepedencia();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

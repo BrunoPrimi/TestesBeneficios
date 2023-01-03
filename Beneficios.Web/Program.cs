@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AdicionarConfiguracaoDoIdentity();
 builder.Services.AddDbContextConfiguration(builder.Configuration);
-
+builder.Services.AdicionarConfiguracaoLoginExterno(builder.Configuration);
 
 var app = builder.Build();
 
@@ -23,10 +23,15 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "signinGoogle",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

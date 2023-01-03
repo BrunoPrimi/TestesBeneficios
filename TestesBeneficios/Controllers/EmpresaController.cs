@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TestesBeneficios.Domain.DTO;
 using TestesBeneficios.Domain.Entidades;
+using TestesBeneficios.Domain.Servicos.Interfaces;
 using TestesBeneficios.Infra.Data.Context;
 
 namespace TestesBeneficios.Controllers
@@ -16,17 +18,20 @@ namespace TestesBeneficios.Controllers
     {
         private readonly TesteContext _context;
 
-        public EmpresaController(TesteContext context)
+        private readonly IServicoEmpresa _servicoEmpresa;
+
+        public EmpresaController(TesteContext context, IServicoEmpresa servicoEmpresa)
         {
             _context = context;
+            _servicoEmpresa = servicoEmpresa;
         }
 
         // GET: Empresa
         public async Task<IActionResult> Index()
         {
-              return _context.Empresas != null ? 
-                          View(await _context.Empresas.ToListAsync()) :
-                          Problem("Entity set 'TesteContext.Empresas'  is null.");
+            return _context.Empresas != null ?
+                        View(await _context.Empresas.ToListAsync()) :
+                        Problem("Entity set 'TesteContext.Empresas'  is null.");
         }
 
         // GET: Usuario/Details/5
@@ -58,19 +63,16 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( Empresa empresa)
+        public async Task<IActionResult> Create(EmpresaDTO empresaDTO)
         {
             ModelState.Remove("Produtos");
             if (ModelState.IsValid)
             {
-                empresa.Id = Guid.NewGuid();
-                empresa.DataCriacao = DateTime.Now;
-
-                _context.Add(empresa);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var linhasAfetadas = await _servicoEmpresa.Criar(empresaDTO);
+                if (linhasAfetadas > 0 )
+                    return RedirectToAction(nameof(Index));
             }
-            return View(empresa);
+            return View(empresaDTO);
         }
 
         // GET: Usuario/Edit/5
@@ -156,14 +158,14 @@ namespace TestesBeneficios.Controllers
             {
                 _context.Empresas.Remove(empresa);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool EmpresaExists(Guid id)
         {
-          return (_context.Empresas?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Empresas?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
