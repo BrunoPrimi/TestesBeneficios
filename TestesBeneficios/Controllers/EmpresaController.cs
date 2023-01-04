@@ -16,34 +16,31 @@ namespace TestesBeneficios.Controllers
     [Authorize]
     public class EmpresaController : BaseController
     {
-        private readonly TesteContext _context;
-
+       
         private readonly IServicoEmpresa _servicoEmpresa;
 
-        public EmpresaController(TesteContext context, IServicoEmpresa servicoEmpresa)
+        public EmpresaController(IServicoEmpresa servicoEmpresa)
         {
-            _context = context;
+            
             _servicoEmpresa = servicoEmpresa;
         }
 
         // GET: Empresa
         public async Task<IActionResult> Index()
         {
-            return _context.Empresas != null ?
-                        View(await _context.Empresas.ToListAsync()) :
-                        Problem("Entity set 'TesteContext.Empresas'  is null.");
+            return View( await _servicoEmpresa.BuscarTodos());
+                       
         }
 
         // GET: Usuario/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null || _context.Empresas == null)
+            if (id == null )
             {
                 return NotFound();
             }
 
-            var empresa = await _context.Empresas
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var empresa = await _servicoEmpresa.BuscarPeloId(id.Value);
             if (empresa == null)
             {
                 return NotFound();
@@ -78,12 +75,12 @@ namespace TestesBeneficios.Controllers
         // GET: Usuario/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null || _context.Empresas == null)
+            if (id == null )
             {
                 return NotFound();
             }
 
-            var empresa = await _context.Empresas.FindAsync(id);
+            var empresa = await _servicoEmpresa.BuscarPeloId(id.Value);
             if (empresa == null)
             {
                 return NotFound();
@@ -96,46 +93,31 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, Empresa empresa)
+        public async Task<IActionResult> Edit(Guid id, EmpresaDTO empresaDTO)
         {
-            if (id != empresa.Id)
+            if (id != empresaDTO.Id)
             {
                 return NotFound();
             }
-
+            ModelState.Remove("Produtos");
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(empresa);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EmpresaExists(empresa.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                await _servicoEmpresa.Edit(id, empresaDTO);
+                
                 return RedirectToAction(nameof(Index));
             }
-            return View(empresa);
+            return View(empresaDTO);
         }
 
         // GET: Usuario/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null || _context.Empresas == null)
+            if (id == null )
             {
                 return NotFound();
             }
 
-            var empresa = await _context.Empresas
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var empresa = await _servicoEmpresa.BuscarPeloId(id.Value);
             if (empresa == null)
             {
                 return NotFound();
@@ -149,23 +131,17 @@ namespace TestesBeneficios.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            if (_context.Empresas == null)
-            {
-                return Problem("Entity set 'TesteContext.Empresas'  is null.");
-            }
-            var empresa = await _context.Empresas.FindAsync(id);
+           
+            var empresa = await _servicoEmpresa.BuscarPeloId(id);
             if (empresa != null)
             {
-                _context.Empresas.Remove(empresa);
+             await _servicoEmpresa.Excluir(id);
             }
 
-            await _context.SaveChangesAsync();
+            
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EmpresaExists(Guid id)
-        {
-            return (_context.Empresas?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
+     
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestesBeneficios.Domain.DTO;
 using TestesBeneficios.Domain.Entidades;
 using TestesBeneficios.Domain.Repositorios.Interfaces;
 using TestesBeneficios.Domain.Servicos.Interfaces;
@@ -20,8 +21,9 @@ namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
             _contexto = contexto;
         }
 
-        public async Task<int> Atualizar( Empresa empresa)
+        public async Task<int> Edit(Empresa empresa )
         {
+
             _contexto.Empresas.Update(empresa);
 
             return await _contexto.SaveChangesAsync() ;
@@ -29,6 +31,8 @@ namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
 
         public async Task<Empresa> BuscarPeloId(Guid id)
         {
+          
+
             return await _contexto.Empresas.FindAsync(id);
         }
 

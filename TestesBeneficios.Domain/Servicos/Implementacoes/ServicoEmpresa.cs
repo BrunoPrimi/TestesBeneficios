@@ -20,19 +20,25 @@ namespace TestesBeneficios.Domain.Servicos.Implementacoes
         }
    
 
-        public async Task<int> Atualizar(Guid id, EmpresaDTO empresaDTO)
+        public async Task<int> Edit(Guid id ,EmpresaDTO empresaDTO)
         {
-            throw new NotImplementedException();
+            var empresa = ConversorEmpresa.Converter(id, empresaDTO);
+           
+            return await _repositorioEmpresa.Edit(empresa);
         }
 
         public async Task<EmpresaDTO> BuscarPeloId(Guid id)
         {
-            throw new NotImplementedException();
+            var empresa = await _repositorioEmpresa.BuscarPeloId(id);
+
+            return ConversorEmpresa.Converter(empresa);
         }
 
         public async Task<List<EmpresaDTO>> BuscarTodos()
         {
-            throw new NotImplementedException();
+            var empresas = await _repositorioEmpresa.BuscarTodos();
+
+            return ConversorEmpresa.Converter(empresas);
         }
 
         public async Task<int> Criar(EmpresaDTO empresaDTO)
@@ -43,7 +49,8 @@ namespace TestesBeneficios.Domain.Servicos.Implementacoes
 
         public async Task<int> Excluir(Guid id)
         {
-            throw new NotImplementedException();
+
+            return await _repositorioEmpresa.Excluir(id);
         }
     }
 }
