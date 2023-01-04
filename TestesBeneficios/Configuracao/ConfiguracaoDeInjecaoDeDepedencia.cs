@@ -13,6 +13,8 @@ namespace TestesBeneficios.Configuracao
         {
             services.AddScoped<IServicoEmpresa, ServicoEmpresa>();
             services.AddScoped<IRepositorioEmpresa, RepositorioEmpresa>();
+            services.AddScoped<IServicoProduto, ServicoProduto>();
+            services.AddScoped<IRepositorioProduto, RepositorioProduto>();
 
             return services;
         }

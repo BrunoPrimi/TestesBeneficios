@@ -6,7 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TestesBeneficios.Domain.DTO;
 using TestesBeneficios.Domain.Entidades;
+using TestesBeneficios.Domain.Servicos.Implementacoes;
+using TestesBeneficios.Domain.Servicos.Interfaces;
 using TestesBeneficios.Infra.Data.Context;
 
 namespace TestesBeneficios.Controllers
@@ -14,31 +17,34 @@ namespace TestesBeneficios.Controllers
     [Authorize]
     public class ProdutoController : BaseController
     {
-        private readonly TesteContext _context;
+       
 
-        public ProdutoController(TesteContext context)
+        private readonly IServicoProduto _servicoProduto;
+
+        private readonly IServicoEmpresa _servicoEmpresa;
+
+        public ProdutoController( IServicoProduto servicoProduto, IServicoEmpresa servicoEmpresa)
         {
-            _context = context;
+
+            _servicoProduto = servicoProduto;
+            _servicoEmpresa = servicoEmpresa;
         }
 
         // GET: Usuario
         public async Task<IActionResult> Index()
         {
-              return _context.Produtos != null ? 
-                          View(await _context.Produtos.ToListAsync()) :
-                          Problem("Entity set 'TesteContext.Produtos'  is null.");
+            return View(await _servicoProduto.BuscarTodos());
         }
 
         // GET: Usuario/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null || _context.Produtos == null)
+            if (id == null )
             {
                 return NotFound();
             }
 
-            var produto = await _context.Produtos
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var produto = await _servicoProduto.BuscarPeloId(id.Value);
             if (produto == null)
             {
                 return NotFound();
@@ -50,7 +56,7 @@ namespace TestesBeneficios.Controllers
         // GET: Usuario/Create
         public async Task<IActionResult> CreateAsync()
         {
-            ViewBag.EmpresaId = new SelectList(await _context.Empresas.ToListAsync(), "Id", "RazaoSocial");
+            ViewBag.EmpresaId = new SelectList(await _servicoEmpresa.BuscarTodos(), "Id", "RazaoSocial");
 
             return View();
         }
@@ -60,38 +66,36 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nome,Codigo,IdEmpresa,Abrangencia")] Produto produto)
+        public async Task<IActionResult> Create([Bind("Nome,Codigo,IdEmpresa,Abrangencia")] ProdutoDTO produtoDTO)
         {
             ModelState.Remove("Empresa");
             ModelState.Remove("FaixaEtaria");
        
             if (ModelState.IsValid)
             {
-                produto.Id = Guid.NewGuid();
-                produto.DataCriacao = DateTime.Now;
-                _context.Add(produto);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var linhasAfetadas = await _servicoProduto.Criar(produtoDTO);
+                if (linhasAfetadas > 0)
+                    return RedirectToAction(nameof(Index));
             }
-            ViewBag.EmpresaId = new SelectList(_context.Empresas.ToList(), "Id", "RazaoSocial");
-            return View(produto);
+            ViewBag.EmpresaId = new SelectList(await _servicoEmpresa.BuscarTodos(), "Id", "RazaoSocial");
+            return View(produtoDTO);
 
         }
 
         // GET: Usuario/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null || _context.Produtos == null)
+            if (id == null )
             {
                 return NotFound();
             }
 
-            var produto = await _context.Produtos.FindAsync(id);
+            var produto = await _servicoProduto.BuscarPeloId(id.Value);
             if (produto == null)
             {
                 return NotFound();
             }
-            ViewBag.EmpresaId = new SelectList(_context.Empresas.ToList(), "Id", "RazaoSocial");
+            ViewBag.EmpresaId = new SelectList(await _servicoEmpresa.BuscarTodos(), "Id", "RazaoSocial");
             return View(produto);
         }
 
@@ -100,9 +104,9 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Nome,Codigo,IdEmpresa,Abrangencia")] Produto produto)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Nome,Codigo,IdEmpresa,Abrangencia")] ProdutoDTO produtoDTO)
         {
-            if (id != produto.Id)
+            if (id != produtoDTO.Id)
             {
                 return NotFound();
             }
@@ -111,38 +115,23 @@ namespace TestesBeneficios.Controllers
             
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(produto);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProdutoExists(produto.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                await _servicoProduto.Edit(id, produtoDTO);
+
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.EmpresaId = new SelectList(_context.Empresas.ToList(), "Id", "RazaoSocial");
-            return View(produto);
+            ViewBag.EmpresaId = new SelectList( await _servicoEmpresa.BuscarTodos(), "Id", "RazaoSocial");
+            return View(produtoDTO);
         }
 
         // GET: Usuario/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null || _context.Produtos == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var produto = await _context.Produtos
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var produto = await _servicoProduto.BuscarPeloId(id.Value);
             if (produto == null)
             {
                 return NotFound();
@@ -156,23 +145,17 @@ namespace TestesBeneficios.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            if (_context.Produtos == null)
-            {
-                return Problem("Entity set 'TesteContext.Produtos'  is null.");
-            }
-            var produto = await _context.Produtos.FindAsync(id);
+
+            var produto = await _servicoProduto.BuscarPeloId(id);
             if (produto != null)
             {
-                _context.Produtos.Remove(produto);
+                _servicoProduto.Excluir(id);
             }
             
-            await _context.SaveChangesAsync();
+        
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProdutoExists(Guid id)
-        {
-          return (_context.Produtos?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
+ 
     }
 }
