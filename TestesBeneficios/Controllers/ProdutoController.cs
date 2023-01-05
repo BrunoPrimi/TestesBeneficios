@@ -66,10 +66,11 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nome,Codigo,IdEmpresa,Abrangencia")] ProdutoDTO produtoDTO)
+        public async Task<IActionResult> Create( ProdutoDTO produtoDTO)
         {
             ModelState.Remove("Empresa");
             ModelState.Remove("FaixaEtaria");
+            ModelState.Remove("Abrangencias");
        
             if (ModelState.IsValid)
             {
@@ -111,8 +112,9 @@ namespace TestesBeneficios.Controllers
                 return NotFound();
             }
             ModelState.Remove("Empresa");
-            ModelState.Remove("FaixaEtaria");        
-            
+            ModelState.Remove("FaixaEtaria");
+            ModelState.Remove("Abrangencias");
+
             if (ModelState.IsValid)
             {
                 await _servicoProduto.Edit(id, produtoDTO);
@@ -149,7 +151,7 @@ namespace TestesBeneficios.Controllers
             var produto = await _servicoProduto.BuscarPeloId(id);
             if (produto != null)
             {
-                _servicoProduto.Excluir(id);
+              await  _servicoProduto.Excluir(id);
             }
             
         

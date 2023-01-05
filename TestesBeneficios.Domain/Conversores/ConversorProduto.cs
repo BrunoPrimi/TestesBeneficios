@@ -24,6 +24,10 @@ namespace TestesBeneficios.Domain.Convercores
 
         public static ProdutoDTO Converter(Produto produto)
         {
+            if (produto == null)
+            {
+                return null;
+            }
             return new ProdutoDTO
             {
                 Id = produto.Id,
@@ -35,7 +39,7 @@ namespace TestesBeneficios.Domain.Convercores
             };
         }
 
-       public static List<ProdutoDTO> Converter(List<Produto> produtos)
+        public static List<ProdutoDTO> Converter(List<Produto> produtos)
         {
             return produtos.Select(x => Converter(x)).ToList();
 

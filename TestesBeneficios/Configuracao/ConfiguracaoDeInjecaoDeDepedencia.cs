@@ -15,7 +15,10 @@ namespace TestesBeneficios.Configuracao
             services.AddScoped<IRepositorioEmpresa, RepositorioEmpresa>();
             services.AddScoped<IServicoProduto, ServicoProduto>();
             services.AddScoped<IRepositorioProduto, RepositorioProduto>();
-
+            services.AddScoped<IServicoProdutoAbrangencia, ServicoProdutoAbrangencia>();
+            services.AddScoped<IRepositorioProdutoAbrangencia, RepositorioProdutoAbrangencia>();
+            services.AddScoped<IServicoProdutoFaixaEtaria, ServicoProdutoFaixaEtaria>();
+            services.AddScoped<IRepositorioProdutoFaixaEtaria, RepositorioProdutoFaixaEtaria>();
             return services;
         }
     }

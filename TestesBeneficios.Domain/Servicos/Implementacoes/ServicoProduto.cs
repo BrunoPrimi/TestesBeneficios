@@ -49,7 +49,6 @@ namespace TestesBeneficios.Domain.Servicos.Implementacoes
 
         public async Task<int> Excluir(Guid id)
         {
-
             return await _repositorioProduto.Excluir(id);
         }
     }

@@ -51,9 +51,9 @@ namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
 
         public async Task<int> Excluir(Guid id)
         {
-            var empresa = await _contexto.Empresas.FindAsync(id);
+            var produto = await _contexto.Produtos.FindAsync(id);
 
-            _contexto.Empresas.Remove(empresa);
+            _contexto.Produtos.Remove(produto);
 
             return await _contexto.SaveChangesAsync();
         }

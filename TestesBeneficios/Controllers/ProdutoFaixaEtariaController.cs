@@ -6,7 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TestesBeneficios.Domain.DTO;
 using TestesBeneficios.Domain.Entidades;
+using TestesBeneficios.Domain.Servicos.Implementacoes;
+using TestesBeneficios.Domain.Servicos.Interfaces;
 using TestesBeneficios.Infra.Data.Context;
 
 namespace TestesBeneficios.Controllers
@@ -16,157 +19,126 @@ namespace TestesBeneficios.Controllers
     {
         private readonly TesteContext _context;
 
-        public ProdutoFaixaEtariaController(TesteContext context)
+        private readonly IServicoProduto _servicoProduto;
+        private readonly IServicoProdutoFaixaEtaria _servicoProdutoFaixaEtaria;
+        public ProdutoFaixaEtariaController(TesteContext context, IServicoProduto servicoProduto, IServicoProdutoFaixaEtaria servicoProdutoFaixaEtaria)
         {
             _context = context;
-        }
+            _servicoProduto = servicoProduto;
+            _servicoProdutoFaixaEtaria = servicoProdutoFaixaEtaria;
+    }
 
         // GET: Usuario
         public async Task<IActionResult> Index()
         {
-              return _context.FaixaEtaria != null ? 
-                          View(await _context.FaixaEtaria.Include(x=>x.Produto).OrderBy(x =>x.IdProduto).ThenBy(x=>x.FaixaDe).ToListAsync()) :
-                          Problem("Entity set 'TesteContext.FaixaEtaria'  is null.");
+            ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
+            return View(await _servicoProdutoFaixaEtaria.BuscarTodos());
+
         }
 
         // GET: Usuario/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null || _context.FaixaEtaria == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var produtofaixaetaria = await _context.FaixaEtaria
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (produtofaixaetaria == null)
+            var produtoFaixaEtaria = await _servicoProdutoFaixaEtaria.BuscarPeloId(id.Value);
+            if (produtoFaixaEtaria == null)
             {
                 return NotFound();
             }
-
-            return View(produtofaixaetaria);
+            ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
+            return View(produtoFaixaEtaria);
         }
 
         // GET: Usuario/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "NomeCodigo");
+            ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
 
             return View();
         }
 
-        // POST: Usuario/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FaixaDe,FaixaAte,Preco,IdProduto")] ProdutoFaixaEtaria produtofaixaetaria)
+        public async Task<IActionResult> Create(ProdutoFaixaEtariaDTO produtoFaixaEtariaDTO)
         {
             ModelState.Remove("Produto");
+
             if (ModelState.IsValid)
             {
-                produtofaixaetaria.Id = Guid.NewGuid();
-                _context.Add(produtofaixaetaria);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var linhasAfetadas = await _servicoProdutoFaixaEtaria.Criar(produtoFaixaEtariaDTO);
+                if (linhasAfetadas > 0)
+                    return RedirectToAction(nameof(Index));
             }
-            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "NomeCodigo");
-            return View(produtofaixaetaria);
+            ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
+            return View(produtoFaixaEtariaDTO);
         }
-
-        // GET: Usuario/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null || _context.FaixaEtaria == null)
+            if (id == null)
             {
                 return NotFound();
             }
-
-            var produtofaixaetaria = await _context.FaixaEtaria.FindAsync(id);
-            if (produtofaixaetaria == null)
+            var produtoFaixaEtaria = await _servicoProdutoFaixaEtaria.BuscarPeloId(id.Value);
+            if (produtoFaixaEtaria == null)
             {
                 return NotFound();
             }
-            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "NomeCodigo");
-            return View(produtofaixaetaria);
+            ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
+            return View(produtoFaixaEtaria);
         }
 
-        // POST: Usuario/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id,  ProdutoFaixaEtaria produtofaixaetaria)
+        public async Task<IActionResult> Edit(Guid id, ProdutoFaixaEtariaDTO produtoFaixaEtariaDTO)
         {
-            if (id != produtofaixaetaria.Id)
+            if (id != produtoFaixaEtariaDTO.Id)
             {
                 return NotFound();
             }
             ModelState.Remove("Produto");
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(produtofaixaetaria);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProdutoExists(produtofaixaetaria.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                await _servicoProdutoFaixaEtaria.Edit(id, produtoFaixaEtariaDTO);
+
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "NomeCodigo");
-            return View(produtofaixaetaria);
+            ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
+            return View(produtoFaixaEtariaDTO);
         }
 
-        // GET: Usuario/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null || _context.FaixaEtaria == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var produtofaixaetaria = await _context.FaixaEtaria
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (produtofaixaetaria == null)
+            var produtoFaixaEtaria = await _servicoProdutoFaixaEtaria.BuscarPeloId(id.Value);
+            if (produtoFaixaEtaria == null)
             {
                 return NotFound();
             }
-
-            return View(produtofaixaetaria);
+            ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
+            return View(produtoFaixaEtaria);
         }
 
-        // POST: Usuario/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            if (_context.FaixaEtaria == null)
-            {
-                return Problem("Entity set 'TesteContext.Produtos'  is null.");
-            }
-            var produtofaixaetaria = await _context.FaixaEtaria.FindAsync(id);
-            if (produtofaixaetaria != null)
-            {
-                _context.FaixaEtaria.Remove(produtofaixaetaria);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
 
-        private bool ProdutoExists(Guid id)
-        {
-          return (_context.FaixaEtaria?.Any(e => e.Id == id)).GetValueOrDefault();
+            var produtoAbrangencia = await _servicoProdutoFaixaEtaria.BuscarPeloId(id);
+            if (produtoAbrangencia != null)
+            {
+                await _servicoProdutoFaixaEtaria.Excluir(id);
+            }
+
+            ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
+            return RedirectToAction(nameof(Index));
         }
     }
 }

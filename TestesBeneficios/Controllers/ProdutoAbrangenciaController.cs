@@ -6,7 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TestesBeneficios.Domain.DTO;
 using TestesBeneficios.Domain.Entidades;
+using TestesBeneficios.Domain.Servicos.Implementacoes;
+using TestesBeneficios.Domain.Servicos.Interfaces;
 using TestesBeneficios.Infra.Data.Context;
 
 namespace TestesBeneficios.Controllers
@@ -14,159 +17,134 @@ namespace TestesBeneficios.Controllers
     [Authorize]
     public class ProdutoAbrangenciaController : BaseController
     {
-        private readonly TesteContext _context;
+       
 
-        public ProdutoAbrangenciaController(TesteContext context)
+        private readonly IServicoProduto _servicoProduto;
+
+        private readonly IServicoProdutoAbrangencia _servicoProdutoAbrangencia;
+
+
+        public ProdutoAbrangenciaController( IServicoProduto servicoProduto, IServicoProdutoAbrangencia servicoProdutoAbrangencia)
         {
-            _context = context;
+           
+
+            _servicoProduto = servicoProduto;
+
+            _servicoProdutoAbrangencia = servicoProdutoAbrangencia;
         }
 
         // GET: Usuario
         public async Task<IActionResult> Index()
         {
-              return _context.Abrangencia != null ? 
-                          View(await _context.Abrangencia.Include(x => x.Produto).ToListAsync()) :
-                          Problem("Entity set 'TesteContext.Abrangencia'  is null.");
+            ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
+            return View(await _servicoProdutoAbrangencia.BuscarTodos());
+
         }
 
         // GET: Usuario/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null || _context.Abrangencia == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var produtoabrangencia = await _context.Abrangencia
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (produtoabrangencia == null)
+            var produtoAbrangencia = await _servicoProdutoAbrangencia.BuscarPeloId(id.Value);
+            if (produtoAbrangencia == null)
             {
                 return NotFound();
             }
-
-            return View(produtoabrangencia);
+            ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
+            return View(produtoAbrangencia);
         }
 
-        // GET: Usuario/Create
-        public IActionResult Create()
+
+        public async Task<IActionResult> Create()
         {
-            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id","NomeCodigo");
+            ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
 
             return View();
         }
 
-        // POST: Usuario/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( ProdutoAbrangencia produtoabrangencia)
+        public async Task<IActionResult> Create(ProdutoAbrangenciaDTO produtoAbrangenciaDTO)
         {
             ModelState.Remove("Produto");
+
             if (ModelState.IsValid)
             {
-                produtoabrangencia.Id = Guid.NewGuid();
-                _context.Add(produtoabrangencia);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var linhasAfetadas = await _servicoProdutoAbrangencia.Criar(produtoAbrangenciaDTO);
+                if (linhasAfetadas > 0)
+                    return RedirectToAction(nameof(Index));
             }
-            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id",  "NomeCodigo");
-            return View(produtoabrangencia);
+            ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
+            return View(produtoAbrangenciaDTO);
         }
 
-        // GET: Usuario/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null || _context.Abrangencia == null)
+            if (id == null)
             {
                 return NotFound();
             }
-
-            var produtoabrangencia = await _context.Abrangencia.FindAsync(id);
-            if (produtoabrangencia == null)
+            var produtoAbrangencia = await _servicoProdutoAbrangencia.BuscarPeloId(id.Value);
+            if (produtoAbrangencia == null)
             {
                 return NotFound();
             }
-            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "NomeCodigo");
-            return View(produtoabrangencia);
+            ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
+            return View(produtoAbrangencia);
         }
 
-        // POST: Usuario/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id,  ProdutoAbrangencia produtoabrangencia)
+        public async Task<IActionResult> Edit(Guid id, ProdutoAbrangenciaDTO produtoAbrangenciaDTO)
         {
-            if (id != produtoabrangencia.Id)
+            if (id != produtoAbrangenciaDTO.Id)
             {
                 return NotFound();
             }
             ModelState.Remove("Produto");
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(produtoabrangencia);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProdutoExists(produtoabrangencia.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                await _servicoProdutoAbrangencia.Edit(id, produtoAbrangenciaDTO);
+
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.ProdutoId = new SelectList(_context.Produtos.ToList(), "Id", "NomeCodigo");
-            return View(produtoabrangencia);
+            ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
+            return View(produtoAbrangenciaDTO);
         }
-
-        // GET: Usuario/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null || _context.Abrangencia == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var produtoabrangencia = await _context.Abrangencia
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (produtoabrangencia == null)
+            var produtoAbrangencia = await _servicoProdutoAbrangencia.BuscarPeloId(id.Value);
+            if (produtoAbrangencia == null)
             {
                 return NotFound();
             }
-
-            return View(produtoabrangencia);
+            ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
+            return View(produtoAbrangencia);
         }
-
         // POST: Usuario/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            if (_context.Abrangencia == null)
-            {
-                return Problem("Entity set 'TesteContext.Abragencia'  is null.");
-            }
-            var produtoabrangencia = await _context.Abrangencia.FindAsync(id);
-            if (produtoabrangencia != null)
-            {
-                _context.Abrangencia.Remove(produtoabrangencia);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
 
-        private bool ProdutoExists(Guid id)
-        {
-          return (_context.Abrangencia?.Any(e => e.Id == id)).GetValueOrDefault();
+            var produtoAbrangencia = await _servicoProdutoAbrangencia.BuscarPeloId(id);
+            if (produtoAbrangencia != null)
+            {
+                await _servicoProdutoAbrangencia.Excluir(id);
+            }
+
+            ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
+            return RedirectToAction(nameof(Index));
         }
     }
 }
