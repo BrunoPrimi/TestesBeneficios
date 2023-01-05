@@ -17,18 +17,15 @@ namespace TestesBeneficios.Controllers
     [Authorize]
     public class ProdutoFaixaEtariaController : BaseController
     {
-        private readonly TesteContext _context;
-
         private readonly IServicoProduto _servicoProduto;
+
         private readonly IServicoProdutoFaixaEtaria _servicoProdutoFaixaEtaria;
-        public ProdutoFaixaEtariaController(TesteContext context, IServicoProduto servicoProduto, IServicoProdutoFaixaEtaria servicoProdutoFaixaEtaria)
+        public ProdutoFaixaEtariaController(IServicoProduto servicoProduto, IServicoProdutoFaixaEtaria servicoProdutoFaixaEtaria)
         {
-            _context = context;
             _servicoProduto = servicoProduto;
             _servicoProdutoFaixaEtaria = servicoProdutoFaixaEtaria;
     }
 
-        // GET: Usuario
         public async Task<IActionResult> Index()
         {
             ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
@@ -36,7 +33,6 @@ namespace TestesBeneficios.Controllers
 
         }
 
-        // GET: Usuario/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -53,7 +49,6 @@ namespace TestesBeneficios.Controllers
             return View(produtoFaixaEtaria);
         }
 
-        // GET: Usuario/Create
         public async Task<IActionResult> Create()
         {
             ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
