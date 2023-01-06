@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -60,6 +61,11 @@ namespace TestesBeneficios.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProdutoFaixaEtariaDTO produtoFaixaEtariaDTO)
         {
+            if (!produtoFaixaEtariaDTO.EhValido())
+            {
+                produtoFaixaEtariaDTO.ValidationResult.AddToModelState(ModelState);
+            }
+
             ModelState.Remove("Produto");
 
             if (ModelState.IsValid)
@@ -93,6 +99,11 @@ namespace TestesBeneficios.Controllers
             if (id != produtoFaixaEtariaDTO.Id)
             {
                 return NotFound();
+            }
+
+            if (!produtoFaixaEtariaDTO.EhValido())
+            {
+                produtoFaixaEtariaDTO.ValidationResult.AddToModelState(ModelState);
             }
             ModelState.Remove("Produto");
             if (ModelState.IsValid)

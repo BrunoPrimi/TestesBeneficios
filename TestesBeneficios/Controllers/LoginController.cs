@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -35,6 +36,11 @@ namespace TestesBeneficios.Controllers
 
         public async Task<IActionResult>Index(LoginDTO logindto)
         {
+            if (!logindto.EhValido())
+            {
+                logindto.ValidationResult.AddToModelState(ModelState);
+            }
+
             if (ModelState.IsValid)
             {
                 var resutado = await _signManager.PasswordSignInAsync(logindto.Email, logindto.Senha, false, false);
@@ -57,6 +63,11 @@ namespace TestesBeneficios.Controllers
 
         public async Task<IActionResult> Cadastro(CadastroDTO cadastrodto)
         {
+            if (!cadastrodto.EhValido())
+            {
+                cadastrodto.ValidationResult.AddToModelState(ModelState);
+            }
+
             if (ModelState.IsValid)
             {
                 var usuario = new Usuario();

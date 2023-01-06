@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -33,7 +34,6 @@ namespace TestesBeneficios.Controllers
             _servicoProdutoAbrangencia = servicoProdutoAbrangencia;
         }
 
-        // GET: Usuario
         public async Task<IActionResult> Index()
         {
             ViewBag.ProdutoId = new SelectList(await _servicoProduto.BuscarTodos(), "Id", "NomeCodigo");
@@ -70,8 +70,12 @@ namespace TestesBeneficios.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProdutoAbrangenciaDTO produtoAbrangenciaDTO)
         {
-            ModelState.Remove("Produto");
+            if (!produtoAbrangenciaDTO.EhValido())
+            {
+                produtoAbrangenciaDTO.ValidationResult.AddToModelState(ModelState);
+            }
 
+            ModelState.Remove("Produto");
             if (ModelState.IsValid)
             {
                 var linhasAfetadas = await _servicoProdutoAbrangencia.Criar(produtoAbrangenciaDTO);
@@ -106,6 +110,12 @@ namespace TestesBeneficios.Controllers
             {
                 return NotFound();
             }
+
+            if (!produtoAbrangenciaDTO.EhValido())
+            {
+                produtoAbrangenciaDTO.ValidationResult.AddToModelState(ModelState);
+            }
+
             ModelState.Remove("Produto");
             if (ModelState.IsValid)
             {

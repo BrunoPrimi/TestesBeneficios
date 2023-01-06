@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TestesBeneficios.Domain.DTO;
@@ -25,14 +26,12 @@ namespace TestesBeneficios.Controllers
             _servicoEmpresa = servicoEmpresa;
         }
 
-        // GET: Empresa
         public async Task<IActionResult> Index()
         {
             return View( await _servicoEmpresa.BuscarTodos());
                        
         }
 
-        // GET: Usuario/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null )
@@ -49,19 +48,20 @@ namespace TestesBeneficios.Controllers
             return View(empresa);
         }
 
-        // GET: Usuario/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Usuario/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(EmpresaDTO empresaDTO)
         {
+            if (!empresaDTO.EhValido())
+            {
+                empresaDTO.ValidationResult.AddToModelState(ModelState);
+            }
+
             ModelState.Remove("Produtos");
             if (ModelState.IsValid)
             {
@@ -72,7 +72,6 @@ namespace TestesBeneficios.Controllers
             return View(empresaDTO);
         }
 
-        // GET: Usuario/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null )
@@ -88,9 +87,6 @@ namespace TestesBeneficios.Controllers
             return View(empresa);
         }
 
-        // POST: Usuario/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, EmpresaDTO empresaDTO)
@@ -99,6 +95,12 @@ namespace TestesBeneficios.Controllers
             {
                 return NotFound();
             }
+
+            if (!empresaDTO.EhValido())
+            {
+                empresaDTO.ValidationResult.AddToModelState(ModelState);
+            }
+
             ModelState.Remove("Produtos");
             if (ModelState.IsValid)
             {
@@ -109,7 +111,6 @@ namespace TestesBeneficios.Controllers
             return View(empresaDTO);
         }
 
-        // GET: Usuario/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null )
@@ -126,7 +127,6 @@ namespace TestesBeneficios.Controllers
             return View(empresa);
         }
 
-        // POST: Usuario/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)

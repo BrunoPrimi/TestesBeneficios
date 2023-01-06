@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -17,13 +18,13 @@ namespace TestesBeneficios.Controllers
     [Authorize]
     public class ProdutoController : BaseController
     {
-       
+
 
         private readonly IServicoProduto _servicoProduto;
 
         private readonly IServicoEmpresa _servicoEmpresa;
 
-        public ProdutoController( IServicoProduto servicoProduto, IServicoEmpresa servicoEmpresa)
+        public ProdutoController(IServicoProduto servicoProduto, IServicoEmpresa servicoEmpresa)
         {
 
             _servicoProduto = servicoProduto;
@@ -39,7 +40,7 @@ namespace TestesBeneficios.Controllers
         // GET: Usuario/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null )
+            if (id == null)
             {
                 return NotFound();
             }
@@ -66,12 +67,17 @@ namespace TestesBeneficios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( ProdutoDTO produtoDTO)
+        public async Task<IActionResult> Create(ProdutoDTO produtoDTO)
         {
+            if (!produtoDTO.EhValido())
+            {
+                produtoDTO.ValidationResult.AddToModelState(ModelState);
+            }
+
             ModelState.Remove("Empresa");
             ModelState.Remove("FaixaEtaria");
             ModelState.Remove("Abrangencias");
-       
+
             if (ModelState.IsValid)
             {
                 var linhasAfetadas = await _servicoProduto.Criar(produtoDTO);
@@ -86,7 +92,7 @@ namespace TestesBeneficios.Controllers
         // GET: Usuario/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null )
+            if (id == null)
             {
                 return NotFound();
             }
@@ -111,6 +117,12 @@ namespace TestesBeneficios.Controllers
             {
                 return NotFound();
             }
+
+            if (!produtoDTO.EhValido())
+            {
+                produtoDTO.ValidationResult.AddToModelState(ModelState);
+            }
+
             ModelState.Remove("Empresa");
             ModelState.Remove("FaixaEtaria");
             ModelState.Remove("Abrangencias");
@@ -121,7 +133,7 @@ namespace TestesBeneficios.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.EmpresaId = new SelectList( await _servicoEmpresa.BuscarTodos(), "Id", "RazaoSocial");
+            ViewBag.EmpresaId = new SelectList(await _servicoEmpresa.BuscarTodos(), "Id", "RazaoSocial");
             return View(produtoDTO);
         }
 
@@ -151,13 +163,13 @@ namespace TestesBeneficios.Controllers
             var produto = await _servicoProduto.BuscarPeloId(id);
             if (produto != null)
             {
-              await  _servicoProduto.Excluir(id);
+                await _servicoProduto.Excluir(id);
             }
-            
-        
+
+
             return RedirectToAction(nameof(Index));
         }
 
- 
+
     }
 }
