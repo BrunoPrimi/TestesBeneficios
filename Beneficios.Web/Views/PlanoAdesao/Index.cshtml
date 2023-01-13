@@ -1,0 +1,761 @@
+﻿
+
+<div class="row mt-5">
+    <div class="col-lg-6 col-xl-12 col-xxl-6 h-100">
+        <div class="d-flex mb-4">
+            <span class="fa-stack me-2 ms-n1"><i class="fas fa-circle fa-stack-2x text-300"></i><i class="fa-inverse fa-stack-1x text-primary fas fa-spinner"></i></span>
+            <div class="col">
+                <h5 class="mb-0 text-primary position-relative"><span class="bg-200 dark__bg-1100 pe-3">Progress tab</span><span class="border position-absolute top-50 translate-middle-y w-100 start-0 z-index--1"></span></h5>
+                <p class="mb-0">You can easily show your stats content by using these cards.</p>
+            </div>
+        </div>
+        <div class="card theme-wizard mb-5">
+            <div class="card-header bg-light pt-3 pb-2">
+                <ul class="nav justify-content-between nav-wizard">
+                    <li class="nav-item"><a class="nav-link active fw-semi-bold" href="#bootstrap-wizard-tab1" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-lock"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Account</span></a></li>
+                    <li class="nav-item"><a class="nav-link fw-semi-bold" href="#bootstrap-wizard-tab2" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-user"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Personal</span></a></li>
+                    <li class="nav-item"><a class="nav-link fw-semi-bold" href="#bootstrap-wizard-tab3" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-dollar-sign"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Billing</span></a></li>
+                    <li class="nav-item"><a class="nav-link fw-semi-bold" href="#bootstrap-wizard-tab4" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-thumbs-up"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Done</span></a></li>
+                </ul>
+            </div>
+            <div class="card-body py-4">
+                <div class="tab-content">
+                    <div class="tab-pane active px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-tab1" id="bootstrap-wizard-tab1">
+                        <form novalidate="novalidate">
+                            <div class="row g-3">
+                                <div class="col-5">
+                                    <div class="mb-2">
+                                        <label class="form-label" for="bootstrap-wizard-wizard-name">Nome</label>
+                                        <input class="form-control" type="text" name="name" placeholder="Nome completo" id="bootstrap-wizard-wizard-name" />
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="bootstrap-wizard-wizard-email">Email*</label>
+                                        <input class="form-control" type="email" name="email" placeholder="Email" id="bootstrap-wizard-wizard-email" />
+                                        <div class="invalid-feedback">You must add email</div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="bootstrap-wizard-wizard-email">CPF*</label>
+                                        <input class="form-control" type="text" name="CPF" placeholder="CPF    " id="bootstrap-wizard-wizard-cpf" />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-tab2" id="bootstrap-wizard-tab2">
+                        <form>
+                            <div class="mb-3">
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <div class="input-group input-group-sm" data-quantity="data-quantity">
+                                            <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">0 a 18 anos</label>
+                                            <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="minus">-</button>
+                                            <input class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                            <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="plus">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="input-group input-group-sm" data-quantity="data-quantity">
+                                            <label class="form-label" for="bootstrap-wizard-wizard-idade " style="width:100px">19 a 23 anos</label>
+                                            <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="minus">-</button>
+                                            <input class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                            <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="plus">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="input-group input-group-sm" data-quantity="data-quantity">
+                                            <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">24 a 28 anos</label>
+                                            <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="minus">-</button>
+                                            <input class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                            <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="plus">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="input-group input-group-sm" data-quantity="data-quantity">
+                                            <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">29 a 33 anos</label>
+                                            <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="minus">-</button>
+                                            <input class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                            <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="plus">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="input-group input-group-sm" data-quantity="data-quantity">
+                                            <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">34 a 38 anos</label>
+                                            <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="minus">-</button>
+                                            <input class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                            <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="plus">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="input-group input-group-sm" data-quantity="data-quantity">
+                                            <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">39 a 43 anos</label>
+                                            <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="minus">-</button>
+                                            <input class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                            <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="plus">+</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="input-group input-group-sm" data-quantity="data-quantity">
+                                            <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">44 a 48 anos</label>
+                                            <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="minus">-</button>
+                                            <input class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                            <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="plus">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="input-group input-group-sm" data-quantity="data-quantity">
+                                            <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">49 a 53 anos</label>
+                                            <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="minus">-</button>
+                                            <input class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                            <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="plus">+</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="input-group input-group-sm" data-quantity="data-quantity">
+                                                <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">54 a 58 anos</label>
+                                                <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="minus">-</button>
+                                                <input class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                                <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="plus">+</button>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="input-group input-group-sm" data-quantity="data-quantity">
+                                                    <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">59 anos ou mais</label>
+                                                    <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="minus">-</button>
+                                                    <input class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                                    <button class="btn btn-sm btn-outline-secondary border-300" data-field="input-quantity" data-type="plus">+</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-tab3" id="bootstrap-wizard-tab3">
+                        <form class="form-validation">
+                            <div class="row g-2">
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="basic-form-gender">Abrangencia</label>
+                                        <select class="form-select" id="basic-form-gender" aria-label="Default select example">
+                                            <option selected="selected">Selecione</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="basic-form-gender">IdProfissao</label>
+                                        <select class="form-select" id="basic-form-gender" aria-label="Default select example">
+                                            <option selected="selected">Selecione</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="basic-form-gender">IdEntidadeDeClasse</label>
+                                        <select class="form-select" id="basic-form-gender" aria-label="Default select example">
+                                            <option selected="selected">Selecione</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="tab-pane text-center px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-tab4" id="bootstrap-wizard-tab4">
+
+                        <div class="card mb-3">
+                            <div class="card-header position-relative">
+                                <h5 class="mb-0 mt-1">All Courses</h5>
+                                <div class="bg-holder d-none d-md-block bg-card" style="background-image:url(../../../assets/img/illustrations/corner-6.png);">
+                                </div>
+                                <div class="content">
+                                    <div class="row g-3">
+                                        <div class="col-xxl-2 col-xl-3">
+                                            <aside class="scrollbar-overlay font-sans-serif p-4 p-xl-3 ps-xl-0 offcanvas offcanvas-start offcanvas-filter-sidebar" tabindex="-1" id="filterOffcanvas" aria-labelledby="filterOffcanvasLabel">
+                                                <div class="d-flex flex-between-center">
+                                                    <div class="d-flex gap-2 flex-xl-grow-1 align-items-center justify-content-xl-between">
+                                                        <h5 class="mb-0 text-700 d-flex align-items-center" id="filterOffcanvasLabel"><span class="fas fa-filter fs--1 me-1"></span><span>Filter</span></h5>
+                                                        <button class="btn btn-sm btn-outline-secondary">Reset</button>
+                                                    </div>
+                                                    <button class="btn-close text-reset d-xl-none shadow-none" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                                </div>
+                                                <div class="d-flex gap-2 flex-wrap my-3">
+                                                    <span class="badge bg-300 text-600 py-0">
+                                                        Free
+                                                        <button class="btn btn-link btn-sm p-0 text-600 ms-1"><span class="fas fa-times fs--2"></span></button>
+                                                    </span><span class="badge bg-300 text-600 py-0">
+                                                        On sale
+                                                        <button class="btn btn-link btn-sm p-0 text-600 ms-1"><span class="fas fa-times fs--2"></span></button>
+                                                    </span><span class="badge bg-300 text-600 py-0">
+                                                        Design
+                                                        <button class="btn btn-link btn-sm p-0 text-600 ms-1"><span class="fas fa-times fs--2"></span></button>
+                                                    </span><span class="badge bg-300 text-600 py-0">
+                                                        English
+                                                        <button class="btn btn-link btn-sm p-0 text-600 ms-1"><span class="fas fa-times fs--2"></span></button>
+                                                    </span>
+                                                </div>
+                                                <ul class="list-unstyled">
+                                                    <li class="border-bottom">
+                                                        <a class="nav-link collapse-indicator-plus fs--2 fw-medium text-600 py-3" data-bs-toggle="collapse" href="#category-collapse" aria-controls="category-collapse" aria-expanded="true">Category</a>
+                                                        <div class="collapse show" id="category-collapse">
+                                                            <ul class="list-unstyled">
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-category-free">
+                                                                            <span class="fas fa-file-alt fs--1 me-3"></span>Free
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" checked="checked" name="free" id="filter-category-free" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-category-paid">
+                                                                            <span class="fas fa-file-invoice-dollar fs--1 me-3"></span>Paid
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="paid" id="filter-category-paid" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-category-on-sale">
+                                                                            <span class="fas fa-tags fs--2 me-3"></span>On Sale
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" checked="checked" name="on-sale" id="filter-category-on-sale" />
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        <a class="nav-link collapse-indicator-plus fs--2 fw-medium text-600 py-3" data-bs-toggle="collapse" href="#subject-collapse" aria-controls="subject-collapse" aria-expanded="true">Subject</a>
+                                                        <div class="collapse show" id="subject-collapse">
+                                                            <ul class="list-unstyled">
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-design">
+                                                                            <span class="fas fa-brush fs--1 me-3"></span>Design
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" checked="checked" name="design" id="filter-subject-design" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-web-development">
+                                                                            <span class="fas fa-globe fs--1 me-3"></span>Web Development
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="web-development" id="filter-subject-web-development" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-software">
+                                                                            <span class="fas fa-code fs--1 me-3"></span>Software
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="software" id="filter-subject-software" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-business">
+                                                                            <span class="fas fa-balance-scale-left fs--1 me-3"></span>Business
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="business" id="filter-subject-business" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-marketing">
+                                                                            <span class="fas fa-comment-dollar fs--1 me-3"></span>Marketing
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="marketing" id="filter-subject-marketing" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-self-help">
+                                                                            <span class="fas fa-hand-holding-water fs--1 me-3"></span>Self Help
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="self-help" id="filter-subject-self-help" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-photography">
+                                                                            <span class="fas fa-camera-retro fs--1 me-3"></span>Photography
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="photography" id="filter-subject-photography" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-music">
+                                                                            <span class="fas fa-music fs--1 me-3"></span>Music
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="music" id="filter-subject-music" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-writing">
+                                                                            <span class="fas fa-pen-nib fs--1 me-3"></span>Writing
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="writing" id="filter-subject-writing" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-painting">
+                                                                            <span class="fas fa-palette fs--1 me-3"></span>Painting
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="painting" id="filter-subject-painting" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-cooking">
+                                                                            <span class="fas fa-utensils fs--1 me-3"></span>Cooking
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="cooking" id="filter-subject-cooking" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-teaching">
+                                                                            <span class="fas fa-book fs--1 me-3"></span>Teaching
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="teaching" id="filter-subject-teaching" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-miscellaneous">
+                                                                            <span class="fas fa-thumbtack fs--1 me-3"></span>Miscellaneous
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="miscellaneous" id="filter-subject-miscellaneous" />
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        <a class="nav-link collapse-indicator-plus fs--2 fw-medium text-600 py-3" data-bs-toggle="collapse" href="#rating-collapse" aria-controls="rating-collapse" aria-expanded="false">Rating</a>
+                                                        <div class="collapse" id="rating-collapse">
+                                                            <ul class="list-unstyled">
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-rating-4.5-&amp;-up">
+                                                                            <span class="fas fa-star fs--1 me-3"></span>4.5 &amp; Up
+                                                                        </label>
+                                                                        <input class="form-check-input" type="radio" name="rating" id="filter-rating-4.5-&amp;-up" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-rating-4.0-&amp;-up">
+                                                                            <span class="fas fa-star fs--1 me-3"></span>4.0 &amp; Up
+                                                                        </label>
+                                                                        <input class="form-check-input" type="radio" name="rating" id="filter-rating-4.0-&amp;-up" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-rating-3.5-&amp;-up">
+                                                                            <span class="fas fa-star fs--1 me-3"></span>3.5 &amp; Up
+                                                                        </label>
+                                                                        <input class="form-check-input" type="radio" name="rating" id="filter-rating-3.5-&amp;-up" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-rating-3.0-&amp;-up">
+                                                                            <span class="fas fa-star fs--1 me-3"></span>3.0 &amp; Up
+                                                                        </label>
+                                                                        <input class="form-check-input" type="radio" name="rating" id="filter-rating-3.0-&amp;-up" />
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        <a class="nav-link collapse-indicator-plus fs--2 fw-medium text-600 py-3" data-bs-toggle="collapse" href="#proficiency-collapse" aria-controls="proficiency-collapse" aria-expanded="false">Proficiency</a>
+                                                        <div class="collapse" id="proficiency-collapse">
+                                                            <ul class="list-unstyled">
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-proficiency-beginner">
+                                                                            <img class="me-3" src="../../../assets/img/icons/chevron-up.svg" width="13" alt="" />Beginner
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="beginner" id="filter-proficiency-beginner" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-proficiency-intermediate">
+                                                                            <img class="me-3" src="../../../assets/img/icons/double-chevron-up.svg" width="13" alt="" />Intermediate
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="intermediate" id="filter-proficiency-intermediate" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-proficiency-professional">
+                                                                            <img class="me-3" src="../../../assets/img/icons/triple-chevron-up.svg" width="13" alt="" />Professional
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="professional" id="filter-proficiency-professional" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-proficiency-master">
+                                                                            <span class="fas fa-star fs--1 me-3"></span>Master
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="master" id="filter-proficiency-master" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-proficiency-everyone">
+                                                                            <span class="fas fa-users fs--1 me-3"></span>Everyone
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="everyone" id="filter-proficiency-everyone" />
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        <a class="nav-link collapse-indicator-plus fs--2 fw-medium text-600 py-3" data-bs-toggle="collapse" href="#language-collapse" aria-controls="language-collapse" aria-expanded="false">Language</a>
+                                                        <div class="collapse" id="language-collapse">
+                                                            <ul class="list-unstyled">
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-language-english">
+                                                                            English
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" checked="checked" name="english" id="filter-language-english" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-language-spanish">
+                                                                            Spanish
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="spanish" id="filter-language-spanish" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-language-french">
+                                                                            French
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="french" id="filter-language-french" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-language-german">
+                                                                            German
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="german" id="filter-language-german" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-language-bengali">
+                                                                            Bengali
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="bengali" id="filter-language-bengali" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-language-hindi">
+                                                                            Hindi
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="hindi" id="filter-language-hindi" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-language-arabic">
+                                                                            Arabic
+                                                                        </label>
+                                                                        <input class="form-check-input" type="checkbox" name="arabic" id="filter-language-arabic" />
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link collapse-indicator-plus fs--2 fw-medium text-600 py-3" data-bs-toggle="collapse" href="#enrolled-courses-collapse" aria-controls="enrolled-courses-collapse" aria-expanded="false">Enrolled Courses</a>
+                                                        <div class="collapse" id="enrolled-courses-collapse">
+                                                            <ul class="list-unstyled">
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-enrolled-courses-show">
+                                                                            Show
+                                                                        </label>
+                                                                        <input class="form-check-input" type="radio" name="enrolled-courses" id="filter-enrolled-courses-show" />
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="form-check d-flex ps-0">
+                                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-enrolled-courses-don’t-show">
+                                                                            Don’t Show
+                                                                        </label>
+                                                                        <input class="form-check-input" type="radio" name="enrolled-courses" id="filter-enrolled-courses-don’t-show" />
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </aside>
+                                        </div>
+
+                                    </div>
+                                   
+                                            <div class="col-auto d-xl-none">
+                                                <button class="btn btn-sm p-0 btn-link position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas" aria-controls="filterOffcanvas"><svg class="svg-inline--fa fa-filter fa-w-16 fs-0 text-700" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="filter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"></path></svg><!-- <span class="fas fa-filter fs-0 text-700"></span> Font Awesome fontawesome.com --></button>
+                                            </div>
+                                            <div class="col">
+                                                <form class="position-relative">
+                                                    <input class="form-control form-control-sm search-input lh-1 rounded-2 ps-4" type="search" placeholder="Search..." aria-label="Search">
+                                                    <div class="position-absolute top-50 start-0 translate-middle-y ms-2"><svg class="svg-inline--fa fa-search fa-w-16 text-400 fs--1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg><!-- <span class="fas fa-search text-400 fs--1"></span> Font Awesome fontawesome.com --></div>
+                                                </form>
+                                            </div>
+                                            <div class="col position-sm-relative position-absolute top-0 end-0 me-3 me-sm-0 p-0">
+                                                <div class="row g-0 g-md-3 justify-content-end">
+                                                    <div class="col-auto">
+                                                        <form class="row gx-2">
+                                                            <div class="col-auto d-none d-lg-block"><small class="fw-semi-bold">Sort by:</small></div>
+                                                            <div class="col-auto">
+                                                                <select class="form-select form-select-sm" aria-label="Bulk actions">
+                                                                    <option value="rating">Rating</option>
+                                                                    <option value="review">Review</option>
+                                                                    <option value="price">Price</option>
+                                                                </select>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
+                                                                <div class="overflow-hidden">
+                                                                    <div class="position-relative rounded-top overflow-hidden">
+                                                                        <a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="img-fluid rounded-top" src="../../../assets/img/products/2.jpg" alt="" /></a><span class="badge rounded-pill bg-success position-absolute mt-2 me-2 z-index-2 top-0 end-0">New</span>
+                                                                    </div>
+                                                                    <div class="p-3">
+                                                                        <h5 class="fs-0"><a class="text-dark" href="../../../app/e-commerce/product/product-details.html">Apple iMac Pro (27-inch with Retina 5K Display, 3.0GHz 10-core Intel Xeon W, 1TB SSD)</a></h5>
+                                                                        <p class="fs--1 mb-3"><a class="text-500" href="#!">Computer &amp; Accessories</a></p>
+                                                                        <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+                                                                            $1199.5
+                                                                            <del class="ms-2 fs--1 text-500">$2399 </del>
+                                                                        </h5>
+                                                                        <p class="fs--1 mb-1">Shipping Cost: <strong>$50</strong></p>
+                                                                        <p class="fs--1 mb-1">
+                                                                            Stock: <strong class="text-success">Available</strong>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex flex-between-center px-3">
+                                                                    <div>
+                                                                        <span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-300"></span><span class="ms-1">(8)</span>
+                                                                    </div>
+                                                                    <div><a class="btn btn-sm btn-falcon-default me-2" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List"><span class="far fa-heart"></span></a><a class="btn btn-sm btn-falcon-default" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"><span class="fas fa-cart-plus"></span></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-4 col-md-6 col-lg-4">
+                                                            <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
+                                                                <div class="overflow-hidden">
+                                                                    <div class="position-relative rounded-top overflow-hidden">
+                                                                        <div class="swiper-container theme-slider" data-swiper='{"autoplay":true,"autoHeight":true,"spaceBetween":5,"loop":true,"loopedSlides":5,"navigation":{"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"}}'>
+                                                                            <div class="swiper-wrapper">
+                                                                                <div class="swiper-slide"><a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="rounded-top img-fluid" src="../../../assets/img/products/1.jpg" alt="" /></a></div>
+                                                                                <div class="swiper-slide"><a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="rounded-top img-fluid" src="../../../assets/img/products/1-2.jpg" alt="" /></a></div>
+                                                                                <div class="swiper-slide"><a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="rounded-top img-fluid" src="../../../assets/img/products/1-3.jpg" alt="" /></a></div>
+                                                                            </div>
+                                                                            <div class="swiper-nav">
+                                                                                <div class="swiper-button-next swiper-button-white"></div>
+                                                                                <div class="swiper-button-prev swiper-button-white"></div>
+                                                                            </div>
+                                                                        </div><span class="badge rounded-pill bg-success position-absolute mt-2 me-2 z-index-2 top-0 end-0">New</span>
+                                                                    </div>
+                                                                    <div class="p-3">
+                                                                        <h5 class="fs-0"><a class="text-dark" href="../../../app/e-commerce/product/product-details.html">Apple MacBook Pro (15&quot; Retina, Touch Bar, 2.2GHz 6-Core Intel Core i7, 16GB RAM, 256GB SSD) - Space Gray (Latest Model)</a></h5>
+                                                                        <p class="fs--1 mb-3"><a class="text-500" href="#!">Computer &amp; Accessories</a></p>
+                                                                        <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+                                                                            $7199
+                                                                        </h5>
+                                                                        <p class="fs--1 mb-1">Shipping Cost: <strong>$65</strong></p>
+                                                                        <p class="fs--1 mb-1">
+                                                                            Stock: <strong class="text-danger">Sold-Out</strong>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex flex-between-center px-3">
+                                                                    <div>
+                                                                        <span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star-half-alt text-warning star-icon"></span><span class="ms-1">(20)</span>
+                                                                    </div>
+                                                                    <div><a class="btn btn-sm btn-falcon-default me-2" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List"><span class="far fa-heart"></span></a><a class="btn btn-sm btn-falcon-default" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"><span class="fas fa-cart-plus"></span></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-4 col-md-6 col-lg-4">
+                                                            <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
+                                                                <div class="overflow-hidden">
+                                                                    <div class="position-relative rounded-top overflow-hidden">
+                                                                        <a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="img-fluid rounded-top" src="../../../assets/img/products/4.jpg" alt="" /></a>
+                                                                    </div>
+                                                                    <div class="p-3">
+                                                                        <h5 class="fs-0"><a class="text-dark" href="../../../app/e-commerce/product/product-details.html">Apple iPad Air 2019 (3GB RAM, 128GB ROM, 8MP Main Camera)</a></h5>
+                                                                        <p class="fs--1 mb-3"><a class="text-500" href="#!">Mobile &amp; Tabs</a></p>
+                                                                        <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+                                                                            $562.5
+                                                                            <del class="ms-2 fs--1 text-500">$750 </del>
+                                                                        </h5>
+                                                                        <p class="fs--1 mb-1">Shipping Cost: <strong>$47</strong></p>
+                                                                        <p class="fs--1 mb-1">
+                                                                            Stock: <strong class="text-success">Available</strong>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex flex-between-center px-3">
+                                                                    <div>
+                                                                        <span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star-half-alt text-warning star-icon"></span><span class="fa fa-star text-300"></span><span class="fa fa-star text-300"></span><span class="ms-1">(14)</span>
+                                                                    </div>
+                                                                    <div><a class="btn btn-sm btn-falcon-default me-2" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List"><span class="far fa-heart"></span></a><a class="btn btn-sm btn-falcon-default" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"><span class="fas fa-cart-plus"></span></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-4 col-md-6 col-lg-4">
+                                                            <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
+                                                                <div class="overflow-hidden">
+                                                                    <div class="position-relative rounded-top overflow-hidden">
+                                                                        <a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="img-fluid rounded-top" src="../../../assets/img/products/3.jpg" alt="" /></a>
+                                                                    </div>
+                                                                    <div class="p-3">
+                                                                        <h5 class="fs-0"><a class="text-dark" href="../../../app/e-commerce/product/product-details.html">Apple iPhone XS Max (4GB RAM, 512GB ROM, 12MP Main Camera)</a></h5>
+                                                                        <p class="fs--1 mb-3"><a class="text-500" href="#!">Mobile &amp; Tabs</a></p>
+                                                                        <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+                                                                            $1050
+                                                                        </h5>
+                                                                        <p class="fs--1 mb-1">Shipping Cost: <strong>$65</strong></p>
+                                                                        <p class="fs--1 mb-1">
+                                                                            Stock: <strong class="text-success">Available</strong>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex flex-between-center px-3">
+                                                                    <div>
+                                                                        <span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star-half-alt text-warning star-icon"></span><span class="ms-1">(13)</span>
+                                                                    </div>
+                                                                    <div><a class="btn btn-sm btn-falcon-default me-2" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List"><span class="far fa-heart"></span></a><a class="btn btn-sm btn-falcon-default" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"><span class="fas fa-cart-plus"></span></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-4 col-md-6 col-lg-4">
+                                                            <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
+                                                                <div class="overflow-hidden">
+                                                                    <div class="position-relative rounded-top overflow-hidden">
+                                                                        <a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="img-fluid rounded-top" src="../../../assets/img/products/8.jpg" alt="" /></a><span class="badge rounded-pill bg-success position-absolute mt-2 me-2 z-index-2 top-0 end-0">New</span>
+                                                                    </div>
+                                                                    <div class="p-3">
+                                                                        <h5 class="fs-0"><a class="text-dark" href="../../../app/e-commerce/product/product-details.html">Canon Standard Zoom Lens</a></h5>
+                                                                        <p class="fs--1 mb-3"><a class="text-500" href="#!">Camera</a></p>
+                                                                        <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+                                                                            $400
+                                                                            <del class="ms-2 fs--1 text-500">$500 </del>
+                                                                        </h5>
+                                                                        <p class="fs--1 mb-1">Shipping Cost: <strong>$60</strong></p>
+                                                                        <p class="fs--1 mb-1">
+                                                                            Stock: <strong class="text-danger">Sold Out</strong>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex flex-between-center px-3">
+                                                                    <div>
+                                                                        <span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-300"></span><span class="ms-1">(10)</span>
+                                                                    </div>
+                                                                    <div><a class="btn btn-sm btn-falcon-default me-2" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List"><span class="far fa-heart"></span></a><a class="btn btn-sm btn-falcon-default" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"><span class="fas fa-cart-plus"></span></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-4 col-md-6 col-lg-4">
+                                                            <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
+                                                                <div class="overflow-hidden">
+                                                                    <div class="position-relative rounded-top overflow-hidden">
+                                                                        <a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="img-fluid rounded-top" src="../../../assets/img/products/6.jpg" alt="" /></a><span class="badge rounded-pill bg-success position-absolute mt-2 me-2 z-index-2 top-0 end-0">New</span>
+                                                                    </div>
+                                                                    <div class="p-3">
+                                                                        <h5 class="fs-0"><a class="text-dark" href="../../../app/e-commerce/product/product-details.html">Logitech G305 Gaming Mouse</a></h5>
+                                                                        <p class="fs--1 mb-3"><a class="text-500" href="#!">Computer &amp; Accessories</a></p>
+                                                                        <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+                                                                            $95
+                                                                        </h5>
+                                                                        <p class="fs--1 mb-1">Shipping Cost: <strong>$20</strong></p>
+                                                                        <p class="fs--1 mb-1">
+                                                                            Stock: <strong class="text-success">Available</strong>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex flex-between-center px-3">
+                                                                    <div>
+                                                                        <span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star-half-alt text-warning star-icon"></span><span class="fa fa-star text-300"></span><span class="ms-1">(6)</span>
+                                                                    </div>
+                                                                    <div><a class="btn btn-sm btn-falcon-default me-2" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List"><span class="far fa-heart"></span></a><a class="btn btn-sm btn-falcon-default" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"><span class="fas fa-cart-plus"></span></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-4 mb-lg-0 col-md-6 col-lg-4">
+                                                            <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
+                                                                <div class="overflow-hidden">
+                                                                    <div class="position-relative rounded-top overflow-hidden">
+                                                                        <a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="img-fluid rounded-top" src="../../../assets/img/products/7.jpg" alt="" /></a>
+                                                                    </div>
+                                                                    <div class="p-3">
+                                                                        <h5 class="fs-0"><a class="text-dark" href="../../../app/e-commerce/product/product-details.html">Nikon D3200 Digital DSLR Camera</a></h5>
+                                                                        <p class="fs--1 mb-3"><a class="text-500" href="#!">Camera</a></p>
+                                                                        <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+                                                                            $2398
+                                                                        </h5>
+                                                                        <p class="fs--1 mb-1">Shipping Cost: <strong>$30</strong></p>
+                                                                        <p class="fs--1 mb-1">
+                                                                            Stock: <strong class="text-success">Available</strong>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex flex-between-center px-3">
+                                                                    <div>
+                                                                        <span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-300"></span><span class="ms-1">(5)</span>
+                                                                    </div>
+                                                                    <div><a class="btn btn-sm btn-falcon-default me-2" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List"><span class="far fa-heart"></span></a><a class="btn btn-sm btn-falcon-default" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"><span class="fas fa-cart-plus"></span></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  

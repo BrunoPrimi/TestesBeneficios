@@ -16,11 +16,11 @@ using TestesBeneficios.Infra.Data.Migrations;
 
 namespace Beneficios.Web.Controllers
 {
-    public class TipoDeSimulacaoController : BaseController
+    public class PlanoAdesaoController : BaseController
     {
         private readonly TesteContext _context;
 
-        public TipoDeSimulacaoController(TesteContext context)
+        public PlanoAdesaoController(TesteContext context)
         {
             _context = context;
         }
