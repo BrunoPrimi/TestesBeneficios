@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TestesBeneficios.Domain.DTO;
+using TestesBeneficios.Domain.Entidades;
+
+namespace TestesBeneficios.Domain.Repositorios.Interfaces
+{
+    public interface IRepositorioProfissao
+    {
+        Task<int> Criar(Profissao profissao);
+        Task<int> Edit(Empresa empresa);
+        Task<int> Excluir(Guid id);
+        Task<List<Empresa>> BuscarTodos();
+        Task<Empresa> BuscarPeloId(Guid id);    
+    }
+}
