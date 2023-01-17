@@ -12,38 +12,38 @@ using TestesBeneficios.Infra.Data.Context;
 
 namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
 {
-    public class RepositorioProfissao : IRepositorioProfissao
+    public class RepositorioSimulacao : IRepositorioSimulacao
     {
         private readonly TesteContext _contexto;
 
-        public RepositorioProfissao(TesteContext contexto)
+        public RepositorioSimulacao(TesteContext contexto)
         {
             _contexto = contexto;
         }
 
-        public async Task<int> Edit(Profissao profissao )
+        public async Task<int> Edit(Simulacao simulacao )
         {
 
-            _contexto.Profissoes.Update(profissao);
+            _contexto.Simulacoes.Update(simulacao);
 
             return await _contexto.SaveChangesAsync() ;
         }
 
-        public async Task<Profissao> BuscarPeloId(Guid id)
+        public async Task<Simulacao> BuscarPeloId(Guid id)
         {
           
 
-            return await _contexto.Profissoes.FindAsync(id);
+            return await _contexto.Simulacoes.FindAsync(id);
         }
 
-        public async Task<List<Profissao>> BuscarTodos()
+        public async Task<List<Simulacao>> BuscarTodos()
         {
-            return await _contexto.Profissoes.ToListAsync();
+            return await _contexto.Simulacoes.ToListAsync();
         }
 
-        public async Task<int> Criar(Profissao profissao)
+        public async Task<int> Criar(Simulacao simulacao)
         {
-            await _contexto.Profissoes.AddAsync(profissao);
+            await _contexto.Simulacoes.AddAsync(simulacao);
           
             return await _contexto.SaveChangesAsync();
 
@@ -51,9 +51,9 @@ namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
 
         public async Task<int> Excluir(Guid id)
         {
-            var profissao = await _contexto.Profissoes.FindAsync(id);
+            var simulacao = await _contexto.Simulacoes.FindAsync(id);
 
-            _contexto.Profissoes.Remove(profissao);
+            _contexto.Simulacoes.Remove(simulacao);
 
             return await _contexto.SaveChangesAsync();
         }

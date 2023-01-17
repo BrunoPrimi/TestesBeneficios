@@ -28,17 +28,7 @@ namespace Beneficios.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index( SimulacaoDTO simulacaoDTO)
         {
-            var idade = ObterIdade(simulacaoDTO.DataNascimento);
-            var produtos = await _context.Produtos
-                                        .Include(x => x.Empresa)
-                                        .Include(x => x.Abrangencias)
-                                        .Include(x => x.FaixaEtaria)
-                                        .Where(x => 
-                                            (!x.Abrangencias.Any() ||(x.Abrangencias.Any() && x.Abrangencias.Any(y => y.Cidade.ToLower() == simulacaoDTO.Cidade.ToLower())))
-                                            && x.FaixaEtaria.Any(y=>y.FaixaDe<=idade && y.FaixaAte>=idade)
-                                        ).ToListAsync();
-
-            var aa = produtos;
+       
 
             return View();
                 

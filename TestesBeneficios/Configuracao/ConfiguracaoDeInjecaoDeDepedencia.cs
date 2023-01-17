@@ -19,6 +19,14 @@ namespace TestesBeneficios.Configuracao
             services.AddScoped<IRepositorioProdutoAbrangencia, RepositorioProdutoAbrangencia>();
             services.AddScoped<IServicoProdutoFaixaEtaria, ServicoProdutoFaixaEtaria>();
             services.AddScoped<IRepositorioProdutoFaixaEtaria, RepositorioProdutoFaixaEtaria>();
+            services.AddScoped<IServicoProfissao,ServicoProfisssao>();
+            services.AddScoped<IRepositorioProfissao, RepositorioProfissao>();
+            services.AddScoped<IServicoEntidadeDeClasse, ServicoEntidadeDeClasse>();
+            services.AddScoped<IRepositorioEntidadeDeClasse, RepositorioEntidadeDeClasse>();
+            services.AddScoped<IServicoSimulacao, ServicoSimulcao>();
+            services.AddScoped<IRepositorioSimulacao, RepositorioSimulacao>();
+            services.AddScoped<IServicoSimulacaoDistribuicaoVida, ServicoSimulacaoDistribuicaoVida>();
+            services.AddScoped<IRepositorioSimulacaoDistribuicaoVida, RepositorioSimulacaoDistribuicaoVida>();
             return services;
         }
     }

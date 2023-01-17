@@ -32,7 +32,7 @@ namespace TestesBeneficios.Domain.DTO
 
         public bool EhValido()
         {
-            var erros = new ValidacaoEmpresaDTO().Validate(this).Errors;
+           var erros = new ValidacaoEntidadeDeClasseDTO().Validate(this).Errors;
             ValidationResult = new ValidationResult(erros);
 
             return ValidationResult.IsValid;

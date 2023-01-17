@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestesBeneficios.Infra.Data.Context;
 
@@ -11,9 +12,10 @@ using TestesBeneficios.Infra.Data.Context;
 namespace TestesBeneficios.Infra.Data.Migrations
 {
     [DbContext(typeof(TesteContext))]
-    partial class TesteContextModelSnapshot : ModelSnapshot
+    [Migration("20230117194426_EntidadeDeClasse")]
+    partial class EntidadeDeClasse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -360,46 +362,6 @@ namespace TestesBeneficios.Infra.Data.Migrations
                     b.ToTable("Profissoes", (string)null);
                 });
 
-            modelBuilder.Entity("TestesBeneficios.Domain.Entidades.Simulacao", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Cpf")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("EntidadeDeClasseId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IdEntidadeDeClasse")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IdProfissao")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("Varchar(100)")
-                        .HasColumnName("Nome");
-
-                    b.Property<Guid>("ProfissaoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EntidadeDeClasseId");
-
-                    b.HasIndex("ProfissaoId");
-
-                    b.ToTable("Simulacoes", (string)null);
-                });
-
             modelBuilder.Entity("TestesBeneficios.Domain.Entidades.Usuario", b =>
                 {
                     b.Property<string>("Id")
@@ -551,25 +513,6 @@ namespace TestesBeneficios.Infra.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Produto");
-                });
-
-            modelBuilder.Entity("TestesBeneficios.Domain.Entidades.Simulacao", b =>
-                {
-                    b.HasOne("TestesBeneficios.Domain.Entidades.EntidadeDeClasse", "EntidadeDeClasse")
-                        .WithMany()
-                        .HasForeignKey("EntidadeDeClasseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TestesBeneficios.Domain.Entidades.Profissao", "Profissao")
-                        .WithMany()
-                        .HasForeignKey("ProfissaoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EntidadeDeClasse");
-
-                    b.Navigation("Profissao");
                 });
 
             modelBuilder.Entity("TestesBeneficios.Domain.Entidades.Empresa", b =>

@@ -12,38 +12,38 @@ using TestesBeneficios.Infra.Data.Context;
 
 namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
 {
-    public class RepositorioProfissao : IRepositorioProfissao
+    public class RepositorioEntidadeDeClasse : IRepositorioEntidadeDeClasse
     {
         private readonly TesteContext _contexto;
 
-        public RepositorioProfissao(TesteContext contexto)
+        public RepositorioEntidadeDeClasse(TesteContext contexto)
         {
             _contexto = contexto;
         }
 
-        public async Task<int> Edit(Profissao profissao )
+        public async Task<int> Edit(EntidadeDeClasse entidadeDeClasse )
         {
 
-            _contexto.Profissoes.Update(profissao);
+            _contexto.EntidadeDeClasses.Update(entidadeDeClasse);
 
             return await _contexto.SaveChangesAsync() ;
         }
 
-        public async Task<Profissao> BuscarPeloId(Guid id)
+        public async Task<EntidadeDeClasse> BuscarPeloId(Guid id)
         {
           
 
-            return await _contexto.Profissoes.FindAsync(id);
+            return await _contexto.EntidadeDeClasses.FindAsync(id);
         }
 
-        public async Task<List<Profissao>> BuscarTodos()
+        public async Task<List<EntidadeDeClasse>> BuscarTodos()
         {
-            return await _contexto.Profissoes.ToListAsync();
+            return await _contexto.EntidadeDeClasses.ToListAsync();
         }
 
-        public async Task<int> Criar(Profissao profissao)
+        public async Task<int> Criar(EntidadeDeClasse entidadeDeClasse)
         {
-            await _contexto.Profissoes.AddAsync(profissao);
+            await _contexto.EntidadeDeClasses.AddAsync(entidadeDeClasse);
           
             return await _contexto.SaveChangesAsync();
 
@@ -51,9 +51,9 @@ namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
 
         public async Task<int> Excluir(Guid id)
         {
-            var profissao = await _contexto.Profissoes.FindAsync(id);
+            var EntidadeDeClasse = await _contexto.Profissoes.FindAsync(id);
 
-            _contexto.Profissoes.Remove(profissao);
+            _contexto.Profissoes.Remove(EntidadeDeClasse);
 
             return await _contexto.SaveChangesAsync();
         }

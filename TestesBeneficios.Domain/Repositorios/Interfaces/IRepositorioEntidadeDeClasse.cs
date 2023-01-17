@@ -8,12 +8,12 @@ using TestesBeneficios.Domain.Entidades;
 
 namespace TestesBeneficios.Domain.Repositorios.Interfaces
 {
-    public interface IRepositorioProfissao
+    public interface IRepositorioEntidadeDeClasse
     {
-        Task<int> Criar(Profissao profissao);
-        Task<int> Edit(Profissao profissao);
+        Task<int> Criar(EntidadeDeClasse entidadeDeClasse);
+        Task<int> Edit(EntidadeDeClasse entidadeDeClasse);
         Task<int> Excluir(Guid id);
-        Task<List<Profissao>> BuscarTodos();
-        Task<Profissao> BuscarPeloId(Guid id);    
+        Task<List<EntidadeDeClasse>> BuscarTodos();
+        Task<EntidadeDeClasse> BuscarPeloId(Guid id);    
     }
 }

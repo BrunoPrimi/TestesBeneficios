@@ -15,7 +15,13 @@ namespace TestesBeneficios.Infra.Data.Context
     {
         public DbSet<Beneficiario> Beneficiarios { get; set; }
         public DbSet<Empresa> Empresas { get; set; }
+        public DbSet<Profissao> Profissoes { get; set; }
+        public DbSet<EntidadeDeClasse> EntidadeDeClasses { get; set; }
         public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Simulacao> Simulacoes { get; set; }
+
+        public DbSet<SimulacaoDistribuicaoVida> DistribuicaoVidas { get; set; }
+
         public DbSet<ProdutoFaixaEtaria> FaixaEtaria { get; set; }
         public DbSet<ProdutoAbrangencia> Abrangencia { get; set; }
 
@@ -43,7 +49,13 @@ namespace TestesBeneficios.Infra.Data.Context
                        
             modelBuilder.Entity<Empresa>(new ConfiguracoesEmpresa().Configure);
 
+            modelBuilder.Entity<Profissao>(new ConfiguracoesProfissao().Configure);
+
+            modelBuilder.Entity<EntidadeDeClasse>(new ConfiguracoesEntidadeDeClasse().Configure);
+
             modelBuilder.Entity<Produto>(new ConfiguracoesProduto().Configure);
+
+            modelBuilder.Entity<Simulacao>(new ConfiguracoesSimulacao().Configure);
 
             modelBuilder.Entity<ProdutoFaixaEtaria>(new ConfiguracoesProdutoFaixaEtaria().Configure);
 

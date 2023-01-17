@@ -19,14 +19,13 @@ namespace TestesBeneficios.Domain.DTO
 
         public string Nome { get; set; }
 
-
         public DateTime DataCriacao { get; set; }
 
         public ValidationResult ValidationResult { get; set; }
 
         public bool EhValido()
         {
-            var erros = new ValidacaoEmpresaDTO().Validate(this).Errors;
+            var erros = new ValidacaoProfissaoDTO().Validate(this).Errors;
             ValidationResult = new ValidationResult(erros);
 
             return ValidationResult.IsValid;
