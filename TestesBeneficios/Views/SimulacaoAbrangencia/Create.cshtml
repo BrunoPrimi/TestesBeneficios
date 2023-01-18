@@ -1,0 +1,35 @@
+@using TestesBeneficios.Domain.Enumeradores;
+@model TestesBeneficios.Domain.DTO.SimulacaoAbrangenciaDTO
+
+
+
+
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Produto</h4>
+        <p class="card-description">Produto </p>
+        <form class="forms-sample" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-sample">
+                <label asp-for="Uf" class="control-label"></label>
+                <input asp-for="Uf" class="form-control" />
+                <span asp-validation-for="Uf" class="text-danger"></span>
+            </div>
+            <div class="form-sample">
+                <label asp-for="Cidade" class="control-label"></label>
+                <input asp-for="Cidade" class="form-control" />
+                <span asp-validation-for="Cidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdSimulacao" class="control-label"></label>
+                <select asp-for="IdSimulacao" class="form-control" asp-items="@ViewBag.SimulacaoId"></select>
+                <span asp-validation-for="IdSimulacao" class="text-danger"></span>
+            </div>
+            <div class="form-sample">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -40,7 +40,7 @@ namespace TestesBeneficios.Controllers
             {
                 logindto.ValidationResult.AddToModelState(ModelState);
             }
-
+            ModelState.Remove("ValidationResult");
             if (ModelState.IsValid)
             {
                 var resutado = await _signManager.PasswordSignInAsync(logindto.Email, logindto.Senha, false, false);

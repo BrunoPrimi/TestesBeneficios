@@ -62,7 +62,7 @@ namespace TestesBeneficios.Controllers
                 simulacaoDTO.ValidationResult.AddToModelState(ModelState);
             }
 
-            ModelState.Remove("Produtos");
+            ModelState.Remove("ValidationResult");
             if (ModelState.IsValid)
             {
                 var linhasAfetadas = await _servicoSimulacao.Criar(simulacaoDTO);
@@ -101,7 +101,7 @@ namespace TestesBeneficios.Controllers
                 simulacaoDTO.ValidationResult.AddToModelState(ModelState);
             }
 
-            ModelState.Remove("Produtos");
+            ModelState.Remove("ValidationResult");
             if (ModelState.IsValid)
             {
                 await _servicoSimulacao.Edit(id, simulacaoDTO);

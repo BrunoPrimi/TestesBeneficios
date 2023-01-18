@@ -1,0 +1,37 @@
+@model TestesBeneficios.Domain.DTO.EntidadeDeClasseDTO
+
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Empresa</h4>
+        <form asp-action ="Create" class="forms-sample">
+            <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+            <div class ="form-sample">
+                <label asp-for="Cnpj" class="control-label"></label>
+                <input asp-for="Cnpj" class="form-control" />
+                <span asp-validation-for="Cnpj" class="text-danger"></span>
+            </div>
+            <div class="form-sample">
+                <label asp-for="RazaoSocial" class="control-label"></label>
+                <input asp-for="RazaoSocial" class="form-control" />
+                <span asp-validation-for="RazaoSocial" class="text-danger"></span>
+            </div>
+            <div class="form-sample">
+                <label asp-for="NomeFantasia" class="control-label"></label>
+                <input asp-for="NomeFantasia" class="form-control" />
+                <span asp-validation-for="NomeFantasia" class="text-danger"></span>
+            </div>
+            <div class="form-sample">
+                <label asp-for="Apelido" class="control-label"></label>
+                <input asp-for="Apelido" class="form-control" />
+                <span asp-validation-for="Apelido" class="text-danger"></span>
+            </div>
+            <div class="form-sample">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

@@ -29,7 +29,7 @@ namespace TestesBeneficios.Infra.Data.Configuracoes
 
             entityTypeBuilder.Property(x => x.Apelido)
                .IsRequired()
-               .HasColumnName("NomeFantasia")
+               .HasColumnName("Apelido")
                .HasColumnType($"Varchar({100})");
 
         }

@@ -10,7 +10,7 @@ namespace TestesBeneficios.Domain.Convercores
 {
     public static class ConversorSimulacaoDistribuicaoVida
     {
-        public static SimulacaoDistribuicaoVida Conversor(Guid id, SimulacaoDistribuicaoVidaDTO simulacaoDistribuicaoVidaDTO)
+        public static SimulacaoDistribuicaoVida Converter(Guid id, SimulacaoDistribuicaoVidaDTO simulacaoDistribuicaoVidaDTO)
         {
             return new SimulacaoDistribuicaoVida
             {

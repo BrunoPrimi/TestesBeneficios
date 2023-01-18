@@ -15,37 +15,37 @@ using TestesBeneficios.Infra.Data.Context;
 namespace TestesBeneficios.Controllers
 {
     [Authorize]
-    public class ProfissaoController : BaseController
+    public class SimulacaoAbrangenciaController : BaseController
     {
-       
-        private readonly IServicoProfissao _servicoProfissao;
 
-        public ProfissaoController(IServicoProfissao servicoProfissao)
+        private readonly IServicoSimulacaoAbrangencia _servicoSimulacaoAbrangencia;
+
+        public SimulacaoAbrangenciaController(IServicoSimulacaoAbrangencia servicoSimulacaoAbrangencia)
         {
-            
-            _servicoProfissao = servicoProfissao;
+
+            _servicoSimulacaoAbrangencia = servicoSimulacaoAbrangencia;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View( await _servicoProfissao.BuscarTodos());
-                       
+            return View(await _servicoSimulacaoAbrangencia.BuscarTodos());
+
         }
 
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null )
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var profissao = await _servicoProfissao.BuscarPeloId(id.Value);
-            if (profissao == null)
+            var SimulacaoAbrangencia = await _servicoSimulacaoAbrangencia.BuscarPeloId(id.Value);
+            if (SimulacaoAbrangencia == null)
             {
                 return NotFound();
             }
 
-            return View(profissao);
+            return View(SimulacaoAbrangencia);
         }
 
         public IActionResult Create()
@@ -55,93 +55,93 @@ namespace TestesBeneficios.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ProfissaoDTO profissaoDTO)
+        public async Task<IActionResult> Create(SimulacaoAbrangenciaDTO simulacaoAbrangenciaDTO)
         {
-            if (!profissaoDTO.EhValido())
+            if (!simulacaoAbrangenciaDTO.EhValido())
             {
-                profissaoDTO.ValidationResult.AddToModelState(ModelState);
+                simulacaoAbrangenciaDTO.ValidationResult.AddToModelState(ModelState);
             }
 
             ModelState.Remove("ValidationResult");
             if (ModelState.IsValid)
             {
-                var linhasAfetadas = await _servicoProfissao.Criar(profissaoDTO);
-                if (linhasAfetadas > 0 )
+                var linhasAfetadas = await _servicoSimulacaoAbrangencia.Criar(simulacaoAbrangenciaDTO);
+                if (linhasAfetadas > 0)
                     return RedirectToAction(nameof(Index));
             }
-            return View(profissaoDTO);
+            return View(simulacaoAbrangenciaDTO);
         }
 
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null )
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var profissao = await _servicoProfissao.BuscarPeloId(id.Value);
-            if (profissao == null)
+            var simulacaoAbrangencia = await _servicoSimulacaoAbrangencia.BuscarPeloId(id.Value);
+            if (simulacaoAbrangencia == null)
             {
                 return NotFound();
             }
-            return View(profissao);
+            return View(simulacaoAbrangencia);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, ProfissaoDTO profissaoDTO)
+        public async Task<IActionResult> Edit(Guid id, SimulacaoAbrangenciaDTO simulacaoAbrangenciaDTO)
         {
-            if (id != profissaoDTO.Id)
+            if (id != simulacaoAbrangenciaDTO.Id)
             {
                 return NotFound();
             }
 
-            if (!profissaoDTO.EhValido())
+            if (!simulacaoAbrangenciaDTO.EhValido())
             {
-                profissaoDTO.ValidationResult.AddToModelState(ModelState);
+                simulacaoAbrangenciaDTO.ValidationResult.AddToModelState(ModelState);
             }
 
             ModelState.Remove("ValidationResult");
             if (ModelState.IsValid)
             {
-                await _servicoProfissao.Edit(id, profissaoDTO);
-                
+                await _servicoSimulacaoAbrangencia.Edit(id, simulacaoAbrangenciaDTO);
+
                 return RedirectToAction(nameof(Index));
             }
-            return View(profissaoDTO);
+            return View(simulacaoAbrangenciaDTO);
         }
 
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null )
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var profissao = await _servicoProfissao.BuscarPeloId(id.Value);
-            if (profissao == null)
+            var simulacaoAbrangencia = await _servicoSimulacaoAbrangencia.BuscarPeloId(id.Value);
+            if (simulacaoAbrangencia == null)
             {
                 return NotFound();
             }
 
-            return View(profissao);
+            return View(simulacaoAbrangencia);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-           
-            var profissao = await _servicoProfissao.BuscarPeloId(id);
-            if (profissao != null)
+
+            var simulacaoAbrangencia = await _servicoSimulacaoAbrangencia.BuscarPeloId(id);
+            if (simulacaoAbrangencia != null)
             {
-             await _servicoProfissao.Excluir(id);
+                await _servicoSimulacaoAbrangencia.Excluir(id);
             }
 
-            
+
             return RedirectToAction(nameof(Index));
         }
 
-     
+
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestesBeneficios.Infra.Data.Context;
 
@@ -11,9 +12,10 @@ using TestesBeneficios.Infra.Data.Context;
 namespace TestesBeneficios.Infra.Data.Migrations
 {
     [DbContext(typeof(TesteContext))]
-    partial class TesteContextModelSnapshot : ModelSnapshot
+    [Migration("20230118183207_DistribuicaoVida")]
+    partial class DistribuicaoVida
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -229,8 +231,9 @@ namespace TestesBeneficios.Infra.Data.Migrations
 
                     b.Property<string>("Apelido")
                         .IsRequired()
+                        .ValueGeneratedOnUpdateSometimes()
                         .HasColumnType("Varchar(100)")
-                        .HasColumnName("Apelido");
+                        .HasColumnName("NomeFantasia");
 
                     b.Property<string>("Cnpj")
                         .IsRequired()
@@ -239,6 +242,7 @@ namespace TestesBeneficios.Infra.Data.Migrations
 
                     b.Property<string>("NomeFantasia")
                         .IsRequired()
+                        .ValueGeneratedOnUpdateSometimes()
                         .HasColumnType("Varchar(100)")
                         .HasColumnName("NomeFantasia");
 
@@ -396,33 +400,6 @@ namespace TestesBeneficios.Infra.Data.Migrations
                     b.HasIndex("ProfissaoId");
 
                     b.ToTable("Simulacoes", (string)null);
-                });
-
-            modelBuilder.Entity("TestesBeneficios.Domain.Entidades.SimulacaoAbrangencia", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Cidade")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("IdSimulacao")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SimulacaoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Uf")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SimulacaoId");
-
-                    b.ToTable("Abrangencias");
                 });
 
             modelBuilder.Entity("TestesBeneficios.Domain.Entidades.SimulacaoDistribuicaoVida", b =>
@@ -626,17 +603,6 @@ namespace TestesBeneficios.Infra.Data.Migrations
                     b.Navigation("EntidadeDeClasse");
 
                     b.Navigation("Profissao");
-                });
-
-            modelBuilder.Entity("TestesBeneficios.Domain.Entidades.SimulacaoAbrangencia", b =>
-                {
-                    b.HasOne("TestesBeneficios.Domain.Entidades.Simulacao", "Simulacao")
-                        .WithMany()
-                        .HasForeignKey("SimulacaoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Simulacao");
                 });
 
             modelBuilder.Entity("TestesBeneficios.Domain.Entidades.SimulacaoDistribuicaoVida", b =>

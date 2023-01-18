@@ -1,0 +1,64 @@
+@using TestesBeneficios.Domain.Enumeradores;
+@model TestesBeneficios.Domain.DTO.SimulacaoDTO
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+    <h4>Simulacao</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-sample">
+                    <label asp-for="Cpf" class="control-label"></label>
+                    <select asp-for="Cpf" class="form-control " asp-items="Html.GetEnumSelectList<AbrangenciaProduto>()"></select>
+                    <span asp-validation-for="Cpf" class="text-danger"></span>
+                </div>
+                <div class="form-sample">
+                    <label asp-for="Abrangencia" class="control-label"></label>
+                    <select asp-for="Abrangencia" class="form-control " asp-items="Html.GetEnumSelectList<AbrangenciaProduto>()"></select>
+                    <span asp-validation-for="Abrangencia" class="text-danger"></span>
+                    <div class="form-group">
+                        <label asp-for="IdEntidadeDeClasse" class="control-label"></label>
+                        <select asp-for="IdEntidadeDeClasse" class="form-control" asp-items="@ViewBag.EntidadeDeClasseId"></select>
+                        <span asp-validation-for="IdEntidadeDeClasse" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IdEntidadeDeClasse" class="control-label"></label>
+                        <select asp-for="IdEntidadeDeClasse" class="form-control" asp-items="@ViewBag.EntidadeDeClasseId"></select>
+                        <span asp-validation-for="IdEntidadeDeClasse" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Salvar" class="btn btn-dark btn-rounded btn-fw" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index" type="button" class="btn btn-dark btn-rounded btn-fw">Voltar à Lista</a>
+    </div>
+
+</body>
+</html>

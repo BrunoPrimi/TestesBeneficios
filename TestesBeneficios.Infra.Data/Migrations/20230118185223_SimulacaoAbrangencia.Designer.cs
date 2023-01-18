@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestesBeneficios.Infra.Data.Context;
 
@@ -11,9 +12,10 @@ using TestesBeneficios.Infra.Data.Context;
 namespace TestesBeneficios.Infra.Data.Migrations
 {
     [DbContext(typeof(TesteContext))]
-    partial class TesteContextModelSnapshot : ModelSnapshot
+    [Migration("20230118185223_SimulacaoAbrangencia")]
+    partial class SimulacaoAbrangencia_Criacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -229,8 +231,9 @@ namespace TestesBeneficios.Infra.Data.Migrations
 
                     b.Property<string>("Apelido")
                         .IsRequired()
+                        .ValueGeneratedOnUpdateSometimes()
                         .HasColumnType("Varchar(100)")
-                        .HasColumnName("Apelido");
+                        .HasColumnName("NomeFantasia");
 
                     b.Property<string>("Cnpj")
                         .IsRequired()
@@ -239,6 +242,7 @@ namespace TestesBeneficios.Infra.Data.Migrations
 
                     b.Property<string>("NomeFantasia")
                         .IsRequired()
+                        .ValueGeneratedOnUpdateSometimes()
                         .HasColumnType("Varchar(100)")
                         .HasColumnName("NomeFantasia");
 

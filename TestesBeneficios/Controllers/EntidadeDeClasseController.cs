@@ -62,7 +62,7 @@ namespace TestesBeneficios.Controllers
                 entidadeDeClasseDTO.ValidationResult.AddToModelState(ModelState);
             }
 
-            ModelState.Remove("Produtos");
+            ModelState.Remove("ValidationResult");
             if (ModelState.IsValid)
             {
                 var linhasAfetadas = await _servicoEntidadeDeClasse.Criar(entidadeDeClasseDTO);
@@ -101,7 +101,7 @@ namespace TestesBeneficios.Controllers
                 entidadeDeClasseDTO.ValidationResult.AddToModelState(ModelState);
             }
 
-            ModelState.Remove("EntidadeDeClasses");
+            ModelState.Remove("ValidationResult");
             if (ModelState.IsValid)
             {
                 await _servicoEntidadeDeClasse.Edit(id, entidadeDeClasseDTO);

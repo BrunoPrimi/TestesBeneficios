@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TestesBeneficios.Domain.Entidades;
 using TestesBeneficios.Domain.ValidacoesDTO;
+using static TestesBeneficios.Domain.Entidades.Simulacao;
 
 namespace TestesBeneficios.Domain.DTO
 {
@@ -20,7 +21,7 @@ namespace TestesBeneficios.Domain.DTO
 
         public string Email { get; set; }
         public string Cpf { get; set; }
-        public enum Abrangencia { }
+        public Abrangencia Abrangencia { get; set; }
 
         public Guid IdProfissao { get; set; }
         public Profissao Profissao { get; set; }

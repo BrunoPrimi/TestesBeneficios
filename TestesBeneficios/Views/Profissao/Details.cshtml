@@ -1,0 +1,36 @@
+@model TestesBeneficios.Domain.DTO.ProfissaoDTO
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+
+<div>
+        <h4>Profissao</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataCriacao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataCriacao)
+        </dd>
+    </dl>
+</div>
+<div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" type="button" class="btn btn-dark btn-rounded btn-fw">Editar</a> |
+        <a asp-action="Index" type="button" class="btn btn-dark btn-rounded btn-fw">Voltar</a>
+</div>
+</body>
+</html>

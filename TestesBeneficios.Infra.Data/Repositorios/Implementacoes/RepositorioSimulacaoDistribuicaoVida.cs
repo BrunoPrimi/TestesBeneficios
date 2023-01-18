@@ -32,7 +32,6 @@ namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
 
         public async Task<SimulacaoDistribuicaoVida> BuscarPeloId(Guid id)
         {
-          
 
             return await _contexto.DistribuicaoVidas.Include(x => x.Simulacao).Where(x=>x.Id==id).FirstOrDefaultAsync();
         }

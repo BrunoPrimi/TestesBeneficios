@@ -1,0 +1,55 @@
+@model IEnumerable<TestesBeneficios.Domain.DTO.SimulacaoAbrangenciaDTO>
+
+
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Abrangencia</h4>
+        <p class="card-description">
+
+        <p>
+            <a asp-action="Create" type="button" class="btn btn-inverse-secondary btn-fw">Criar</a>
+        </p>
+        <div class="table-responsive">
+            <table id ="tblLista" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                                @Html.DisplayNameFor(model => model.Uf)
+                        </th>
+                        <th>
+                                @Html.DisplayNameFor(model => model.Cidade)
+                        </th>
+
+                      
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                    @Html.DisplayFor(modelItem => item.Uf)
+                            </td>
+                            <td>
+                                    @Html.DisplayFor(modelItem => item.Cidade)
+                            </td>
+
+                           
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-inverse-secondary btn-fw">Editar</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id" type="button" class="btn btn-inverse-secondary btn-fw">Detalis</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-inverse-secondary btn-fw">Deletar</a>
+                            </td>
+                        </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts {
+        <script>$('#tblLista').DataTable()</script>
+}

@@ -20,6 +20,8 @@ namespace TestesBeneficios.Infra.Data.Context
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Simulacao> Simulacoes { get; set; }
 
+        public DbSet<SimulacaoAbrangencia> Abrangencias { get; set; }
+
         public DbSet<SimulacaoDistribuicaoVida> DistribuicaoVidas { get; set; }
 
         public DbSet<ProdutoFaixaEtaria> FaixaEtaria { get; set; }

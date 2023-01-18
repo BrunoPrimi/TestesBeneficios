@@ -1,0 +1,47 @@
+@model IEnumerable<TestesBeneficios.Domain.DTO.ProfissaoDTO>
+
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Profissao</h4>
+        <p class="card-description">
+
+
+            <a asp-action="Create" type="button" class="btn btn-inverse-secondary btn-fw">Criar</a>
+        </p>
+        <div class="table-responsive">
+            <table id="tblLista"  class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </th>
+                      
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nome)
+                            </td>
+                         
+                            
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-inverse-secondary btn-fw">Editar</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id" type="button" class="btn btn-inverse-secondary btn-fw">Detalis</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-inverse-secondary btn-fw">Deletar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script>$('#tblLista').DataTable()</script>
+}

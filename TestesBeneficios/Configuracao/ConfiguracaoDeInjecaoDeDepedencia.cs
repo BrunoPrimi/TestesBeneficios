@@ -27,6 +27,8 @@ namespace TestesBeneficios.Configuracao
             services.AddScoped<IRepositorioSimulacao, RepositorioSimulacao>();
             services.AddScoped<IServicoSimulacaoDistribuicaoVida, ServicoSimulacaoDistribuicaoVida>();
             services.AddScoped<IRepositorioSimulacaoDistribuicaoVida, RepositorioSimulacaoDistribuicaoVida>();
+            services.AddScoped<IServicoSimulacaoAbrangencia, ServicoSimulacaoAbrangencia>();
+            services.AddScoped<IRepositorioSimulacaoAbrangencia, RepositorioSimulacaoAbrangencia>();
             return services;
         }
     }
