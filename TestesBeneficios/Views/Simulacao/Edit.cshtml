@@ -35,9 +35,9 @@
                     <span asp-validation-for="Cpf" class="text-danger"></span>
                 </div>
                 <div class="form-sample">
-                    <label asp-for="Abrangencia" class="control-label"></label>
-                    <select asp-for="Abrangencia" class="form-control " asp-items="Html.GetEnumSelectList<AbrangenciaProduto>()"></select>
-                    <span asp-validation-for="Abrangencia" class="text-danger"></span>
+                    <label asp-for="AbrangenciaProduto" class="control-label"></label>
+                    <select asp-for="AbrangenciaProduto" class="form-control " asp-items="Html.GetEnumSelectList<AbrangenciaProduto>()"></select>
+                    <span asp-validation-for="AbrangenciaProduto" class="text-danger"></span>
                     <div class="form-group">
                         <label asp-for="IdEntidadeDeClasse" class="control-label"></label>
                         <select asp-for="IdEntidadeDeClasse" class="form-control" asp-items="@ViewBag.EntidadeDeClasseId"></select>

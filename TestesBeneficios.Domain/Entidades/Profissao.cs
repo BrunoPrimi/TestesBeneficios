@@ -16,6 +16,7 @@ namespace TestesBeneficios.Domain.Entidades
 
         public DateTime DataCriacao { get; set; }
 
+        public virtual List<Simulacao> Simulacoes { get; set; }
 
     }
 }

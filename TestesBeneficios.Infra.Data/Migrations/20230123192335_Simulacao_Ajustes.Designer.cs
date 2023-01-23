@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestesBeneficios.Infra.Data.Context;
 
@@ -11,9 +12,10 @@ using TestesBeneficios.Infra.Data.Context;
 namespace TestesBeneficios.Infra.Data.Migrations
 {
     [DbContext(typeof(TesteContext))]
-    partial class TesteContextModelSnapshot : ModelSnapshot
+    [Migration("20230123192335_Simulacao_Ajustes")]
+    partial class Simulacao_Ajustes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -629,7 +631,7 @@ namespace TestesBeneficios.Infra.Data.Migrations
             modelBuilder.Entity("TestesBeneficios.Domain.Entidades.SimulacaoAbrangencia", b =>
                 {
                     b.HasOne("TestesBeneficios.Domain.Entidades.Simulacao", "Simulacao")
-                        .WithMany("SimulacaoAbrangencia")
+                        .WithMany()
                         .HasForeignKey("SimulacaoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -640,7 +642,7 @@ namespace TestesBeneficios.Infra.Data.Migrations
             modelBuilder.Entity("TestesBeneficios.Domain.Entidades.SimulacaoDistribuicaoVida", b =>
                 {
                     b.HasOne("TestesBeneficios.Domain.Entidades.Simulacao", "Simulacao")
-                        .WithMany("SimulacaoDistribuicaoVida")
+                        .WithMany()
                         .HasForeignKey("SimulacaoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -668,13 +670,6 @@ namespace TestesBeneficios.Infra.Data.Migrations
             modelBuilder.Entity("TestesBeneficios.Domain.Entidades.Profissao", b =>
                 {
                     b.Navigation("Simulacoes");
-                });
-
-            modelBuilder.Entity("TestesBeneficios.Domain.Entidades.Simulacao", b =>
-                {
-                    b.Navigation("SimulacaoAbrangencia");
-
-                    b.Navigation("SimulacaoDistribuicaoVida");
                 });
 #pragma warning restore 612, 618
         }

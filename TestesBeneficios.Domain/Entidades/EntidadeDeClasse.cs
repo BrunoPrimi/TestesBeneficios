@@ -22,6 +22,7 @@ namespace TestesBeneficios.Domain.Entidades
 
         public string Apelido { get; set; }
 
+        public virtual List<Simulacao> Simulacoes { get; set; }
 
     }
 }

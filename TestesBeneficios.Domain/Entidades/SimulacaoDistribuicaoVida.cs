@@ -18,6 +18,6 @@ namespace TestesBeneficios.Domain.Entidades
 
         public string Quantidade { get; set; }
         public Guid IdSimulacao { get; set; }
-        public Simulacao Simulacao { get; set; }
+        public virtual Simulacao Simulacao { get; set; }
     }
 }

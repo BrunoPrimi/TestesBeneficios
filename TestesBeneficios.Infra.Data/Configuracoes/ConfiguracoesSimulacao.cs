@@ -17,10 +17,33 @@ namespace TestesBeneficios.Infra.Data.Configuracoes
                 .HasColumnName("Nome")
                 .HasColumnType($"Varchar({100})");
 
-           
+            entityTypeBuilder.Property(x => x.Email)
+                .IsRequired()
+                .HasColumnName("Email")
+                .HasColumnType($"Varchar({100})");
 
-            
+            entityTypeBuilder.Property(x => x.Cpf)
+               .IsRequired()
+               .HasColumnName("Cpf")
+               .HasColumnType($"Varchar({14})");
 
+            entityTypeBuilder.Property(x => x.AbrangenciaProduto)
+               .IsRequired(false)
+               .HasColumnName("AbrangenciaProduto")
+               .HasColumnType($"int");
+
+            entityTypeBuilder.HasOne(x => x.Profissao)
+                .WithMany(x => x.Simulacoes)
+                .HasForeignKey(x => x.IdProfissao)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.NoAction);
+
+
+            entityTypeBuilder.HasOne(x => x.EntidadeDeClasse)
+                .WithMany(x => x.Simulacoes)
+                .HasForeignKey(x => x.IdEntidadeDeClasse)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

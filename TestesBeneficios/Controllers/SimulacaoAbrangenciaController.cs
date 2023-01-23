@@ -11,6 +11,7 @@ using TestesBeneficios.Domain.DTO;
 using TestesBeneficios.Domain.Entidades;
 using TestesBeneficios.Domain.Servicos.Interfaces;
 using TestesBeneficios.Infra.Data.Context;
+using TestesBeneficios.Domain.Servicos.Implementacoes;
 
 namespace TestesBeneficios.Controllers
 {
@@ -19,11 +20,13 @@ namespace TestesBeneficios.Controllers
     {
 
         private readonly IServicoSimulacaoAbrangencia _servicoSimulacaoAbrangencia;
+        private readonly IServicoSimulacao _servicoSimulacao;
 
-        public SimulacaoAbrangenciaController(IServicoSimulacaoAbrangencia servicoSimulacaoAbrangencia)
+        public SimulacaoAbrangenciaController(IServicoSimulacaoAbrangencia servicoSimulacaoAbrangencia, IServicoSimulacao servicoSimulacao)
         {
 
             _servicoSimulacaoAbrangencia = servicoSimulacaoAbrangencia;
+            _servicoSimulacao = servicoSimulacao;
         }
 
         public async Task<IActionResult> Index()
@@ -48,8 +51,9 @@ namespace TestesBeneficios.Controllers
             return View(SimulacaoAbrangencia);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            ViewBag.SimulacaoId = new SelectList(await _servicoSimulacao.BuscarTodos(), "Id", "Nome");
             return View();
         }
 

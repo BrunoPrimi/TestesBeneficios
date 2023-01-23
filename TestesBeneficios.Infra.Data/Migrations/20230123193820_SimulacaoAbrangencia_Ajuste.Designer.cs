@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestesBeneficios.Infra.Data.Context;
 
@@ -11,9 +12,10 @@ using TestesBeneficios.Infra.Data.Context;
 namespace TestesBeneficios.Infra.Data.Migrations
 {
     [DbContext(typeof(TesteContext))]
-    partial class TesteContextModelSnapshot : ModelSnapshot
+    [Migration("20230123193820_SimulacaoAbrangencia_Ajuste")]
+    partial class SimulacaoAbrangencia_Ajuste
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

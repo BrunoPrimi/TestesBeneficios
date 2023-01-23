@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestesBeneficios.Domain.Entidades;
+using TestesBeneficios.Domain.Enumeradores;
 using TestesBeneficios.Domain.ValidacoesDTO;
 using static TestesBeneficios.Domain.Entidades.Simulacao;
 
@@ -21,13 +22,15 @@ namespace TestesBeneficios.Domain.DTO
 
         public string Email { get; set; }
         public string Cpf { get; set; }
-        public Abrangencia Abrangencia { get; set; }
+        public AbrangenciaProduto? AbrangenciaProduto { get; set; }
 
-        public Guid IdProfissao { get; set; }
-        public Profissao Profissao { get; set; }
+        public Guid? IdProfissao { get; set; }
+        public ProfissaoDTO Profissao { get; set; }
 
-        public Guid IdEntidadeDeClasse { get; set; }
-        public EntidadeDeClasse EntidadeDeClasse { get; set; }
+        public Guid? IdEntidadeDeClasse { get; set; }
+        public EntidadeDeClasseDTO EntidadeDeClasse { get; set; }
+        public virtual List<SimulacaoDistribuicaoVida> SimulacaoDistribuicaoVida { get; set; }
+        public virtual List<SimulacaoAbrangencia> SimulacaoAbrangencia { get; set; }
         public ValidationResult ValidationResult { get; private set; }
 
         public bool EhValido()

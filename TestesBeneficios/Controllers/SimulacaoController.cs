@@ -11,6 +11,7 @@ using TestesBeneficios.Domain.DTO;
 using TestesBeneficios.Domain.Entidades;
 using TestesBeneficios.Domain.Servicos.Interfaces;
 using TestesBeneficios.Infra.Data.Context;
+using TestesBeneficios.Domain.Servicos.Implementacoes;
 
 namespace TestesBeneficios.Controllers
 {
@@ -20,10 +21,16 @@ namespace TestesBeneficios.Controllers
        
         private readonly IServicoSimulacao _servicoSimulacao;
 
-        public SimulacaoController(IServicoSimulacao servicoSimulacao)
+        private readonly IServicoProfissao _servicoProfissao;
+
+        private readonly IServicoEntidadeDeClasse _servicoEntidadeDeClasse;
+
+        public SimulacaoController(IServicoSimulacao servicoSimulacao, IServicoProfissao servicoProfissao, IServicoEntidadeDeClasse servicoEntidadeDeClasse)
         {
-            
+
             _servicoSimulacao = servicoSimulacao;
+            _servicoProfissao = servicoProfissao;
+            _servicoEntidadeDeClasse = servicoEntidadeDeClasse;
         }
 
         public async Task<IActionResult> Index()
@@ -48,8 +55,10 @@ namespace TestesBeneficios.Controllers
             return View(simulacao);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            ViewBag.ProfissaoId = new SelectList(await _servicoProfissao.BuscarTodos(), "Id","Nome");
+            ViewBag.EntidadeDeClasseId = new SelectList(await _servicoEntidadeDeClasse.BuscarTodos(), "Id","Apelido");
             return View();
         }
 
@@ -57,11 +66,13 @@ namespace TestesBeneficios.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(SimulacaoDTO simulacaoDTO)
         {
+           
             if (!simulacaoDTO.EhValido())
             {
                 simulacaoDTO.ValidationResult.AddToModelState(ModelState);
             }
-
+            ModelState.Remove("Profissao");
+            ModelState.Remove("EntidadeDeClasse");
             ModelState.Remove("ValidationResult");
             if (ModelState.IsValid)
             {
@@ -69,13 +80,15 @@ namespace TestesBeneficios.Controllers
                 if (linhasAfetadas > 0 )
                     return RedirectToAction(nameof(Index));
             }
+            ViewBag.ProfissaoId = new SelectList(await _servicoProfissao.BuscarTodos(), "Id", "Nome");
+            ViewBag.EntidadeDeClasseId = new SelectList(await _servicoEntidadeDeClasse.BuscarTodos(), "Id", "Apelido");
             return View(simulacaoDTO);
         }
 
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null )
-            {
+            {   
                 return NotFound();
             }
 

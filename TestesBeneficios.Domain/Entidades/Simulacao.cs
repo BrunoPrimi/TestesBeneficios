@@ -19,19 +19,21 @@ namespace TestesBeneficios.Domain.Entidades
       
         public string Email { get; set; }
         public string Cpf { get; set; }
-        public enum Abrangencia { }
+        public AbrangenciaProduto? AbrangenciaProduto { get; set; }
 
-        public Guid IdProfissao{ get; set; }
-        public Profissao Profissao { get; set; }
+        public Guid? IdProfissao{ get; set; }
+        public virtual Profissao Profissao { get; set; }
 
-        public Guid IdEntidadeDeClasse { get; set; }
-        public EntidadeDeClasse EntidadeDeClasse { get; set; }
+        public Guid? IdEntidadeDeClasse { get; set; }
+        public virtual EntidadeDeClasse EntidadeDeClasse { get; set; }
+
+        public virtual List<SimulacaoDistribuicaoVida> SimulacaoDistribuicaoVida { get; set; }
+        public virtual List<SimulacaoAbrangencia> SimulacaoAbrangencia { get; set; }
 
 
 
-       
 
-        
-       
+
+
     }
 }
