@@ -59,6 +59,10 @@ namespace TestesBeneficios.Infra.Data.Context
 
             modelBuilder.Entity<Simulacao>(new ConfiguracoesSimulacao().Configure);
 
+            modelBuilder.Entity<SimulacaoAbrangencia>(new ConfiguracoesSimulacaoAbrangencia().Configure);
+
+            modelBuilder.Entity<SimulacaoDistribuicaoVida>(new ConfiguracoesSimulacaoDistribuicaoVida().Configure);
+
             modelBuilder.Entity<ProdutoFaixaEtaria>(new ConfiguracoesProdutoFaixaEtaria().Configure);
 
             modelBuilder.Entity<ProdutoAbrangencia>(new ConfiguracoesProdutoAbrangencia().Configure);

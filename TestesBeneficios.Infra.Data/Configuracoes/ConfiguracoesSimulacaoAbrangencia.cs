@@ -20,9 +20,7 @@ namespace TestesBeneficios.Infra.Data.Configuracoes
             entityTypeBuilder.Property(x => x.Uf)
                 .IsRequired()
                 .HasColumnName("UF");
-           
           
-
             entityTypeBuilder.HasOne(x => x.Simulacao)
                 .WithMany(x => x.SimulacaoAbrangencia)
                 .HasForeignKey(x => x.IdSimulacao)

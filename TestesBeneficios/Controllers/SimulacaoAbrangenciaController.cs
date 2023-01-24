@@ -66,6 +66,7 @@ namespace TestesBeneficios.Controllers
                 simulacaoAbrangenciaDTO.ValidationResult.AddToModelState(ModelState);
             }
 
+            ModelState.Remove("Simulacao");
             ModelState.Remove("ValidationResult");
             if (ModelState.IsValid)
             {
@@ -73,6 +74,7 @@ namespace TestesBeneficios.Controllers
                 if (linhasAfetadas > 0)
                     return RedirectToAction(nameof(Index));
             }
+            ViewBag.SimulacaoId = new SelectList(await _servicoSimulacao.BuscarTodos(), "Id", "Nome");
             return View(simulacaoAbrangenciaDTO);
         }
 
@@ -80,6 +82,9 @@ namespace TestesBeneficios.Controllers
         {
             if (id == null)
             {
+                ViewBag.SimulacaoId = new SelectList(await _servicoSimulacao.BuscarTodos(), "Id", "Nome");
+
+
                 return NotFound();
             }
 
@@ -88,6 +93,9 @@ namespace TestesBeneficios.Controllers
             {
                 return NotFound();
             }
+            ViewBag.SimulacaoId = new SelectList(await _servicoSimulacao.BuscarTodos(), "Id", "Nome");
+
+
             return View(simulacaoAbrangencia);
         }
 
@@ -97,6 +105,9 @@ namespace TestesBeneficios.Controllers
         {
             if (id != simulacaoAbrangenciaDTO.Id)
             {
+                ViewBag.SimulacaoId = new SelectList(await _servicoSimulacao.BuscarTodos(), "Id", "Nome");
+
+
                 return NotFound();
             }
 
@@ -104,6 +115,7 @@ namespace TestesBeneficios.Controllers
             {
                 simulacaoAbrangenciaDTO.ValidationResult.AddToModelState(ModelState);
             }
+            ModelState.Remove("Simulacao");
 
             ModelState.Remove("ValidationResult");
             if (ModelState.IsValid)
@@ -112,6 +124,9 @@ namespace TestesBeneficios.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.SimulacaoId = new SelectList(await _servicoSimulacao.BuscarTodos(), "Id", "Nome");
+
+
             return View(simulacaoAbrangenciaDTO);
         }
 

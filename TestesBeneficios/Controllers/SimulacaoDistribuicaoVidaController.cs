@@ -11,6 +11,7 @@ using TestesBeneficios.Domain.DTO;
 using TestesBeneficios.Domain.Entidades;
 using TestesBeneficios.Domain.Servicos.Interfaces;
 using TestesBeneficios.Infra.Data.Context;
+using TestesBeneficios.Domain.Servicos.Implementacoes;
 
 namespace TestesBeneficios.Controllers
 {
@@ -19,11 +20,13 @@ namespace TestesBeneficios.Controllers
     {
 
         private readonly IServicoSimulacaoDistribuicaoVida _servicoSimulacaoDistribuicaoVida;
+        private readonly IServicoSimulacao _servicoSimulacao;
 
-        public SimulacaoDistribuicaoVidaController(IServicoSimulacaoDistribuicaoVida servicoSimulacaoDistribuicaoVida)
+        public SimulacaoDistribuicaoVidaController(IServicoSimulacaoDistribuicaoVida servicoSimulacaoDistribuicaoVida, IServicoSimulacao servicoSimulacao)
         {
 
             _servicoSimulacaoDistribuicaoVida = servicoSimulacaoDistribuicaoVida;
+            _servicoSimulacao = servicoSimulacao;
         }
 
         public async Task<IActionResult> Index()
@@ -48,8 +51,9 @@ namespace TestesBeneficios.Controllers
             return View(SimulacaoDistribuicaoVida);
         }
 
-        public IActionResult Create()
+        public async Task <IActionResult> Create()
         {
+            ViewBag.SimulacaoId = new SelectList(await _servicoSimulacao.BuscarTodos(), "Id", "Nome");
             return View();
         }
 
@@ -62,6 +66,7 @@ namespace TestesBeneficios.Controllers
                 simulacaoDistribuicaoVidaDTO.ValidationResult.AddToModelState(ModelState);
             }
 
+            ModelState.Remove("Simulacao");
             ModelState.Remove("ValidationResult");
             if (ModelState.IsValid)
             {
@@ -69,6 +74,8 @@ namespace TestesBeneficios.Controllers
                 if (linhasAfetadas > 0)
                     return RedirectToAction(nameof(Index));
             }
+            ViewBag.SimulacaoId = new SelectList(await _servicoSimulacao.BuscarTodos(), "Id", "Nome");
+
             return View(simulacaoDistribuicaoVidaDTO);
         }
 
@@ -76,6 +83,8 @@ namespace TestesBeneficios.Controllers
         {
             if (id == null)
             {
+                ViewBag.SimulacaoId = new SelectList(await _servicoSimulacao.BuscarTodos(), "Id", "Nome");
+
                 return NotFound();
             }
 
@@ -84,6 +93,7 @@ namespace TestesBeneficios.Controllers
             {
                 return NotFound();
             }
+            ViewBag.SimulacaoId = new SelectList(await _servicoSimulacao.BuscarTodos(), "Id", "Nome");
             return View(simulacaoDistribuicaoVida);
         }
 
@@ -93,6 +103,8 @@ namespace TestesBeneficios.Controllers
         {
             if (id != simulacaoDistribuicaoVidaDTO.Id)
             {
+                ViewBag.SimulacaoId = new SelectList(await _servicoSimulacao.BuscarTodos(), "Id", "Nome");
+
                 return NotFound();
             }
 
@@ -100,7 +112,7 @@ namespace TestesBeneficios.Controllers
             {
                 simulacaoDistribuicaoVidaDTO.ValidationResult.AddToModelState(ModelState);
             }
-
+            ModelState.Remove("Simulacao");
             ModelState.Remove("ValidationResult");
             if (ModelState.IsValid)
             {
@@ -108,6 +120,7 @@ namespace TestesBeneficios.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.SimulacaoId = new SelectList(await _servicoSimulacao.BuscarTodos(), "Id", "Nome");
             return View(simulacaoDistribuicaoVidaDTO);
         }
 

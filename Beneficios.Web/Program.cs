@@ -7,6 +7,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AdicionarConfiguracaoDoIdentity();
 builder.Services.AddDbContextConfiguration(builder.Configuration);
 builder.Services.AdicionarConfiguracaoLoginExterno(builder.Configuration);
+builder.Services.AdicionarConfiguracaoDeInjecaoDeDepedencia();
 
 var app = builder.Build();
 

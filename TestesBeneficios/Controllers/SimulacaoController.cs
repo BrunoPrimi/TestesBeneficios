@@ -88,7 +88,9 @@ namespace TestesBeneficios.Controllers
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null )
-            {   
+            {
+                ViewBag.ProfissaoId = new SelectList(await _servicoProfissao.BuscarTodos(), "Id", "Nome");
+                ViewBag.EntidadeDeClasseId = new SelectList(await _servicoEntidadeDeClasse.BuscarTodos(), "Id", "Apelido");
                 return NotFound();
             }
 
@@ -97,6 +99,8 @@ namespace TestesBeneficios.Controllers
             {
                 return NotFound();
             }
+            ViewBag.ProfissaoId = new SelectList(await _servicoProfissao.BuscarTodos(), "Id", "Nome");
+            ViewBag.EntidadeDeClasseId = new SelectList(await _servicoEntidadeDeClasse.BuscarTodos(), "Id", "Apelido");
             return View(Simulacao);
         }
 
@@ -106,6 +110,8 @@ namespace TestesBeneficios.Controllers
         {
             if (id != simulacaoDTO.Id)
             {
+                ViewBag.ProfissaoId = new SelectList(await _servicoProfissao.BuscarTodos(), "Id", "Nome");
+                ViewBag.EntidadeDeClasseId = new SelectList(await _servicoEntidadeDeClasse.BuscarTodos(), "Id", "Apelido");
                 return NotFound();
             }
 
@@ -114,6 +120,8 @@ namespace TestesBeneficios.Controllers
                 simulacaoDTO.ValidationResult.AddToModelState(ModelState);
             }
 
+            ModelState.Remove("Profissao");
+            ModelState.Remove("EntidadeDeClasse");
             ModelState.Remove("ValidationResult");
             if (ModelState.IsValid)
             {
@@ -121,6 +129,8 @@ namespace TestesBeneficios.Controllers
                 
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.ProfissaoId = new SelectList(await _servicoProfissao.BuscarTodos(), "Id", "Nome");
+            ViewBag.EntidadeDeClasseId = new SelectList(await _servicoEntidadeDeClasse.BuscarTodos(), "Id", "Apelido");
             return View(simulacaoDTO);
         }
 
