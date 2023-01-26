@@ -9,7 +9,7 @@ namespace TestesBeneficios.Domain.Servicos.Interfaces
 {
    public interface IServicoSimulacao
     {
-        Task<int> Criar(SimulacaoDTO simulacaoDTO);
+        Task<Guid> Criar(SimulacaoDTO simulacaoDTO);
         Task<int> Edit(Guid id, SimulacaoDTO simulacaoDTO);
         Task<int> Excluir(Guid id);
         Task<List<SimulacaoDTO>> BuscarTodos();

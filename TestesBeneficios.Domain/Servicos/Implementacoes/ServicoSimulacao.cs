@@ -41,7 +41,7 @@ namespace TestesBeneficios.Domain.Servicos.Implementacoes
             return ConversorSimulacao.Converter(Simulacaos);
         }
 
-        public async Task<int> Criar(SimulacaoDTO SimulacaoDTO)
+        public async Task<Guid> Criar(SimulacaoDTO SimulacaoDTO)
         {
             var Simulacao = ConversorSimulacao.Converter(Guid.NewGuid(), SimulacaoDTO);
           return await _repositorioSimulacao.Criar(Simulacao);

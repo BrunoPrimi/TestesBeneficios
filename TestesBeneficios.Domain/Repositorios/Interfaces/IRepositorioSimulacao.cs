@@ -10,7 +10,7 @@ namespace TestesBeneficios.Domain.Repositorios.Interfaces
 {
     public interface IRepositorioSimulacao
     {
-        Task<int> Criar(Simulacao simulacao);
+        Task<Guid> Criar(Simulacao simulacao);
         Task<int> Edit(Simulacao simulacao);
         Task<int> Excluir(Guid id);
         Task<List<Simulacao>> BuscarTodos();

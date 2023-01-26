@@ -15,23 +15,21 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TestesBeneficios.Domain.DTO
 {
-    public class SimulacaoDistribuicaoVidaDTO
+    public class SimulacaoAbrangenciaDTO
     {
 
         public Guid Id { get; set; }
 
-        public string AlcanceInicial { get; set; }
+        public string Uf { get; set; }
 
-        public string AlcanceFinal { get; set; }
-
-        public string Quantidade { get; set; }
+        public string Cidade { get; set; }
 
         public Guid IdSimulacao { get; set; }
         public SimulacaoDTO Simulacao { get; set; }
         public ValidationResult ValidationResult { get; set; }
         public bool EhValido()
         {
-            var erros = new ValidacaoSimulacaoDistribuicaoVidaDTO().Validate(this).Errors;
+            var erros = new ValidacaoSimulacaoAbrangenciaDTO().Validate(this).Errors;
             ValidationResult = new ValidationResult(erros);
 
             return ValidationResult.IsValid;

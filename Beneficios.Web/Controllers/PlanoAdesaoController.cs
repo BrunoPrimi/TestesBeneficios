@@ -62,38 +62,76 @@ namespace Beneficios.Web.Controllers
             ModelState.Remove("SimulacaoDistribuicaoVida");
             if (ModelState.IsValid)
             {
-                var linhasAfetadas = await _servicoSimulacao.Criar(simulacaoDTO);
-                if (linhasAfetadas > 0)
-                    return RedirectToAction(nameof(Index));
+                var id = await _servicoSimulacao.Criar(simulacaoDTO);
+                
+                    return RedirectToAction(nameof(Passo1), new {Id=id});
             }
             ViewBag.ProfissaoId = new SelectList(await _servicoProfissao.BuscarTodos(), "Id", "Nome");
             ViewBag.EntidadeDeClasseId = new SelectList(await _servicoEntidadeDeClasse.BuscarTodos(), "Id", "Apelido");
             return View(simulacaoDTO);
         }
-    
 
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Passo1(SimulacaoDistribuicaoVidaDTO simulacaoDistribuicaoVidaDTO)
-    {
-        if (!simulacaoDistribuicaoVidaDTO.EhValido())
+
+        public async Task<IActionResult> Passo1(Guid id)
         {
-            simulacaoDistribuicaoVidaDTO.ValidationResult.AddToModelState(ModelState);
+            return View();
+
+        }
+
+        [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Passo1(SimulacaoDTO simulacaoDTO)
+    {
+        if (!simulacaoDTO.EhValido())
+        {
+            simulacaoDTO.ValidationResult.AddToModelState(ModelState);
         }
 
         ModelState.Remove("Simulacao");
         ModelState.Remove("ValidationResult");
         if (ModelState.IsValid)
         {
-            var linhasAfetadas = await _servicoSimulacaoDistribuicaoVida.Criar(simulacaoDistribuicaoVidaDTO);
-            if (linhasAfetadas > 0)
-                return RedirectToAction(nameof(Index));
+      //       var linhasAfetadas = await _servicoSimulacaoDistribuicaoVida.Criar(simulacaoDTO);
+        //  if (linhasAfetadas > 0)
+          //  return RedirectToAction(nameof(Passo2));
         }
         ViewBag.SimulacaoId = new SelectList(await _servicoSimulacao.BuscarTodos(), "Id", "Nome");
 
-        return View(simulacaoDistribuicaoVidaDTO);
+        return View(simulacaoDTO);
     }
-}
+
+        public async Task<IActionResult> Passo2()
+        {
+            ViewBag.ProfissaoId = new SelectList(await _servicoProfissao.BuscarTodos(), "Id", "Nome");
+            ViewBag.EntidadeDeClasseId = new SelectList(await _servicoEntidadeDeClasse.BuscarTodos(), "Id", "Apelido");
+            return View();
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Passo2(SimulacaoDTO simulacaoDTO)
+        {
+
+            if (!simulacaoDTO.EhValido())
+            {
+                simulacaoDTO.ValidationResult.AddToModelState(ModelState);
+            }
+            ModelState.Remove("Profissao");
+            ModelState.Remove("EntidadeDeClasse");
+            ModelState.Remove("ValidationResult");
+            ModelState.Remove("SimulacaoAbrangencia");
+            ModelState.Remove("SimulacaoDistribuicaoVida");
+            if (ModelState.IsValid)
+            {
+                var id = await _servicoSimulacao.Criar(simulacaoDTO);
+
+                return RedirectToAction(nameof(Index), new { Id = id });
+            }
+            ViewBag.ProfissaoId = new SelectList(await _servicoProfissao.BuscarTodos(), "Id", "Nome");
+            ViewBag.EntidadeDeClasseId = new SelectList(await _servicoEntidadeDeClasse.BuscarTodos(), "Id", "Apelido");
+            return View(simulacaoDTO);
+        }
+    }
 }
 
 

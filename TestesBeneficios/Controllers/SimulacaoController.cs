@@ -76,8 +76,8 @@ namespace TestesBeneficios.Controllers
             ModelState.Remove("ValidationResult");
             if (ModelState.IsValid)
             {
-                var linhasAfetadas = await _servicoSimulacao.Criar(simulacaoDTO);
-                if (linhasAfetadas > 0 )
+             //   var linhasAfetadas = await _servicoSimulacao.Criar(simulacaoDTO);
+           //     if (linhasAfetadas > 0 )
                     return RedirectToAction(nameof(Index));
             }
             ViewBag.ProfissaoId = new SelectList(await _servicoProfissao.BuscarTodos(), "Id", "Nome");

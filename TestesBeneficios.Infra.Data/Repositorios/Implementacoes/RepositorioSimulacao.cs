@@ -41,12 +41,12 @@ namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
             return await _contexto.Simulacoes.ToListAsync();
         }
 
-        public async Task<int> Criar(Simulacao simulacao)
+        public async Task<Guid> Criar(Simulacao simulacao)
         {
             await _contexto.Simulacoes.AddAsync(simulacao);
           
-            return await _contexto.SaveChangesAsync();
-
+            await _contexto.SaveChangesAsync();
+            return simulacao.Id;
         }
 
         public async Task<int> Excluir(Guid id)
