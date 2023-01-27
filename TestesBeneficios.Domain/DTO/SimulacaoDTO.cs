@@ -29,8 +29,8 @@ namespace TestesBeneficios.Domain.DTO
 
         public Guid? IdEntidadeDeClasse { get; set; }
         public EntidadeDeClasseDTO EntidadeDeClasse { get; set; }
-        public virtual List<SimulacaoDistribuicaoVida> SimulacaoDistribuicaoVida { get; set; }
-        public virtual List<SimulacaoAbrangencia> SimulacaoAbrangencia { get; set; }
+        public virtual List<SimulacaoDistribuicaoVidaDTO> SimulacaoDistribuicaoVida { get; set; }
+        public virtual List<SimulacaoAbrangenciaDTO> SimulacaoAbrangencia { get; set; }
         public ValidationResult ValidationResult { get; private set; }
 
         public bool EhValido()

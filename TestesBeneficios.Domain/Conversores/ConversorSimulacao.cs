@@ -19,10 +19,20 @@ namespace TestesBeneficios.Domain.Convercores
                 Email = simulacaoDTO.Email,
                 Cpf = simulacaoDTO.Cpf,
                 IdProfissao = simulacaoDTO.IdProfissao,
-                 IdEntidadeDeClasse = simulacaoDTO.IdEntidadeDeClasse
+                IdEntidadeDeClasse = simulacaoDTO.IdEntidadeDeClasse
             };
         }
-
+      public static List<SimulacaoDistribuicaoVida> Converter(List<SimulacaoDistribuicaoVidaDTO> simulacaoDistribuicaoVidaDTO)
+        {
+            return simulacaoDistribuicaoVidaDTO.Select(x => new SimulacaoDistribuicaoVida
+            {
+                Id = Guid.NewGuid(),
+                AlcanceInicial = x.AlcanceInicial,
+                AlcanceFinal = x.AlcanceFinal,
+                Quantidade = x.Quantidade,
+                IdSimulacao = x.IdSimulacao
+    }).ToList();
+        }
         public static SimulacaoDTO Converter(Simulacao simulacao)
         {
             if (simulacao == null)

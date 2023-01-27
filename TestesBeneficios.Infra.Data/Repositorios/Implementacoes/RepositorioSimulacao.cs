@@ -21,17 +21,17 @@ namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
             _contexto = contexto;
         }
 
-        public async Task<int> Edit(Simulacao simulacao )
+        public async Task<int> Edit(Simulacao simulacao)
         {
 
             _contexto.Simulacoes.Update(simulacao);
 
-            return await _contexto.SaveChangesAsync() ;
+            return await _contexto.SaveChangesAsync();
         }
 
         public async Task<Simulacao> BuscarPeloId(Guid id)
         {
-          
+
 
             return await _contexto.Simulacoes.FindAsync(id);
         }
@@ -44,11 +44,19 @@ namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
         public async Task<Guid> Criar(Simulacao simulacao)
         {
             await _contexto.Simulacoes.AddAsync(simulacao);
-          
+
             await _contexto.SaveChangesAsync();
             return simulacao.Id;
         }
 
+        public async Task<int> CriarDistribuicaoVida(List<SimulacaoDistribuicaoVida> simulacaoDistribuicaoVida)
+        {
+            var distruicaoBase = await _contexto.DistribuicaoVidas.Where(x => x.IdSimulacao == simulacaoDistribuicaoVida.First().IdSimulacao).ToListAsync();
+            _contexto.RemoveRange(distruicaoBase);
+            _contexto.AddRange(simulacaoDistribuicaoVida);
+        
+      return  await _contexto.SaveChangesAsync();
+        }
         public async Task<int> Excluir(Guid id)
         {
             var simulacao = await _contexto.Simulacoes.FindAsync(id);

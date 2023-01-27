@@ -11,9 +11,11 @@ namespace TestesBeneficios.Domain.Repositorios.Interfaces
     public interface IRepositorioSimulacao
     {
         Task<Guid> Criar(Simulacao simulacao);
+
         Task<int> Edit(Simulacao simulacao);
         Task<int> Excluir(Guid id);
         Task<List<Simulacao>> BuscarTodos();
-        Task<Simulacao> BuscarPeloId(Guid id);    
+        Task<Simulacao> BuscarPeloId(Guid id);
+        Task<int> CriarDistribuicaoVida(List<SimulacaoDistribuicaoVida> simulacaoDistribucaoVida);
     }
 }

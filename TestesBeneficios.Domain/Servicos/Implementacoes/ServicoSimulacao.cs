@@ -47,6 +47,12 @@ namespace TestesBeneficios.Domain.Servicos.Implementacoes
           return await _repositorioSimulacao.Criar(Simulacao);
         }
 
+        public async Task<int> CriarDistribuicaoVida(List<SimulacaoDistribuicaoVidaDTO>simulacaoDistribuicaoVidaDTO)
+        {
+            var simulacaoDistribuicaoVida = ConversorSimulacao.Converter(simulacaoDistribuicaoVidaDTO);
+            return await _repositorioSimulacao.CriarDistribuicaoVida(simulacaoDistribuicaoVida);
+        }
+
         public async Task<int> Excluir(Guid id)
         {
             return await _repositorioSimulacao.Excluir(id);

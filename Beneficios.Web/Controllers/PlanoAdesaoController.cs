@@ -8,6 +8,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TestesBeneficios.Domain.DTO;
@@ -72,8 +73,12 @@ namespace Beneficios.Web.Controllers
         }
 
 
-        public async Task<IActionResult> Passo1(Guid id)
+        public async Task<IActionResult> Passo1(Guid? id)
         {
+            if (id == null || id == Guid.Empty)
+                return NotFound();
+
+            ViewData["id"] = id;
             return View();
 
         }
@@ -82,18 +87,24 @@ namespace Beneficios.Web.Controllers
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Passo1(SimulacaoDTO simulacaoDTO)
     {
+            ModelState.RemoveAll<SimulacaoDTO>(x => x.SimulacaoDistribuicaoVida);
         if (!simulacaoDTO.EhValido())
         {
             simulacaoDTO.ValidationResult.AddToModelState(ModelState);
         }
+            ModelState.Remove("Profissao");
+            ModelState.Remove("EntidadeDeClasse");
+            ModelState.Remove("SimulacaoAbrangencia");
+            ModelState.Remove("Simulacao");
+            ModelState.Remove("ValidationResult");
+            ModelState.Remove("Nome");
+            ModelState.Remove("Cpf");
+            ModelState.Remove("Email");
 
-        ModelState.Remove("Simulacao");
-        ModelState.Remove("ValidationResult");
-        if (ModelState.IsValid)
+            if (ModelState.IsValid)
         {
-      //       var linhasAfetadas = await _servicoSimulacaoDistribuicaoVida.Criar(simulacaoDTO);
-        //  if (linhasAfetadas > 0)
-          //  return RedirectToAction(nameof(Passo2));
+          var id = await _servicoSimulacao.CriarDistribuicaoVida(simulacaoDTO.SimulacaoDistribuicaoVida);
+          return RedirectToAction(nameof(Passo2), new {Id=id});
         }
         ViewBag.SimulacaoId = new SelectList(await _servicoSimulacao.BuscarTodos(), "Id", "Nome");
 
