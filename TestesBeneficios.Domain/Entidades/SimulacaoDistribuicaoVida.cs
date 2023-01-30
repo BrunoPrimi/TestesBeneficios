@@ -16,7 +16,7 @@ namespace TestesBeneficios.Domain.Entidades
 
         public string AlcanceFinal { get; set; }
 
-        public string Quantidade { get; set; }
+        public int Quantidade { get; set; }
         public Guid IdSimulacao { get; set; }
         public virtual Simulacao Simulacao { get; set; }
     }

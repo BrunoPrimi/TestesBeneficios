@@ -18,20 +18,19 @@ namespace TestesBeneficios.Domain.Servicos.Implementacoes
         {
             _repositorioSimulacao = repositorioSimulacao;
         }
-   
 
-        public async Task<int> Edit(Guid id ,SimulacaoDTO SimulacaoDTO)
+
+        public async Task<int> Edit(Guid id, SimulacaoDTO SimulacaoDTO)
         {
             var Simulacao = ConversorSimulacao.Converter(id, SimulacaoDTO);
-           
+
             return await _repositorioSimulacao.Edit(Simulacao);
         }
 
         public async Task<SimulacaoDTO> BuscarPeloId(Guid id)
         {
-            var Simulacao = await _repositorioSimulacao.BuscarPeloId(id);
-
-            return ConversorSimulacao.Converter(Simulacao);
+            var simulacao = await _repositorioSimulacao.BuscarPeloId(id);
+             return ConversorSimulacao.Converter(simulacao);
         }
 
         public async Task<List<SimulacaoDTO>> BuscarTodos()
@@ -44,11 +43,16 @@ namespace TestesBeneficios.Domain.Servicos.Implementacoes
         public async Task<Guid> Criar(SimulacaoDTO SimulacaoDTO)
         {
             var Simulacao = ConversorSimulacao.Converter(Guid.NewGuid(), SimulacaoDTO);
-          return await _repositorioSimulacao.Criar(Simulacao);
+            return await _repositorioSimulacao.Criar(Simulacao);
         }
 
-        public async Task<int> CriarDistribuicaoVida(List<SimulacaoDistribuicaoVidaDTO>simulacaoDistribuicaoVidaDTO)
+        public async Task<int> CriarDistribuicaoVida(List<SimulacaoDistribuicaoVidaDTO> simulacaoDistribuicaoVidaDTO)
         {
+            var distribuicaovida = await _repositorioSimulacao.BuscarDistribuicaoVidaPeloIdSimulaco(simulacaoDistribuicaoVidaDTO.FirstOrDefault().IdSimulacao);
+            foreach (var item in distribuicaovida)
+            {
+                await _repositorioSimulacao.ExcluirDistribuicao(item.Id);
+            }
             var simulacaoDistribuicaoVida = ConversorSimulacao.Converter(simulacaoDistribuicaoVidaDTO);
             return await _repositorioSimulacao.CriarDistribuicaoVida(simulacaoDistribuicaoVida);
         }
@@ -57,5 +61,6 @@ namespace TestesBeneficios.Domain.Servicos.Implementacoes
         {
             return await _repositorioSimulacao.Excluir(id);
         }
+
     }
 }

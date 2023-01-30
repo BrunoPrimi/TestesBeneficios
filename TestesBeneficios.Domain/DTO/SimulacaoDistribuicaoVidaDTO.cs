@@ -24,7 +24,7 @@ namespace TestesBeneficios.Domain.DTO
 
         public string AlcanceFinal { get; set; }
 
-        public string Quantidade { get; set; }
+        public int Quantidade { get; set; }
 
         public Guid IdSimulacao { get; set; }
         public SimulacaoDTO Simulacao { get; set; }

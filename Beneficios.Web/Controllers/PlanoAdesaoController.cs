@@ -79,7 +79,9 @@ namespace Beneficios.Web.Controllers
                 return NotFound();
 
             ViewData["id"] = id;
-            return View();
+
+            var simulacaoDTO = await _servicoSimulacao.BuscarPeloId(id.Value);
+            return View(simulacaoDTO);
 
         }
 
@@ -88,7 +90,7 @@ namespace Beneficios.Web.Controllers
     public async Task<IActionResult> Passo1(SimulacaoDTO simulacaoDTO)
     {
             ModelState.RemoveAll<SimulacaoDTO>(x => x.SimulacaoDistribuicaoVida);
-        if (!simulacaoDTO.EhValido())
+        if (!simulacaoDTO.EhValido_Distribuicao())
         {
             simulacaoDTO.ValidationResult.AddToModelState(ModelState);
         }

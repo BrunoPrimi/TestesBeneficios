@@ -31,9 +31,7 @@ namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
 
         public async Task<Simulacao> BuscarPeloId(Guid id)
         {
-
-
-            return await _contexto.Simulacoes.FindAsync(id);
+            return await _contexto.Simulacoes.Include(x => x.SimulacaoDistribuicaoVida).Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
         public async Task<List<Simulacao>> BuscarTodos()
@@ -64,6 +62,19 @@ namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
             _contexto.Simulacoes.Remove(simulacao);
 
             return await _contexto.SaveChangesAsync();
+        }
+        public async Task<int> ExcluirDistribuicao(Guid id)
+        {
+            var simulacaodistribuicao = await _contexto.DistribuicaoVidas.FindAsync(id);
+
+            _contexto.DistribuicaoVidas.Remove(simulacaodistribuicao);
+
+            return await _contexto.SaveChangesAsync();
+        }
+
+        public async Task <List<SimulacaoDistribuicaoVida>> BuscarDistribuicaoVidaPeloIdSimulaco(Guid idSimulacao)
+        {
+            return await _contexto.DistribuicaoVidas.Where(x=>x.IdSimulacao==idSimulacao).ToListAsync();
         }
     }
 }

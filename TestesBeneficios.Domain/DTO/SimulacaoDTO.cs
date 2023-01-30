@@ -40,5 +40,12 @@ namespace TestesBeneficios.Domain.DTO
 
             return ValidationResult.IsValid;
         }
+        public bool EhValido_Distribuicao()
+        {
+            var erros = new ValidacaoSimulacao_DistribuicaoDTO().Validate(this).Errors;
+            ValidationResult = new ValidationResult(erros);
+
+            return ValidationResult.IsValid;
+        }
     }
 }

@@ -13,35 +13,32 @@
         <div class="card theme-wizard mb-5">
             <div class="card-header bg-light pt-3 pb-2">
                 <ul class="nav justify-content-between nav-wizard">
-                    <li class="nav-item"><a class="nav-link active fw-semi-bold" href="#bootstrap-wizard-tab1" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-lock"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Dados Pessoais</span></a></li>
-                    <li class="nav-item"><a class="nav-link fw-semi-bold" href="#bootstrap-wizard-tab2" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-user"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Quantidade De Vidas</span></a></li>
+                    <li class="nav-item"><a class="nav-link  fw-semi-bold" href="#bootstrap-wizard-tab1" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-lock"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Dados Pessoais</span></a></li>
+                    <li class="nav-item"><a class="nav-link active fw-semi-bold" href="#bootstrap-wizard-tab2" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-user"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Quantidade De Vidas</span></a></li>
                     <li class="nav-item"><a class="nav-link fw-semi-bold" href="#bootstrap-wizard-tab3" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-dollar-sign"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Preferencias</span></a></li>
                     <li class="nav-item"><a class="nav-link fw-semi-bold" href="#bootstrap-wizard-tab4" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-thumbs-up"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Planosg</span></a></li>
                 </ul>
             </div>
             <div class="card-body py-4">
                 <div class="tab-content">
-                   
                     <div class="tab-pane active px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-tab2" id="bootstrap-wizard-tab2">
                         <form asp-action="Passo1">
-
                             <div class="row g-3">
                                 <div class="col-6 p-3">
                                     <div class="input-group input-group-sm" data-quantity="data-quantity">
-                                        <label  class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">0 a 18 anos</label>
+                                        <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">0 a 18 anos</label>
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="minus">-</button>
                                         <input asp-for="SimulacaoDistribuicaoVida[0].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
-                                        <input asp-for="SimulacaoDistribuicaoVida[0].AlcanceInicial"value="0" type="hidden" />
+                                        <input asp-for="SimulacaoDistribuicaoVida[0].AlcanceInicial" value="0" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[0].AlcanceFinal" value="18" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[0].Id" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[0].IdSimulacao" value="@ViewData["id"]" type="hidden" />
-
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="plus">+</button>
                                     </div>
                                 </div>
                                 <div class="col-6 p-3">
                                     <div class="input-group input-group-sm" data-quantity="data-quantity">
-                                        <label  class="form-label" for="bootstrap-wizard-wizard-idade " style="width:100px">19 a 23 anos</label>
+                                        <label class="form-label" for="bootstrap-wizard-wizard-idade " style="width:100px">19 a 23 anos</label>
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="minus">-</button>
                                         <input asp-for="SimulacaoDistribuicaoVida[1].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
                                         <input asp-for="SimulacaoDistribuicaoVida[1].AlcanceInicial" value="19" type="hidden" />
@@ -54,7 +51,7 @@
                                 </div>
                                 <div class="col-6 p-3">
                                     <div class="input-group input-group-sm" data-quantity="data-quantity">
-                                        <label  class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">24 a 28 anos</label>
+                                        <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">24 a 28 anos</label>
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="minus">-</button>
                                         <input asp-for="SimulacaoDistribuicaoVida[2].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
                                         <input asp-for="SimulacaoDistribuicaoVida[2].AlcanceInicial" value="24" type="hidden" />
@@ -74,7 +71,6 @@
                                         <input asp-for="SimulacaoDistribuicaoVida[3].AlcanceFinal" value="33" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[3].Id" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[3].IdSimulacao" value="@ViewData["id"]" type="hidden" />
-
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="plus">+</button>
                                     </div>
                                 </div>
@@ -87,7 +83,6 @@
                                         <input asp-for="SimulacaoDistribuicaoVida[4].AlcanceFinal" value="38" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[4].Id" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[4].IdSimulacao" value="@ViewData["id"]" type="hidden" />
-
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="plus">+</button>
                                     </div>
                                 </div>
@@ -95,16 +90,14 @@
                                     <div class="input-group input-group-sm" data-quantity="data-quantity">
                                         <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">39 a 43 anos</label>
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="minus">-</button>
-                                        <input  asp-for="SimulacaoDistribuicaoVida[5].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                        <input asp-for="SimulacaoDistribuicaoVida[5].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
                                         <input asp-for="SimulacaoDistribuicaoVida[5].AlcanceInicial" value="39" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[5].AlcanceFinal" value="43" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[5].Id" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[5].IdSimulacao" value="@ViewData["id"]" type="hidden" />
-
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="plus">+</button>
                                     </div>
                                 </div>
-
                                 <div class="col-6 p-3">
                                     <div class="input-group input-group-sm" data-quantity="data-quantity">
                                         <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">44 a 48 anos</label>
@@ -114,7 +107,6 @@
                                         <input asp-for="SimulacaoDistribuicaoVida[6].AlcanceFinal" value="48" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[6].Id" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[6].IdSimulacao" value="@ViewData["id"]" type="hidden" />
-
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="plus">+</button>
                                     </div>
                                 </div>
@@ -127,8 +119,7 @@
                                         <input asp-for="SimulacaoDistribuicaoVida[7].AlcanceFinal" value="53" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[7].Id" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[7].IdSimulacao" value="@ViewData["id"]" type="hidden" />
-
-                                        <button class="btn btn-sm btn-outline-secondary border-300"type="button"  data-field="input-quantity" data-type="plus">+</button>
+                                        <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="plus">+</button>
                                     </div>
                                 </div>
                                 <div class="col-6 p-3">
@@ -140,7 +131,6 @@
                                         <input asp-for="SimulacaoDistribuicaoVida[8].AlcanceFinal" value="58" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[8].Id" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[8].IdSimulacao" value="@ViewData["id"]" type="hidden" />
-
                                         <button class="btn btn-sm btn-outline-seconary border-300" type="button" data-field="input-quantity" data-type="plus">+</button>
                                     </div>
                                 </div>
@@ -153,10 +143,10 @@
                                         <input asp-for="SimulacaoDistribuicaoVida[9].AlcanceFinal" value="999" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[9].Id" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[9].IdSimulacao" value="@ViewData["id"]" type="hidden" />
-
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="plus">+</button>
                                     </div>
                                 </div>
+                                <span asp-validation-for="SimulacaoDistribuicaoVida" class="text-danger"></span>
                             </div>
                             <div class="px-sm-3 px-md-5">
                                 <ul class="pager wizard list-inline mb-0">
@@ -170,10 +160,8 @@
                             </div>
                         </form>
                     </div>
-                     
                 </div>
             </div>
         </div>
     </div>
-    </div>
-   
+</div>

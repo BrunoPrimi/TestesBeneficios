@@ -24,6 +24,10 @@ namespace TestesBeneficios.Domain.Convercores
 
         public static EntidadeDeClasseDTO Converter(EntidadeDeClasse entidadeDeClasse)
         {
+            if(entidadeDeClasse == null)
+            {
+                return null;
+            }
             return new EntidadeDeClasseDTO
             {
                 Id = entidadeDeClasse.Id,

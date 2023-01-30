@@ -14,8 +14,11 @@ namespace TestesBeneficios.Domain.Repositorios.Interfaces
 
         Task<int> Edit(Simulacao simulacao);
         Task<int> Excluir(Guid id);
+        Task<int> ExcluirDistribuicao(Guid id);
         Task<List<Simulacao>> BuscarTodos();
         Task<Simulacao> BuscarPeloId(Guid id);
+        Task<List<SimulacaoDistribuicaoVida>> BuscarDistribuicaoVidaPeloIdSimulaco(Guid idSimulacao);
+
         Task<int> CriarDistribuicaoVida(List<SimulacaoDistribuicaoVida> simulacaoDistribucaoVida);
     }
 }

@@ -31,4 +31,16 @@ namespace TestesBeneficios.Domain.ValidacoesDTO
 
         
     }
+    public class ValidacaoSimulacao_DistribuicaoDTO : AbstractValidator<SimulacaoDTO>
+    {
+        public ValidacaoSimulacao_DistribuicaoDTO()
+        {
+
+            RuleFor(x => x.SimulacaoDistribuicaoVida)
+                .Must(x => x.Any(y => y.Quantidade > 0)).WithMessage("Informe pelo menos a faixa etária de uma vida!");
+
+        }
+
+
+    }
 }

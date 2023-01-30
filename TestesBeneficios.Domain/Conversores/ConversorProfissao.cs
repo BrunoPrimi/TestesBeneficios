@@ -22,6 +22,11 @@ namespace TestesBeneficios.Domain.Convercores
 
         public static ProfissaoDTO Converter(Profissao profissao)
         {
+            if (profissao == null)
+            {
+                return null;
+            }
+
             return new ProfissaoDTO
             {
                 Id = profissao.Id,
