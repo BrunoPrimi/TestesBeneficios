@@ -31,12 +31,29 @@ namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
 
         public async Task<Simulacao> BuscarPeloId(Guid id)
         {
-            return await _contexto.Simulacoes.Include(x => x.SimulacaoDistribuicaoVida).Where(x => x.Id == id).FirstOrDefaultAsync();
+            return await _contexto.Simulacoes
+                .Include(x => x.SimulacaoDistribuicaoVida.OrderBy(x => x.AlcanceInicial))
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
         }
 
         public async Task<List<Simulacao>> BuscarTodos()
         {
             return await _contexto.Simulacoes.ToListAsync();
+        }
+
+        public async Task<List<Produto>> BuscarProduto(Guid id)
+        {
+            var simulacao=await _contexto.Simulacoes
+                .Include(x=>x.SimulacaoDistribuicaoVida)
+                .Include(x=>x.SimulacaoAbrangencia)
+                .Where(x=>x.Id==id)
+                .FirstOrDefaultAsync();
+
+
+            return await _contexto.Produtos
+                .Where(x=>x.Abrangencia==simulacao.AbrangenciaProduto)
+                .ToListAsync();
         }
 
         public async Task<Guid> Criar(Simulacao simulacao)

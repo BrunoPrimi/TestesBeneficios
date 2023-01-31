@@ -1,5 +1,5 @@
 ﻿@using TestesBeneficios.Domain.Enumeradores;
-@model TestesBeneficios.Domain.DTO.SimulacaoDTO
+@model List<TestesBeneficios.Domain.DTO.ProdutoDTO>
 
 <div class="row mt-5">
     <div class="col-lg-6 col-xl-12 col-xxl-6 h-100">
@@ -19,21 +19,7 @@
                     <li class="nav-item"><a class="nav-link active fw-semi-bold" href="#bootstrap-wizard-tab4" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-thumbs-up"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Planosg</span></a></li>
                 </ul>
             </div>
-            <div class="card-footer bg-light">
-                <div class="px-sm-3 px-md-5">
-                    <ul class="pager wizard list-inline mb-0">
-                        <li class="previous">
-                            <button class="btn btn-link ps-0" type="button"> Font Awesome fontawesome.com -->Prev</button>
-                        </li>
-                        <li class="next">
-                            <button value="Create" class="btn btn-primary px-5 px-sm-6" type="submit">Next</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
             <div class="tab-pane text-center px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-tab4" id="bootstrap-wizard-tab4">
-
-
                 <div class="content">
                     <div class="row g-2">
                         <div class="col-xxl-2 col-xl-3">
@@ -391,174 +377,54 @@
 
 
                             <div class="row">
-                                <div class="col-lg-4 pb-3 mt-3">
-                                    <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
-                                        <div class="overflow-hidden">
-                                            <div class="position-relative rounded-top overflow-hidden">
-                                                <div class="swiper-container theme-slider" data-swiper='{"autoplay":true,"autoHeight":true,"spaceBetween":5,"loop":true,"loopedSlides":5,"navigation":{"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"}}'>
-                                                    <div class="swiper-wrapper">
-                                                        <div class="swiper-slide"><a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="rounded-top img-fluid" src="../../../assets/img/products/1.jpg" alt="" /></a></div>
-                                                        <div class="swiper-slide"><a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="rounded-top img-fluid" src="../../../assets/img/products/1-2.jpg" alt="" /></a></div>
-                                                        <div class="swiper-slide"><a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="rounded-top img-fluid" src="../../../assets/img/products/1-3.jpg" alt="" /></a></div>
+                                @if (Model != null)
+                                {
+                                    foreach (var produto in Model)
+                                    {
+
+
+
+                                        <div class="col-lg-4 pb-3 mt-3">
+                                            <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
+                                                <div class="overflow-hidden">
+                                                    <div class="position-relative rounded-top overflow-hidden">
+                                                        <div class="swiper-container theme-slider" data-swiper='{"autoplay":true,"autoHeight":true,"spaceBetween":5,"loop":true,"loopedSlides":5,"navigation":{"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"}}'>
+                                                            <div class="swiper-wrapper">
+                                                                <div class="swiper-slide"><a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="rounded-top img-fluid" src="../../../assets/img/products/1.jpg" alt="" /></a></div>
+                                                                <div class="swiper-slide"><a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="rounded-top img-fluid" src="../../../assets/img/products/1-2.jpg" alt="" /></a></div>
+                                                                <div class="swiper-slide"><a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="rounded-top img-fluid" src="../../../assets/img/products/1-3.jpg" alt="" /></a></div>
+                                                            </div>
+                                                            <div class="swiper-nav">
+                                                                <div class="swiper-button-next swiper-button-white"></div>
+                                                                <div class="swiper-button-prev swiper-button-white"></div>
+                                                            </div>
+                                                        </div><span class="badge rounded-pill bg-success position-absolute mt-2 me-2 z-index-2 top-0 end-0">New</span>
                                                     </div>
-                                                    <div class="swiper-nav">
-                                                        <div class="swiper-button-next swiper-button-white"></div>
-                                                        <div class="swiper-button-prev swiper-button-white"></div>
+                                                    <div class="p-3">
+                                                        <h5 class="fs-0"><a class="text-dark" href="../../../app/e-commerce/product/product-details.html">
+                                                            @produto.Nome
+                                                            </a></h5>
+                                                        <p class="fs--1 mb-3"><a class="text-500" href="#!">Computer &amp; Accessories</a></p>
+                                                        <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+                                                            $7199
+                                                        </h5>
+                                                        <p class="fs--1 mb-1">Shipping Cost: <strong>$65</strong></p>
+                                                        <p class="fs--1 mb-1">
+                                                            Stock: <strong class="text-danger">Sold-Out</strong>
+                                                        </p>
                                                     </div>
-                                                </div><span class="badge rounded-pill bg-success position-absolute mt-2 me-2 z-index-2 top-0 end-0">New</span>
-                                            </div>
-                                            <div class="p-3">
-                                                <h5 class="fs-0"><a class="text-dark" href="../../../app/e-commerce/product/product-details.html">Apple MacBook Pro (15&quot; Retina, Touch Bar, 2.2GHz 6-Core Intel Core i7, 16GB RAM, 256GB SSD) - Space Gray (Latest Model)</a></h5>
-                                                <p class="fs--1 mb-3"><a class="text-500" href="#!">Computer &amp; Accessories</a></p>
-                                                <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                                    $7199
-                                                </h5>
-                                                <p class="fs--1 mb-1">Shipping Cost: <strong>$65</strong></p>
-                                                <p class="fs--1 mb-1">
-                                                    Stock: <strong class="text-danger">Sold-Out</strong>
-                                                </p>
+                                                </div>
+                                                <div class="d-flex flex-between-center px-3">
+                                                    <div>
+                                                        <span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star-half-alt text-warning star-icon"></span><span class="ms-1">(20)</span>
+                                                    </div>
+                                                    <div><a class="btn btn-sm btn-falcon-default me-2" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List"><span class="far fa-heart"></span></a><a class="btn btn-sm btn-falcon-default" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"><span class="fas fa-cart-plus"></span></a></div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="d-flex flex-between-center px-3">
-                                            <div>
-                                                <span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star-half-alt text-warning star-icon"></span><span class="ms-1">(20)</span>
-                                            </div>
-                                            <div><a class="btn btn-sm btn-falcon-default me-2" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List"><span class="far fa-heart"></span></a><a class="btn btn-sm btn-falcon-default" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"><span class="fas fa-cart-plus"></span></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 pb-3 mt-3">
-                                    <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
-                                        <div class="overflow-hidden">
-                                            <div class="position-relative rounded-top overflow-hidden">
-                                                <a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="img-fluid rounded-top" src="../../../assets/img/products/4.jpg" alt="" /></a>
-                                            </div>
-                                            <div class="p-3">
-                                                <h5 class="fs-0"><a class="text-dark" href="../../../app/e-commerce/product/product-details.html">Apple iPad Air 2019 (3GB RAM, 128GB ROM, 8MP Main Camera)</a></h5>
-                                                <p class="fs--1 mb-3"><a class="text-500" href="#!">Mobile &amp; Tabs</a></p>
-                                                <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                                    $562.5
-                                                    <del class="ms-2 fs--1 text-500">$750 </del>
-                                                </h5>
-                                                <p class="fs--1 mb-1">Shipping Cost: <strong>$47</strong></p>
-                                                <p class="fs--1 mb-1">
-                                                    Stock: <strong class="text-success">Available</strong>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex flex-between-center px-3">
-                                            <div>
-                                                <span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star-half-alt text-warning star-icon"></span><span class="fa fa-star text-300"></span><span class="fa fa-star text-300"></span><span class="ms-1">(14)</span>
-                                            </div>
-                                            <div><a class="btn btn-sm btn-falcon-default me-2" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List"><span class="far fa-heart"></span></a><a class="btn btn-sm btn-falcon-default" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"><span class="fas fa-cart-plus"></span></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 pb-3 mt-3">
-                                    <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
-                                        <div class="overflow-hidden">
-                                            <div class="position-relative rounded-top overflow-hidden">
-                                                <a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="img-fluid rounded-top" src="../../../assets/img/products/3.jpg" alt="" /></a>
-                                            </div>
-                                            <div class="p-3">
-                                                <h5 class="fs-0"><a class="text-dark" href="../../../app/e-commerce/product/product-details.html">Apple iPhone XS Max (4GB RAM, 512GB ROM, 12MP Main Camera)</a></h5>
-                                                <p class="fs--1 mb-3"><a class="text-500" href="#!">Mobile &amp; Tabs</a></p>
-                                                <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                                    $1050
-                                                </h5>
-                                                <p class="fs--1 mb-1">Shipping Cost: <strong>$65</strong></p>
-                                                <p class="fs--1 mb-1">
-                                                    Stock: <strong class="text-success">Available</strong>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex flex-between-center px-3">
-                                            <div>
-                                                <span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star-half-alt text-warning star-icon"></span><span class="ms-1">(13)</span>
-                                            </div>
-                                            <div><a class="btn btn-sm btn-falcon-default me-2" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List"><span class="far fa-heart"></span></a><a class="btn btn-sm btn-falcon-default" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"><span class="fas fa-cart-plus"></span></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 pb-3 mt-3">
-                                    <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
-                                        <div class="overflow-hidden">
-                                            <div class="position-relative rounded-top overflow-hidden">
-                                                <a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="img-fluid rounded-top" src="../../../assets/img/products/8.jpg" alt="" /></a><span class="badge rounded-pill bg-success position-absolute mt-2 me-2 z-index-2 top-0 end-0">New</span>
-                                            </div>
-                                            <div class="p-3">
-                                                <h5 class="fs-0"><a class="text-dark" href="../../../app/e-commerce/product/product-details.html">Canon Standard Zoom Lens</a></h5>
-                                                <p class="fs--1 mb-3"><a class="text-500" href="#!">Camera</a></p>
-                                                <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                                    $400
-                                                    <del class="ms-2 fs--1 text-500">$500 </del>
-                                                </h5>
-                                                <p class="fs--1 mb-1">Shipping Cost: <strong>$60</strong></p>
-                                                <p class="fs--1 mb-1">
-                                                    Stock: <strong class="text-danger">Sold Out</strong>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex flex-between-center px-3">
-                                            <div>
-                                                <span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-300"></span><span class="ms-1">(10)</span>
-                                            </div>
-                                            <div><a class="btn btn-sm btn-falcon-default me-2" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List"><span class="far fa-heart"></span></a><a class="btn btn-sm btn-falcon-default" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"><span class="fas fa-cart-plus"></span></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 pb-3 mt-3">
-                                    <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
-                                        <div class="overflow-hidden">
-                                            <div class="position-relative rounded-top overflow-hidden">
-                                                <a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="img-fluid rounded-top" src="../../../assets/img/products/6.jpg" alt="" /></a><span class="badge rounded-pill bg-success position-absolute mt-2 me-2 z-index-2 top-0 end-0">New</span>
-                                            </div>
-                                            <div class="p-3">
-                                                <h5 class="fs-0"><a class="text-dark" href="../../../app/e-commerce/product/product-details.html">Logitech G305 Gaming Mouse</a></h5>
-                                                <p class="fs--1 mb-3"><a class="text-500" href="#!">Computer &amp; Accessories</a></p>
-                                                <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                                    $95
-                                                </h5>
-                                                <p class="fs--1 mb-1">Shipping Cost: <strong>$20</strong></p>
-                                                <p class="fs--1 mb-1">
-                                                    Stock: <strong class="text-success">Available</strong>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex flex-between-center px-3">
-                                            <div>
-                                                <span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star-half-alt text-warning star-icon"></span><span class="fa fa-star text-300"></span><span class="ms-1">(6)</span>
-                                            </div>
-                                            <div><a class="btn btn-sm btn-falcon-default me-2" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List"><span class="far fa-heart"></span></a><a class="btn btn-sm btn-falcon-default" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"><span class="fas fa-cart-plus"></span></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 pb-3 mt-3">
-                                    <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
-                                        <div class="overflow-hidden">
-                                            <div class="position-relative rounded-top overflow-hidden">
-                                                <a class="d-block" href="../../../app/e-commerce/product/product-details.html"><img class="img-fluid rounded-top" src="../../../assets/img/products/7.jpg" alt="" /></a>
-                                            </div>
-                                            <div class="p-3">
-                                                <h5 class="fs-0"><a class="text-dark" href="../../../app/e-commerce/product/product-details.html">Nikon D3200 Digital DSLR Camera</a></h5>
-                                                <p class="fs--1 mb-3"><a class="text-500" href="#!">Camera</a></p>
-                                                <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                                    $2398
-                                                </h5>
-                                                <p class="fs--1 mb-1">Shipping Cost: <strong>$30</strong></p>
-                                                <p class="fs--1 mb-1">
-                                                    Stock: <strong class="text-success">Available</strong>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex flex-between-center px-3">
-                                            <div>
-                                                <span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-300"></span><span class="ms-1">(5)</span>
-                                            </div>
-                                            <div><a class="btn btn-sm btn-falcon-default me-2" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List"><span class="far fa-heart"></span></a><a class="btn btn-sm btn-falcon-default" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"><span class="fas fa-cart-plus"></span></a></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    }
+                                }
+
                             </div>
                         </div>
                     </div>

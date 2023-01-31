@@ -36,6 +36,13 @@ namespace TestesBeneficios.Domain.Convercores
 
        public static List<SimulacaoDistribuicaoVidaDTO> Converter(List<SimulacaoDistribuicaoVida> simulacaoDistribuicaoVida)
         {
+            if (simulacaoDistribuicaoVida == null)
+            {
+
+                return null;
+
+            }
+
             return simulacaoDistribuicaoVida.Select(x => Converter(x)).ToList();
 
         }

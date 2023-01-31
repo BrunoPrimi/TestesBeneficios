@@ -22,7 +22,11 @@
             <div class="card-body py-4">
                 <div class="tab-content">
                     <div class="tab-pane px-sm-3 active px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-tab3" id="bootstrap-wizard-tab3">
-                        <form asp-action="Passo2" class="form-validation">
+                        <form asp-action="Passo2"  class="form-validation">
+                            <input type="hidden" asp-for="Id" />
+                            <input type="hidden"asp-for="Nome" />
+                            <input type="hidden" asp-for="Cpf" />
+                            <input type="hidden" asp-for="Email" />
                             <div class="row g-2">
                                 <div class="col-4">
                                     <div class="mb-3">

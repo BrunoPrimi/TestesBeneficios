@@ -81,13 +81,29 @@ namespace Beneficios.Web.Controllers
             ViewData["id"] = id;
 
             var simulacaoDTO = await _servicoSimulacao.BuscarPeloId(id.Value);
+
+            if (simulacaoDTO.SimulacaoDistribuicaoVida == null || !simulacaoDTO.SimulacaoDistribuicaoVida.Any()) 
+            {
+                simulacaoDTO.SimulacaoDistribuicaoVida = new List<SimulacaoDistribuicaoVidaDTO>();
+                simulacaoDTO.SimulacaoDistribuicaoVida.Add(new SimulacaoDistribuicaoVidaDTO());
+                simulacaoDTO.SimulacaoDistribuicaoVida.Add(new SimulacaoDistribuicaoVidaDTO());
+                simulacaoDTO.SimulacaoDistribuicaoVida.Add(new SimulacaoDistribuicaoVidaDTO());
+                simulacaoDTO.SimulacaoDistribuicaoVida.Add(new SimulacaoDistribuicaoVidaDTO());
+                simulacaoDTO.SimulacaoDistribuicaoVida.Add(new SimulacaoDistribuicaoVidaDTO());
+                simulacaoDTO.SimulacaoDistribuicaoVida.Add(new SimulacaoDistribuicaoVidaDTO());
+                simulacaoDTO.SimulacaoDistribuicaoVida.Add(new SimulacaoDistribuicaoVidaDTO());
+                simulacaoDTO.SimulacaoDistribuicaoVida.Add(new SimulacaoDistribuicaoVidaDTO());
+                simulacaoDTO.SimulacaoDistribuicaoVida.Add(new SimulacaoDistribuicaoVidaDTO());
+                simulacaoDTO.SimulacaoDistribuicaoVida.Add(new SimulacaoDistribuicaoVidaDTO());
+            }
+
             return View(simulacaoDTO);
 
         }
 
         [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Passo1(SimulacaoDTO simulacaoDTO)
+    public async Task<IActionResult> Passo1(Guid id,SimulacaoDTO simulacaoDTO)
     {
             ModelState.RemoveAll<SimulacaoDTO>(x => x.SimulacaoDistribuicaoVida);
         if (!simulacaoDTO.EhValido_Distribuicao())
@@ -105,7 +121,7 @@ namespace Beneficios.Web.Controllers
 
             if (ModelState.IsValid)
         {
-          var id = await _servicoSimulacao.CriarDistribuicaoVida(simulacaoDTO.SimulacaoDistribuicaoVida);
+          var _id = await _servicoSimulacao.CriarDistribuicaoVida(simulacaoDTO.SimulacaoDistribuicaoVida);
           return RedirectToAction(nameof(Passo2), new {Id=id});
         }
         ViewBag.SimulacaoId = new SelectList(await _servicoSimulacao.BuscarTodos(), "Id", "Nome");
@@ -113,16 +129,25 @@ namespace Beneficios.Web.Controllers
         return View(simulacaoDTO);
     }
 
-        public async Task<IActionResult> Passo2()
+        public async Task<IActionResult> Passo2(Guid? id)
         {
+
+            if (id == null || id == Guid.Empty)
+                return NotFound();
+
+            ViewData["id"] = id;
+
+            var simulacaoDTO = await _servicoSimulacao.BuscarPeloId(id.Value);
+
+
             ViewBag.ProfissaoId = new SelectList(await _servicoProfissao.BuscarTodos(), "Id", "Nome");
             ViewBag.EntidadeDeClasseId = new SelectList(await _servicoEntidadeDeClasse.BuscarTodos(), "Id", "Apelido");
-            return View();
+            return View(simulacaoDTO);
 
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Passo2(SimulacaoDTO simulacaoDTO)
+        public async Task<IActionResult> Passo2( Guid id, SimulacaoDTO simulacaoDTO)
         {
 
             if (!simulacaoDTO.EhValido())
@@ -134,15 +159,32 @@ namespace Beneficios.Web.Controllers
             ModelState.Remove("ValidationResult");
             ModelState.Remove("SimulacaoAbrangencia");
             ModelState.Remove("SimulacaoDistribuicaoVida");
+            ModelState.Remove("Nome");
+            ModelState.Remove("Cpf");
+            ModelState.Remove("Email");
             if (ModelState.IsValid)
             {
-                var id = await _servicoSimulacao.Criar(simulacaoDTO);
+                var _id = await _servicoSimulacao.Criar(simulacaoDTO);
 
-                return RedirectToAction(nameof(Index), new { Id = id });
+                return RedirectToAction(nameof(Passo3), new { Id = id });
             }
             ViewBag.ProfissaoId = new SelectList(await _servicoProfissao.BuscarTodos(), "Id", "Nome");
             ViewBag.EntidadeDeClasseId = new SelectList(await _servicoEntidadeDeClasse.BuscarTodos(), "Id", "Apelido");
             return View(simulacaoDTO);
+        }
+        public async Task<IActionResult> Passo3(Guid? id)
+        {
+
+            if (id == null || id == Guid.Empty)
+                return NotFound();
+
+            ViewData["id"] = id;
+
+            var produtoDTO = await _servicoSimulacao.BuscarProduto(id.Value);
+
+
+            return View(produtoDTO);
+
         }
     }
 }

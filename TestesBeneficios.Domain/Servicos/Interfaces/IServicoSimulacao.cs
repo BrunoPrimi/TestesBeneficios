@@ -12,6 +12,7 @@ namespace TestesBeneficios.Domain.Servicos.Interfaces
     {
         Task<Guid> Criar(SimulacaoDTO simulacaoDTO);
         Task<int> CriarDistribuicaoVida(List<SimulacaoDistribuicaoVidaDTO> simulacaoDistribucaoVidaDTO);
+        Task<List<ProdutoDTO>> BuscarProduto(Guid id);
         Task<int> Edit(Guid id, SimulacaoDTO simulacaoDTO);
         Task<int> Excluir(Guid id);
         Task<List<SimulacaoDTO>> BuscarTodos();

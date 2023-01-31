@@ -32,12 +32,17 @@ namespace TestesBeneficios.Domain.Servicos.Implementacoes
             var simulacao = await _repositorioSimulacao.BuscarPeloId(id);
              return ConversorSimulacao.Converter(simulacao);
         }
+        public async Task<List<ProdutoDTO>> BuscarProduto(Guid id)
+        {
+            var produtos = await _repositorioSimulacao.BuscarProduto(id);
+            return ConversorProduto.Converter(produtos);
+        }
 
         public async Task<List<SimulacaoDTO>> BuscarTodos()
         {
-            var Simulacaos = await _repositorioSimulacao.BuscarTodos();
+            var simulacaos = await _repositorioSimulacao.BuscarTodos();
 
-            return ConversorSimulacao.Converter(Simulacaos);
+            return ConversorSimulacao.Converter(simulacaos);
         }
 
         public async Task<Guid> Criar(SimulacaoDTO SimulacaoDTO)

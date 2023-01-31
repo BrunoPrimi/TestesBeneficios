@@ -18,6 +18,7 @@ namespace TestesBeneficios.Domain.Convercores
                 Nome = simulacaoDTO.Nome,
                 Email = simulacaoDTO.Email,
                 Cpf = simulacaoDTO.Cpf,
+                AbrangenciaProduto = simulacaoDTO.AbrangenciaProduto,
                 IdProfissao = simulacaoDTO.IdProfissao,
                 IdEntidadeDeClasse = simulacaoDTO.IdEntidadeDeClasse
             };

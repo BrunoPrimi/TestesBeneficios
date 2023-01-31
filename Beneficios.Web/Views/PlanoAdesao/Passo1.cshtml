@@ -22,13 +22,13 @@
             <div class="card-body py-4">
                 <div class="tab-content">
                     <div class="tab-pane active px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-tab2" id="bootstrap-wizard-tab2">
-                        <form asp-action="Passo1">
+                        <form asp-action="Passo1" asp-route-id="@Model.Id">
                             <div class="row g-3">
                                 <div class="col-6 p-3">
                                     <div class="input-group input-group-sm" data-quantity="data-quantity">
                                         <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">0 a 18 anos</label>
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="minus">-</button>
-                                        <input asp-for="SimulacaoDistribuicaoVida[0].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                        <input asp-for="SimulacaoDistribuicaoVida[0].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0"  aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
                                         <input asp-for="SimulacaoDistribuicaoVida[0].AlcanceInicial" value="0" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[0].AlcanceFinal" value="18" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[0].Id" type="hidden" />
@@ -40,7 +40,7 @@
                                     <div class="input-group input-group-sm" data-quantity="data-quantity">
                                         <label class="form-label" for="bootstrap-wizard-wizard-idade " style="width:100px">19 a 23 anos</label>
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="minus">-</button>
-                                        <input asp-for="SimulacaoDistribuicaoVida[1].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                        <input asp-for="SimulacaoDistribuicaoVida[1].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
                                         <input asp-for="SimulacaoDistribuicaoVida[1].AlcanceInicial" value="19" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[1].AlcanceFinal" value="23" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[1].Id" type="hidden" />
@@ -53,7 +53,7 @@
                                     <div class="input-group input-group-sm" data-quantity="data-quantity">
                                         <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">24 a 28 anos</label>
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="minus">-</button>
-                                        <input asp-for="SimulacaoDistribuicaoVida[2].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                        <input asp-for="SimulacaoDistribuicaoVida[2].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0"  aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
                                         <input asp-for="SimulacaoDistribuicaoVida[2].AlcanceInicial" value="24" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[2].AlcanceFinal" value="28" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[2].Id" type="hidden" />
@@ -66,7 +66,7 @@
                                     <div class="input-group input-group-sm" data-quantity="data-quantity">
                                         <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">29 a 33 anos</label>
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="minus">-</button>
-                                        <input asp-for="SimulacaoDistribuicaoVida[3].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                        <input asp-for="SimulacaoDistribuicaoVida[3].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0"  aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
                                         <input asp-for="SimulacaoDistribuicaoVida[3].AlcanceInicial" value="29" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[3].AlcanceFinal" value="33" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[3].Id" type="hidden" />
@@ -78,7 +78,7 @@
                                     <div class="input-group input-group-sm" data-quantity="data-quantity">
                                         <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">34 a 38 anos</label>
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="minus">-</button>
-                                        <input asp-for="SimulacaoDistribuicaoVida[4].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                        <input asp-for="SimulacaoDistribuicaoVida[4].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0"  aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
                                         <input asp-for="SimulacaoDistribuicaoVida[4].AlcanceInicial" value="34" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[4].AlcanceFinal" value="38" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[4].Id" type="hidden" />
@@ -90,7 +90,7 @@
                                     <div class="input-group input-group-sm" data-quantity="data-quantity">
                                         <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">39 a 43 anos</label>
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="minus">-</button>
-                                        <input asp-for="SimulacaoDistribuicaoVida[5].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                        <input asp-for="SimulacaoDistribuicaoVida[5].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0"  aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
                                         <input asp-for="SimulacaoDistribuicaoVida[5].AlcanceInicial" value="39" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[5].AlcanceFinal" value="43" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[5].Id" type="hidden" />
@@ -102,7 +102,7 @@
                                     <div class="input-group input-group-sm" data-quantity="data-quantity">
                                         <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">44 a 48 anos</label>
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="minus">-</button>
-                                        <input asp-for="SimulacaoDistribuicaoVida[6].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                        <input asp-for="SimulacaoDistribuicaoVida[6].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0"  aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
                                         <input asp-for="SimulacaoDistribuicaoVida[6].AlcanceInicial" value="44" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[6].AlcanceFinal" value="48" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[6].Id" type="hidden" />
@@ -114,7 +114,7 @@
                                     <div class="input-group input-group-sm" data-quantity="data-quantity">
                                         <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">49 a 53 anos</label>
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="minus">-</button>
-                                        <input asp-for="SimulacaoDistribuicaoVida[7].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                        <input asp-for="SimulacaoDistribuicaoVida[7].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0"  aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
                                         <input asp-for="SimulacaoDistribuicaoVida[7].AlcanceInicial" value="49" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[7].AlcanceFinal" value="53" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[7].Id" type="hidden" />
@@ -126,7 +126,7 @@
                                     <div class="input-group input-group-sm" data-quantity="data-quantity">
                                         <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:100px">54 a 58 anos</label>
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="minus">-</button>
-                                        <input asp-for="SimulacaoDistribuicaoVida[8].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                        <input asp-for="SimulacaoDistribuicaoVida[8].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0"  aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
                                         <input asp-for="SimulacaoDistribuicaoVida[8].AlcanceInicial" value="54" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[8].AlcanceFinal" value="58" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[8].Id" type="hidden" />
@@ -138,7 +138,7 @@
                                     <div class="input-group input-group-sm" data-quantity="data-quantity">
                                         <label class="form-label" for="bootstrap-wizard-wizard-idade" style="width:130px">59 anos ou mais</label>
                                         <button class="btn btn-sm btn-outline-secondary border-300" type="button" data-field="input-quantity" data-type="minus">-</button>
-                                        <input asp-for="SimulacaoDistribuicaoVida[9].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0" value="0" aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
+                                        <input asp-for="SimulacaoDistribuicaoVida[9].Quantidade" class="form-control text-center input-quantity input-spin-none" type="number" min="0"  aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
                                         <input asp-for="SimulacaoDistribuicaoVida[9].AlcanceInicial" value="59" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[9].AlcanceFinal" value="999" type="hidden" />
                                         <input asp-for="SimulacaoDistribuicaoVida[9].Id" type="hidden" />

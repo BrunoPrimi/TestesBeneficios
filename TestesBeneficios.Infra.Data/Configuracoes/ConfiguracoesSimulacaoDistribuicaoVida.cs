@@ -14,17 +14,17 @@ namespace TestesBeneficios.Infra.Data.Configuracoes
 
             entityTypeBuilder.Property(x => x.AlcanceInicial)
                 .IsRequired()
-                .HasColumnName("Nome")
+                .HasColumnName("AlcanceInicial")
                 .HasColumnType($"Varchar({100})");
 
             entityTypeBuilder.Property(x => x.AlcanceFinal  )
                 .IsRequired()
-                .HasColumnName("Email")
+                .HasColumnName("AlcanceFinal")
                 .HasColumnType($"Varchar({100})");
 
             entityTypeBuilder.Property(x => x.Quantidade)
                .IsRequired()
-               .HasColumnName("Cpf")
+               .HasColumnName("Quantidade")
                .HasColumnType($"Varchar({14})");
 
 
