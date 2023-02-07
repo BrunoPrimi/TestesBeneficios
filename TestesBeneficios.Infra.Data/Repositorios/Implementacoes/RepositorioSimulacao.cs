@@ -52,7 +52,9 @@ namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
 
 
             return await _contexto.Produtos
+                .Include(x=>x.FaixaEtaria)
                 .Where(x=>x.Abrangencia==simulacao.AbrangenciaProduto)
+              
                 .ToListAsync();
         }
 

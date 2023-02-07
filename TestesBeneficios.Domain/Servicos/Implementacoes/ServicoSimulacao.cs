@@ -30,12 +30,24 @@ namespace TestesBeneficios.Domain.Servicos.Implementacoes
         public async Task<SimulacaoDTO> BuscarPeloId(Guid id)
         {
             var simulacao = await _repositorioSimulacao.BuscarPeloId(id);
-             return ConversorSimulacao.Converter(simulacao);
+            return ConversorSimulacao.Converter(simulacao);
         }
         public async Task<List<ProdutoDTO>> BuscarProduto(Guid id)
         {
             var produtos = await _repositorioSimulacao.BuscarProduto(id);
-            return ConversorProduto.Converter(produtos);
+            var produtosDTO = ConversorProduto.Converter(produtos);
+            var simulacao = await _repositorioSimulacao.BuscarPeloId(id);
+            foreach (var produtoDTO in produtosDTO) {
+                foreach (var item in simulacao.SimulacaoDistribuicaoVida.Where(x => x.Quantidade > 0))
+                {
+                    produtoDTO.Preco = produtoDTO.Preco == null ? 0 : produtoDTO.Preco;
+                    produtoDTO.Preco = produtoDTO.Preco + produtoDTO.FaixaEtaria.Where(x => x.FaixaDe == Convert.ToInt32(item.AlcanceInicial)
+                    && x.FaixaAte == Convert.ToInt32(item.AlcanceFinal)
+                    ).Sum(x => x.Preco);
+
+                }
+            }
+            return produtosDTO;
         }
 
         public async Task<List<SimulacaoDTO>> BuscarTodos()

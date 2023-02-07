@@ -34,7 +34,8 @@ namespace TestesBeneficios.Domain.Convercores
                 Nome = produto.Nome,
                 Codigo = produto.Codigo,
                 DataCriacao = produto.DataCriacao,
-                IdEmpresa = produto.IdEmpresa
+                IdEmpresa = produto.IdEmpresa,
+                FaixaEtaria = produto.FaixaEtaria
 
             };
         }

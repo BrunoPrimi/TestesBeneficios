@@ -23,6 +23,7 @@ namespace TestesBeneficios.Domain.DTO
 
         [Display(Name = "Código")]
         public string Codigo { get; set; }
+        public double? Preco { get; set; }
 
         public DateTime DataCriacao { get; set; }
        

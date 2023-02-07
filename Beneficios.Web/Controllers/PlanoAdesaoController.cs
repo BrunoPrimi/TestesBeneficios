@@ -164,7 +164,7 @@ namespace Beneficios.Web.Controllers
             ModelState.Remove("Email");
             if (ModelState.IsValid)
             {
-                var _id = await _servicoSimulacao.Criar(simulacaoDTO);
+                var _id = await _servicoSimulacao.Edit(id,simulacaoDTO);
 
                 return RedirectToAction(nameof(Passo3), new { Id = id });
             }

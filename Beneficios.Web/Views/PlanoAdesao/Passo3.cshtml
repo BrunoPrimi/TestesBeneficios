@@ -13,13 +13,13 @@
         <div class="card theme-wizard mb-5">
             <div class="card-header bg-light pt-3 pb-2">
                 <ul class="nav justify-content-between nav-wizard">
-                    <li class="nav-item"><a class="nav-link fw-semi-bold" href="#bootstrap-wizard-tab1" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-lock"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Dados Pessoais</span></a></li>
-                    <li class="nav-item"><a class="nav-link fw-semi-bold" href="#bootstrap-wizard-tab2" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-user"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Quantidade De Vidas</span></a></li>
-                    <li class="nav-item"><a class="nav-link fw-semi-bold" href="#bootstrap-wizard-tab3" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-dollar-sign"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Preferencias</span></a></li>
-                    <li class="nav-item"><a class="nav-link active fw-semi-bold" href="#bootstrap-wizard-tab4" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-thumbs-up"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Planosg</span></a></li>
+                    <li class="nav-item"> <a  asp-action="Index" asp-controller="PlanoAdesao" class="nav-link fw-semi-bold" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-lock"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Dados Pessoais</span></></a></li>
+                    <li class="nav-item"><a  asp-action="Passo1" asp-controller="PlanoAdesao" class="nav-link fw-semi-bold" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-user"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Quantidade De Vidas</span></></a></li>
+                    <li class="nav-item"><a  asp-action="Passo2" asp-controller="PlanoAdesao" class="nav-link fw-semi-bold" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-dollar-sign"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Preferencias</span></></a></li>
+                    <li class="nav-item"><a  asp-action="Passo3" asp-controller="PlanoAdesao" class="nav-link active fw-semi-bold" data-bs-toggle="tab" data-wizard-step="data-wizard-step"><span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-thumbs-up"></span></span></span><span class="d-none d-md-block mt-1 fs--1">Planosg</span></></a></li>
                 </ul>
             </div>
-            <div class="tab-pane text-center px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-tab4" id="bootstrap-wizard-tab4">
+            <div class="tab-pane  px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-tab4" id="bootstrap-wizard-tab4">
                 <div class="content">
                     <div class="row g-2">
                         <div class="col-xxl-2 col-xl-3">
@@ -34,15 +34,6 @@
                                 <div class="d-flex gap-2 flex-wrap my-3">
                                     <span class="badge bg-300 text-600 py-0">
                                         Free
-                                        <button class="btn btn-link btn-sm p-0 text-600 ms-1"><span class="fas fa-times fs--2"></span></button>
-                                    </span><span class="badge bg-300 text-600 py-0">
-                                        On sale
-                                        <button class="btn btn-link btn-sm p-0 text-600 ms-1"><span class="fas fa-times fs--2"></span></button>
-                                    </span><span class="badge bg-300 text-600 py-0">
-                                        Design
-                                        <button class="btn btn-link btn-sm p-0 text-600 ms-1"><span class="fas fa-times fs--2"></span></button>
-                                    </span><span class="badge bg-300 text-600 py-0">
-                                        English
                                         <button class="btn btn-link btn-sm p-0 text-600 ms-1"><span class="fas fa-times fs--2"></span></button>
                                     </span>
                                 </div>
@@ -60,21 +51,6 @@
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <div class="form-check d-flex ps-0">
-                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-category-paid">
-                                                            <span class="fas fa-file-invoice-dollar fs--1 me-3"></span>Paid
-                                                        </label>
-                                                        <input class="form-check-input" type="checkbox" name="paid" id="filter-category-paid" />
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check d-flex ps-0">
-                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-category-on-sale">
-                                                            <span class="fas fa-tags fs--2 me-3"></span>On Sale
-                                                        </label>
-                                                        <input class="form-check-input" type="checkbox" checked="checked" name="on-sale" id="filter-category-on-sale" />
-                                                    </div>
-                                                </li>
                                             </ul>
                                         </div>
                                     </li>
@@ -91,101 +67,6 @@
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <div class="form-check d-flex ps-0">
-                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-web-development">
-                                                            <span class="fas fa-globe fs--1 me-3"></span>Web Development
-                                                        </label>
-                                                        <input class="form-check-input" type="checkbox" name="web-development" id="filter-subject-web-development" />
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check d-flex ps-0">
-                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-software">
-                                                            <span class="fas fa-code fs--1 me-3"></span>Software
-                                                        </label>
-                                                        <input class="form-check-input" type="checkbox" name="software" id="filter-subject-software" />
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check d-flex ps-0">
-                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-business">
-                                                            <span class="fas fa-balance-scale-left fs--1 me-3"></span>Business
-                                                        </label>
-                                                        <input class="form-check-input" type="checkbox" name="business" id="filter-subject-business" />
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check d-flex ps-0">
-                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-marketing">
-                                                            <span class="fas fa-comment-dollar fs--1 me-3"></span>Marketing
-                                                        </label>
-                                                        <input class="form-check-input" type="checkbox" name="marketing" id="filter-subject-marketing" />
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check d-flex ps-0">
-                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-self-help">
-                                                            <span class="fas fa-hand-holding-water fs--1 me-3"></span>Self Help
-                                                        </label>
-                                                        <input class="form-check-input" type="checkbox" name="self-help" id="filter-subject-self-help" />
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check d-flex ps-0">
-                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-photography">
-                                                            <span class="fas fa-camera-retro fs--1 me-3"></span>Photography
-                                                        </label>
-                                                        <input class="form-check-input" type="checkbox" name="photography" id="filter-subject-photography" />
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check d-flex ps-0">
-                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-music">
-                                                            <span class="fas fa-music fs--1 me-3"></span>Music
-                                                        </label>
-                                                        <input class="form-check-input" type="checkbox" name="music" id="filter-subject-music" />
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check d-flex ps-0">
-                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-writing">
-                                                            <span class="fas fa-pen-nib fs--1 me-3"></span>Writing
-                                                        </label>
-                                                        <input class="form-check-input" type="checkbox" name="writing" id="filter-subject-writing" />
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check d-flex ps-0">
-                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-painting">
-                                                            <span class="fas fa-palette fs--1 me-3"></span>Painting
-                                                        </label>
-                                                        <input class="form-check-input" type="checkbox" name="painting" id="filter-subject-painting" />
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check d-flex ps-0">
-                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-cooking">
-                                                            <span class="fas fa-utensils fs--1 me-3"></span>Cooking
-                                                        </label>
-                                                        <input class="form-check-input" type="checkbox" name="cooking" id="filter-subject-cooking" />
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check d-flex ps-0">
-                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-teaching">
-                                                            <span class="fas fa-book fs--1 me-3"></span>Teaching
-                                                        </label>
-                                                        <input class="form-check-input" type="checkbox" name="teaching" id="filter-subject-teaching" />
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="form-check d-flex ps-0">
-                                                        <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-subject-miscellaneous">
-                                                            <span class="fas fa-thumbtack fs--1 me-3"></span>Miscellaneous
-                                                        </label>
-                                                        <input class="form-check-input" type="checkbox" name="miscellaneous" id="filter-subject-miscellaneous" />
-                                                    </div>
-                                                </li>
                                             </ul>
                                         </div>
                                     </li>
@@ -383,7 +264,6 @@
                                     {
 
 
-
                                         <div class="col-lg-4 pb-3 mt-3">
                                             <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
                                                 <div class="overflow-hidden">
@@ -400,20 +280,45 @@
                                                             </div>
                                                         </div><span class="badge rounded-pill bg-success position-absolute mt-2 me-2 z-index-2 top-0 end-0">New</span>
                                                     </div>
-                                                    <div class="p-3">
-                                                        <h5 class="fs-0"><a class="text-dark" href="../../../app/e-commerce/product/product-details.html">
-                                                            @produto.Nome
-                                                            </a></h5>
-                                                        <p class="fs--1 mb-3"><a class="text-500" href="#!">Computer &amp; Accessories</a></p>
-                                                        <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                                            $7199
-                                                        </h5>
-                                                        <p class="fs--1 mb-1">Shipping Cost: <strong>$65</strong></p>
-                                                        <p class="fs--1 mb-1">
-                                                            Stock: <strong class="text-danger">Sold-Out</strong>
-                                                        </p>
+                                                    <div class="row g-2">
+                                                        <div class="col-6">
+                                                            <div class="p-3">
+                                                                <h5 class="fs-0">
+                                                                    <a class="text-dark" href="../../../app/e-commerce/product/product-details.html">
+                                                                        @produto.Nome
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            </div>
+                                                            <div class="col-6 px-3">
+                                                                <h4 class="fs--1 mb-3 text-1000 ">ANS Operadora</h4>
+                                                            <h3 class="fs--1 mb-3 text-400">3199996</h3>
+                                                            </div>
+                                                        <div class="col-6 px-3">
+                                                                <h4 class="fs--1 mb-3 text-1000 "> ANS Plano</h4>
+                                                                <h3 class="fs--1 mb-3 text-400 "> 476.587/16-7</h3>
+                                                            </div>
+                                                            <div class="col-6 px-3">
+                                                                <h4 class="fs--1 mb-3 text-1000 "> Acomodação</h4>
+                                                                <h3 class="fs--1 mb-3 text-400 "> Enfermaria</h3>
+                                                            </div>
+                                                            <div class="col-6 px-3">
+                                                                <h4 class="fs--1 mb-3 text-1000 ">  Comparticipação</h4>
+                                                                <h3 class="fs--1 mb-3 text-400  ">Não</h3>
+                                                            </div>
+                                                        <div class="col-6 px-3">
+                                                                <h4 class="fs--1 mb-3 text-1000">Abrangência</h4>
+                                                                <a>@produto.Abrangencia</a>
+                                                            </div>
+                                                            <div class="px-3">
+                                                            <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+                                                                @Math.Round((decimal)produto.Preco,2)
+                                                            </h5>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                            </div>
+
                                                 <div class="d-flex flex-between-center px-3">
                                                     <div>
                                                         <span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star-half-alt text-warning star-icon"></span><span class="ms-1">(20)</span>
@@ -421,11 +326,11 @@
                                                     <div><a class="btn btn-sm btn-falcon-default me-2" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Wish List"><span class="far fa-heart"></span></a><a class="btn btn-sm btn-falcon-default" href="#!" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"><span class="fas fa-cart-plus"></span></a></div>
                                                 </div>
                                             </div>
-                                        </div>
                                     }
                                 }
-
                             </div>
+
+                        </div>
                         </div>
                     </div>
                 </div>
