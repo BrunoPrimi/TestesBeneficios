@@ -27,6 +27,8 @@ namespace TestesBeneficios.Domain.ValidacoesDTO
              .NotEmpty().WithMessage("{PropertyName} não pode ser vázio!")
              .MaximumLength(100).WithMessage("{PropertyName} não pode ter mais que 100 caracteres!");
 
+           
+
         }
 
         
@@ -38,6 +40,25 @@ namespace TestesBeneficios.Domain.ValidacoesDTO
 
             RuleFor(x => x.SimulacaoDistribuicaoVida)
                 .Must(x => x.Any(y => y.Quantidade > 0)).WithMessage("Informe pelo menos a faixa etária de uma vida!");
+
+        }
+
+
+    }
+
+    public class ValidacaoSimulacao_AbrangenciaDTO : AbstractValidator<SimulacaoDTO>
+    {
+        public ValidacaoSimulacao_AbrangenciaDTO()
+        {
+
+            RuleFor(x => x.AbrangenciaProduto)
+                 .NotNull().WithMessage("{PropertyName} não pode ser nulo!");
+
+            RuleFor(x => x.IdEntidadeDeClasse)
+                .NotNull().WithMessage("{PropertyName} não pode ser nulo!");
+
+            RuleFor(x => x.IdProfissao)
+                .NotNull().WithMessage("{PropertyName} não pode ser nulo!");
 
         }
 

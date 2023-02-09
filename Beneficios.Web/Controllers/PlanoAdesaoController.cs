@@ -150,7 +150,7 @@ namespace Beneficios.Web.Controllers
         public async Task<IActionResult> Passo2( Guid id, SimulacaoDTO simulacaoDTO)
         {
 
-            if (!simulacaoDTO.EhValido())
+            if (!simulacaoDTO.EhValido_Abrangencia())
             {
                 simulacaoDTO.ValidationResult.AddToModelState(ModelState);
             }

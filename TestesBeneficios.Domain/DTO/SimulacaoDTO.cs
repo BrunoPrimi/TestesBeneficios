@@ -35,7 +35,8 @@ namespace TestesBeneficios.Domain.DTO
 
         public bool EhValido()
         {
-            var erros = new ValidacaoSimulacaoDTO().Validate(this).Errors;
+            
+                var erros = new ValidacaoSimulacaoDTO().Validate(this).Errors;
             ValidationResult = new ValidationResult(erros);
 
             return ValidationResult.IsValid;
@@ -43,6 +44,13 @@ namespace TestesBeneficios.Domain.DTO
         public bool EhValido_Distribuicao()
         {
             var erros = new ValidacaoSimulacao_DistribuicaoDTO().Validate(this).Errors;
+            ValidationResult = new ValidationResult(erros);
+
+            return ValidationResult.IsValid;
+        }
+        public bool EhValido_Abrangencia()
+        {
+            var erros = new ValidacaoSimulacao_AbrangenciaDTO().Validate(this).Errors;
             ValidationResult = new ValidationResult(erros);
 
             return ValidationResult.IsValid;

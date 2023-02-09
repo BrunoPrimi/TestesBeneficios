@@ -19,6 +19,7 @@ namespace TestesBeneficios.Infra.Data.Context
         public DbSet<EntidadeDeClasse> EntidadeDeClasses { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Simulacao> Simulacoes { get; set; }
+        public DbSet<Simulacao> Contratacoes { get; set; }
 
         public DbSet<SimulacaoAbrangencia> Abrangencias { get; set; }
 
