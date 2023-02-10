@@ -32,23 +32,7 @@ namespace TestesBeneficios.Domain.Servicos.Implementacoes
             var contratacao = await _repositorioContratacao.BuscarPeloId(id);
             return ConversorContratacao.Converter(contratacao);
         }
-        public async Task<List<ProdutoDTO>> BuscarProduto(Guid id)
-        {
-            var produtos = await _repositorioContratacao.BuscarProduto(id);
-            var produtosDTO = ConversorProduto.Converter(produtos);
-            var contratacao = await _repositorioContratacao.BuscarPeloId(id);
-            foreach (var produtoDTO in produtosDTO) {
-                foreach (var item in contratacao.ContratacaoDistribuicaoVida.Where(x => x.Quantidade > 0))
-                {
-                    produtoDTO.Preco = produtoDTO.Preco == null ? 0 : produtoDTO.Preco;
-                    produtoDTO.Preco = produtoDTO.Preco + produtoDTO.FaixaEtaria.Where(x => x.FaixaDe == Convert.ToInt32(item.AlcanceInicial)
-                    && x.FaixaAte == Convert.ToInt32(item.AlcanceFinal)
-                    ).Sum(x => x.Preco);
-
-                }
-            }
-            return produtosDTO;
-        }
+       
 
         public async Task<List<ContratacaoDTO>> BuscarTodos()
         {

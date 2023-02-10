@@ -31,10 +31,9 @@ namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
 
         public async Task<Contratacao> BuscarPeloId(Guid id)
         {
-            return await _contexto.Contratacoes
-                .Include(x => x.ContratacaoDistribuicaoVida.OrderBy(x => x.AlcanceInicial))
-                .Where(x => x.Id == id)
-                .FirstOrDefaultAsync();
+            return await _contexto.Contratacoes.FindAsync(id);
+               
+                
         }
 
         public async Task<List<Contratacao>> BuscarTodos()
@@ -56,7 +55,7 @@ namespace TestesBeneficios.Infra.Data.Repositorios.Implementacoes
         {
             var contratacao = await _contexto.Contratacoes.FindAsync(id);
 
-            _contexto.Simulacoes.Remove(contratacao);
+            _contexto.Contratacoes.Remove(contratacao);
 
             return await _contexto.SaveChangesAsync();
         }

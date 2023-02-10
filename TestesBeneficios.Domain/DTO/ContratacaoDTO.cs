@@ -36,12 +36,12 @@ namespace TestesBeneficios.Domain.DTO
         public string Bairro { get; set; }
         public string Cidade { get; set; }
         public string Uf { get; set; }
-        public ValidationResult ValidationResult { get; private set; }
+        public ValidationResult ValidationResult { get; set; }
 
 
         public bool EhValido()
         {
-            var erros = new ValidacaoSimulacaoDTO().Validate(this).Errors;
+            var erros = new ValidacaoContratacaoDTO().Validate(this).Errors;
             ValidationResult = new ValidationResult(erros);
 
             return ValidationResult.IsValid;

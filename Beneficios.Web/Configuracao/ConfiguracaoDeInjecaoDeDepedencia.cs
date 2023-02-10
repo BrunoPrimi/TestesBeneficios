@@ -29,6 +29,8 @@ namespace Beneficios.Web.Configuracao
             services.AddScoped<IRepositorioSimulacaoDistribuicaoVida, RepositorioSimulacaoDistribuicaoVida>();
             services.AddScoped<IServicoSimulacaoAbrangencia, ServicoSimulacaoAbrangencia>();
             services.AddScoped<IRepositorioSimulacaoAbrangencia, RepositorioSimulacaoAbrangencia>();
+            services.AddScoped<IServicoContratacao, ServicoContratacao>();
+            services.AddScoped<IRepositorioContratacao, RepositorioContratacao>();
             return services;
         }
     }

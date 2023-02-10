@@ -62,11 +62,48 @@ namespace TestesBeneficios.Infra.Data.Configuracoes
              .IsRequired()
              .HasColumnName("Complemento")
              .HasColumnType($"Varchar({100})");
+
             entityTypeBuilder.Property(x => x.DataDeNacimento)
              .IsRequired()
              .HasColumnName("DataNacimento")
              .HasColumnType($"Varchar({100})");
 
+            entityTypeBuilder.Property(x => x.EstadoCivil)
+             .IsRequired()
+             .HasColumnName("EstadoCivil")
+             .HasColumnType($"Varchar({100})");
+
+            entityTypeBuilder.Property(x => x.NomeDaMae)
+             .IsRequired()
+             .HasColumnName("NomeDaMae")
+             .HasColumnType($"Varchar({100})");
+
+            entityTypeBuilder.Property(x => x.DataExpedicaoRG)
+             .IsRequired()
+             .HasColumnName("DataExpedicaoRG")
+             .HasColumnType($"Varchar({100})");
+
+            entityTypeBuilder.Property(x => x.Logradouro)
+             .IsRequired()
+             .HasColumnName("Logradouro")
+             .HasColumnType($"Varchar({100})");
+
+            entityTypeBuilder.Property(x => x.Rg)
+            .IsRequired()
+            .HasColumnName("Rg")
+            .HasColumnType($"Varchar({100})");
+
+            entityTypeBuilder.Property(x => x.Numero)
+            .IsRequired()
+            .HasColumnName("Numero")
+            .HasColumnType($"Varchar({100})");
+
+            entityTypeBuilder.Property(x => x.OrgaoEmissor)
+          .IsRequired()
+          .HasColumnName("OrgaoEmissor")
+          .HasColumnType($"Varchar({100})");
+
+          
         }
     }
 }

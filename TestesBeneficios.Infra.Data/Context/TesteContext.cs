@@ -19,7 +19,7 @@ namespace TestesBeneficios.Infra.Data.Context
         public DbSet<EntidadeDeClasse> EntidadeDeClasses { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Simulacao> Simulacoes { get; set; }
-        public DbSet<Simulacao> Contratacoes { get; set; }
+        public DbSet<Contratacao> Contratacoes { get; set; }
 
         public DbSet<SimulacaoAbrangencia> Abrangencias { get; set; }
 
@@ -57,6 +57,8 @@ namespace TestesBeneficios.Infra.Data.Context
             modelBuilder.Entity<EntidadeDeClasse>(new ConfiguracoesEntidadeDeClasse().Configure);
 
             modelBuilder.Entity<Produto>(new ConfiguracoesProduto().Configure);
+
+            modelBuilder.Entity<Contratacao>(new ConfiguracoesContratacao().Configure);
 
             modelBuilder.Entity<Simulacao>(new ConfiguracoesSimulacao().Configure);
 
