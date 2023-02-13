@@ -15,6 +15,7 @@ namespace TestesBeneficios.Infra.Data.Context
     {
         public DbSet<Beneficiario> Beneficiarios { get; set; }
         public DbSet<Empresa> Empresas { get; set; }
+        public DbSet<DeclaracaoDeSaude> DeclaracaoDeSaudes { get; set; }
         public DbSet<Profissao> Profissoes { get; set; }
         public DbSet<EntidadeDeClasse> EntidadeDeClasses { get; set; }
         public DbSet<Produto> Produtos { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Beneficios.Web.Models;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -29,17 +30,29 @@ namespace Beneficios.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index( ContratacaoDTO contratacaoDTO)
+        public async Task<IActionResult> Index(ContratacaoDTO contratacaoDTO)
         {
-       
+            if (!contratacaoDTO.EhValido())
+            {
+                contratacaoDTO.ValidationResult.AddToModelState(ModelState);
+            }
 
+            if (ModelState.IsValid)
+            {
+                var id = await _servicoContratacao.Criar(contratacaoDTO);
+
+                return RedirectToAction(id);
+            }
+            return View(contratacaoDTO);
+        }
+        public IActionResult Passo1()
+        {
             return View();
-                
-
         }
 
-      
 
-      
+
+
     }
 }
+    
