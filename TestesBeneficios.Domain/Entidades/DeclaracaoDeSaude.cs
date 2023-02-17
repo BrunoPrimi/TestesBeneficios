@@ -15,6 +15,10 @@ namespace TestesBeneficios.Domain.Entidades
 
         public Resposta Resposta { get; set; }
 
+        public string Peso { get; set; }
+
+        public string Altura { get; set; }
+
         public string Detalhes { get; set; }
 
         public DateTime DataDoEvento { get; set; }

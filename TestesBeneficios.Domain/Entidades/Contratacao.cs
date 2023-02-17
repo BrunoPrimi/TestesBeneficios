@@ -35,6 +35,7 @@ namespace TestesBeneficios.Domain.Entidades
         public string Uf { get; set; }
 
 
+      //  public virtual List<DlecaracaoDeSaude> DlecaracaoDeSaude { get; set; }
 
 
 

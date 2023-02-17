@@ -41,7 +41,7 @@ namespace Beneficios.Web.Controllers
             {
                 var id = await _servicoContratacao.Criar(contratacaoDTO);
 
-                return RedirectToAction(id);
+                return RedirectToAction(nameof(Passo1), new { Id = id });
             }
             return View(contratacaoDTO);
         }
