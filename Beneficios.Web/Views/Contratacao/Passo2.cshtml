@@ -22,48 +22,11 @@
             <div class="card-body py-4">
                 <div class="tab-content">
                     <div class="tab-pane px-sm-3 active px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-tab3" id="bootstrap-wizard-tab3">
-                        <form asp-action="Passo2"  class="form-validation">
-                            <input type="hidden" asp-for="Id" />
-                            <input type="hidden"asp-for="Nome" />
-                            <input type="hidden" asp-for="Cpf" />
-                            <input type="hidden" asp-for="Email" />
-                            <div class="row g-2">
-                                <div class="col-4">
-                                    <div class="mb-3">
-                                        <label asp-for="AbrangenciaProduto" class="form-label" for="basic-form-gender">Abrangencia</label>
-                                        <select asp-for="AbrangenciaProduto" asp-items="Html.GetEnumSelectList<AbrangenciaProduto>()" class="form-select" id="basic-form-gender" aria-label="Default select example">
-                                            <span asp-validation-for="AbrangenciaProduto" class="text-danger"></span>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="mb-3">
-                                        <label asp-for="IdProfissao" class="form-label" for="basic-form-gender">IdProfissao</label>
-                                        <select asp-for="IdProfissao" asp-items="@ViewBag.ProfissaoId" class="form-select" id="basic-form-gender" aria-label="Default select example">
-                                            <span asp-validation-for="IdProfissao" class="text-danger"></span>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="mb-3">
-                                        <label asp-for="IdEntidadeDeClasse" class="form-label" for="basic-form-gender">IdEntidadeDeClasse</label>
-                                        <select asp-for="IdEntidadeDeClasse" asp-items="@ViewBag.EntidadeDeClasseId" class="form-select" id="basic-form-gender" aria-label="Default select example">
-                                       <span asp-validation-for="IdEntidadeDeClasse" class="text-danger"></span>
-                                        </select>
-                                    </div>
-                                </div>
+                        <div class="Container-xl">
+                            <div class="row">
+                                <div class="col"></div>
                             </div>
-                            <div class="px-sm-3 px-md-5">
-                                <ul class="pager wizard list-inline mb-0">
-                                    <li class="previous">
-                                        <button class="btn btn-link ps-0" type="button"> Font Awesome fontawesome.com -->Prev</button>
-                                    </li>
-                                    <li class="next">
-                                        <button value="Create" class="btn btn-primary px-5 px-sm-6" type="submit">Next</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

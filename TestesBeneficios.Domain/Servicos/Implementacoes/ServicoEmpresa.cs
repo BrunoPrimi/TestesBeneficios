@@ -10,47 +10,47 @@ using TestesBeneficios.Domain.Servicos.Interfaces;
 
 namespace TestesBeneficios.Domain.Servicos.Implementacoes
 {
-    public class ServicoEmpresa : IServicoEmpresa
+    public class ServicoPagamento : IServicoPagamento
     {
-        private readonly IRepositorioEmpresa _repositorioEmpresa;
+        private readonly IRepositorioPagamento _repositorioPagamento;
 
-        public ServicoEmpresa(IRepositorioEmpresa repositorioEmpresa)
+        public ServicoPagamento(IRepositorioPagamento repositorioPagamento)
         {
-            _repositorioEmpresa = repositorioEmpresa;
+            _repositorioPagamento = repositorioPagamento;
         }
    
 
-        public async Task<int> Edit(Guid id ,EmpresaDTO empresaDTO)
+        public async Task<int> Edit(Guid id ,PagamentoDTO pagamentoDTO)
         {
-            var empresa = ConversorEmpresa.Converter(id, empresaDTO);
+            var pagamento = ConversorPagamento.Converter(id, pagamentoDTO);
            
-            return await _repositorioEmpresa.Edit(empresa);
+            return await _repositorioPagamento.Edit(pagamento);
         }
 
-        public async Task<EmpresaDTO> BuscarPeloId(Guid id)
+        public async Task<PagamentoDTO> BuscarPeloId(Guid id)
         {
-            var empresa = await _repositorioEmpresa.BuscarPeloId(id);
+            var pagamento = await _repositorioPagamento.BuscarPeloId(id);
 
-            return ConversorEmpresa.Converter(empresa);
+            return ConversorPagamento.Converter(pagamento);
         }
 
-        public async Task<List<EmpresaDTO>> BuscarTodos()
+        public async Task<List<PagamentoDTO>> BuscarTodos()
         {
-            var empresas = await _repositorioEmpresa.BuscarTodos();
+            var pagamentos = await _repositorioPagamento.BuscarTodos();
 
-            return ConversorEmpresa.Converter(empresas);
+            return ConversorPagamento.Converter(pagamentos);
         }
 
-        public async Task<int> Criar(EmpresaDTO empresaDTO)
+        public async Task<int> Criar(PagamentoDTO pagamentoDTO)
         {
-            var empresa = ConversorEmpresa.Converter(Guid.NewGuid(), empresaDTO);
-          return await  _repositorioEmpresa.Criar(empresa);
+            var pagamento = ConversorPagamento.Converter(Guid.NewGuid(), pagamentoDTO);
+          return await  _repositorioPagamento.Criar(pagamento);
         }
 
         public async Task<int> Excluir(Guid id)
         {
 
-            return await _repositorioEmpresa.Excluir(id);
+            return await _repositorioPagamento.Excluir(id);
         }
     }
 }
